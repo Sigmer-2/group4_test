@@ -20,4 +20,9 @@ public class PageController {
     public String register(){
         return "register";
     }
+    /**后台布局*/
+    @RequestMapping(value = "/main")
+    public String main(){
+        return "main";
+    }
 }

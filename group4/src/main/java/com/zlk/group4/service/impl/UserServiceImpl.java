@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
+    @Autowired(required = false)
     private UserMapper userMapper;
     @Override
     public Integer selectUserLogin(User user) {
