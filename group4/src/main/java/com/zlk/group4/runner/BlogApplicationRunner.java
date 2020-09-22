@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * 程序启动后通过ApplicationRunner处理一些事务
-
+ * @author: zhc
+ * @time: 2020/9/22 10:16
  */
 @Slf4j
 @Component

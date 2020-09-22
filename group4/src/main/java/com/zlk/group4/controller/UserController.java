@@ -1,6 +1,7 @@
 package com.zlk.group4.controller;
 
 import com.zlk.group4.entity.User;
+import com.zlk.group4.ordinary.service.HouseService;
 import com.zlk.group4.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,10 +22,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    //登陆
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-
-    public Map<String, Object> login(@RequestBody User user) throws Exception {
+    public Map<String, Object> login(@RequestBody User user) throws Exception {//登陆
         System.out.println(user.toString());
         Map<String, Object> map = new HashMap<>();
         user.setUserPassword(md5Encrypt32Lower(user.getUserPassword()));
@@ -55,9 +54,8 @@ public class UserController {
 
     /**注册*/
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public Map<String, Object> register(@RequestBody User user) {
+    public Map<String, Object> register(@RequestBody User user) {//注册
         System.out.println(user.toString());
-
         Map<String, Object> map = new HashMap<>();
         //先查询数据库内有无此用户名
         Integer flag1 = userService.selectUserByName(user.getUserName());
