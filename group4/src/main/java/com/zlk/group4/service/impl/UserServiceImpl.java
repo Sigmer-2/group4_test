@@ -28,4 +28,9 @@ public class UserServiceImpl implements UserService {
     public Integer saveUser(User user) {
         return userMapper.saveUser(user);
     }
+
+    @Override
+    public Integer findUserRole(User user) {
+        return userMapper.findUserRole(user);
+    }
 }

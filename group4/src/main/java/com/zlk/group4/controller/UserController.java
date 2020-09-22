@@ -30,9 +30,20 @@ public class UserController {
         user.setUserPassword(md5Encrypt32Lower(user.getUserPassword()));
         Integer flag = userService.selectUserLogin(user);
         System.out.println(flag);
+        Integer roleid = userService.findUserRole(user);
         if (flag == 1) {
             map.put("status", 1);
             System.out.println(map.get("status"));
+            if(roleid!=null){
+                if(roleid==2){
+                    map.put("type",2);
+                }else{
+                    map.put("type",1);
+                }
+            }
+            else{
+                map.put("type",1);
+            }
             return map;
         } else {
             map.put("status", 0);
@@ -42,7 +53,7 @@ public class UserController {
     }
 
 
-    //注册
+    /**注册*/
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public Map<String, Object> register(@RequestBody User user) {
         System.out.println(user.toString());

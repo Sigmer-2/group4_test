@@ -122,7 +122,15 @@
                 type:'post',
                 success:function (data) {
                     if (data.status == 1){
-                        layer.msg('登陆成功');
+                        if(data.type == 2){
+                            layer.alert('登陆成功',function(){
+                                window.location.href = "login";
+                            })
+                        }else{
+                            layer.msg('登陆成功',function(){
+                                window.location.href = "login";
+                            });
+                        }
                     }else{
                         layer.msg('登录名或密码错误');
                     }
