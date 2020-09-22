@@ -123,13 +123,9 @@
                 success:function (data) {
                     if (data.status == 1){
                         if(data.type == 2){
-                            layer.alert('登陆成功',function(){
-                                window.location.href = "login";
-                            })
+                                window.location.href = "main";
                         }else{
-                            layer.msg('登陆成功',function(){
-                                window.location.href = "login";
-                            });
+                                window.location.href = "";
                         }
                     }else{
                         layer.msg('登录名或密码错误');
