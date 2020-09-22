@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zlk.group4.ordinary.mapper.HouseRefLabelMapper">
+  <resultMap id="BaseResultMap" type="com.zlk.group4.ordinary.entity.HouseRefLabel">
+    <!--@mbg.generated-->
+    <!--@Table house_ref_label-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="house_label_id" jdbcType="INTEGER" property="houseLabelId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, house_id, house_label_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from house_ref_label
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from house_ref_label
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zlk.group4.ordinary.entity.HouseRefLabel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into house_ref_label (house_id, house_label_id)
+    values (#{houseId,jdbcType=INTEGER}, #{houseLabelId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zlk.group4.ordinary.entity.HouseRefLabel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into house_ref_label
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="houseLabelId != null">
+        house_label_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="houseLabelId != null">
+        #{houseLabelId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlk.group4.ordinary.entity.HouseRefLabel">
+    <!--@mbg.generated-->
+    update house_ref_label
+    <set>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="houseLabelId != null">
+        house_label_id = #{houseLabelId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlk.group4.ordinary.entity.HouseRefLabel">
+    <!--@mbg.generated-->
+    update house_ref_label
+    set house_id = #{houseId,jdbcType=INTEGER},
+      house_label_id = #{houseLabelId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
