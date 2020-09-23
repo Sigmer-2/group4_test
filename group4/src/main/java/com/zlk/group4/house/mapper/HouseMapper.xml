@@ -12,9 +12,6 @@
     <result column="rental_mode" jdbcType="VARCHAR" property="rentalMode" />
     <result column="room_type" jdbcType="VARCHAR" property="roomType" />
     <result column="rent" jdbcType="DECIMAL" property="rent" />
-    <result column="house_img" jdbcType="VARCHAR" property="houseImg" />
-    <result column="house_lable" jdbcType="INTEGER" property="houseLable" />
-    <result column="house_deploy" jdbcType="INTEGER" property="houseDeploy" />
     <result column="house_introduction" jdbcType="VARCHAR" property="houseIntroduction" />
     <result column="checkin_time" jdbcType="DATE" property="checkinTime" />
     <result column="sex" jdbcType="INTEGER" property="sex" />

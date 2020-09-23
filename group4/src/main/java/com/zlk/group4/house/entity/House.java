@@ -60,22 +60,6 @@ public class House {
      * 月租金
      */
     private BigDecimal rent;
-
-    /**
-     * 房屋照片
-     */
-    private String houseImg;
-
-    /**
-     * 房屋标签
-     */
-    private Integer houseLable;
-
-    /**
-     * 房屋配置
-     */
-    private Integer houseDeploy;
-
     /**
      * 房屋介绍
      */
