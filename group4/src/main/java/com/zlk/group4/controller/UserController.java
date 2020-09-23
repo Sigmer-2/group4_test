@@ -1,7 +1,6 @@
 package com.zlk.group4.controller;
 
 import com.zlk.group4.entity.User;
-import com.zlk.group4.ordinary.service.HouseService;
 import com.zlk.group4.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
