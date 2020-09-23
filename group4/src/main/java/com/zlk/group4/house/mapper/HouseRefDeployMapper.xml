@@ -7,6 +7,26 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="house_id" jdbcType="INTEGER" property="houseId" />
     <result column="house_deploy_id" jdbcType="INTEGER" property="houseDeployId" />
+      <association property="houseDeploy" javaType="com.zlk.group4.house.entity.HouseDeploy">
+          <id column="id" jdbcType="INTEGER" property="id" />
+          <result column="bed" jdbcType="INTEGER" property="bed" />
+          <result column="wifi" jdbcType="INTEGER" property="wifi" />
+          <result column="conditioner" jdbcType="INTEGER" property="conditioner" />
+          <result column="wardrobe" jdbcType="INTEGER" property="wardrobe" />
+          <result column="desk" jdbcType="INTEGER" property="desk" />
+          <result column="chair" jdbcType="INTEGER" property="chair" />
+          <result column="sofa" jdbcType="INTEGER" property="sofa" />
+          <result column="refrigerator" jdbcType="INTEGER" property="refrigerator" />
+          <result column="washing" jdbcType="INTEGER" property="washing" />
+          <result column="tv" jdbcType="INTEGER" property="tv" />
+          <result column="heater" jdbcType="INTEGER" property="heater" />
+          <result column="stove" jdbcType="INTEGER" property="stove" />
+          <result column="microwave" jdbcType="INTEGER" property="microwave" />
+          <result column="lampblack" jdbcType="INTEGER" property="lampblack" />
+          <result column="dining" jdbcType="INTEGER" property="dining" />
+          <result column="lock" jdbcType="INTEGER" property="lock" />
+          <result column="led" jdbcType="INTEGER" property="led" />
+      </association>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -69,4 +89,20 @@
       house_deploy_id = #{houseDeployId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectDeployByHouseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+      SELECT
+              hd.*
+      FROM
+              house AS h
+      INNER JOIN
+              house_ref_deploy AS hrd
+      ON
+              h.id = hrd.house_id
+      INNER JOIN
+              house_deploy AS hd
+      ON
+              hrd.house_deploy_id = hd.id
+      WHERE
+              h.id = #{id}
+  </select>
 </mapper>

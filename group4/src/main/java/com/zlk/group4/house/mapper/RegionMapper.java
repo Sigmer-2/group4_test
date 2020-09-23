@@ -5,66 +5,59 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * Created with IntelliJ IDEA.
- * Description: 区域
+ * Description:
  * User: sunshuai
- * Date: 2020-09-22
- * Time: 15:45
+ * Date: 2020-09-23
+ * Time: 14:16
  */
-    
+
 @Mapper
 public interface RegionMapper {
-
     /**
-     * @Description: delete by primary key
-     * @Auther sunshuai
-     * @Date 2020/9/22 17:05
+     * delete by primary key
+     *
      * @param id primaryKey
-     * @return int deleteCount
+     * @return deleteCount
      */
     int deleteByPrimaryKey(Integer id);
 
     /**
-     * @Description: insert record to table
-     * @Auther sunshuai
-     * @Date 2020/9/22 17:05
+     * insert record to table
+     *
      * @param record the record
-     * @return int insert count
+     * @return insert count
      */
     int insert(Region record);
 
     /**
-     * @Description: insert record to table selective
-     * @Auther sunshuai
-     * @Date 2020/9/22 17:05
+     * insert record to table selective
+     *
      * @param record the record
-     * @return int insert count
+     * @return insert count
      */
     int insertSelective(Region record);
 
     /**
-     * @Description: select by primary key
-     * @Auther sunshuai
-     * @Date 2020/9/22 17:06
+     * select by primary key
+     *
      * @param id primary key
-     * @return com.zlk.group4.ordinary.entity.Region
+     * @return object by primary key
      */
     Region selectByPrimaryKey(Integer id);
 
     /**
-     * @Description: primary key
-     * @Auther sunshuai
-     * @Date 2020/9/22 17:07
+     * update record selective
+     *
      * @param record the updated record
-     * @return int update count
+     * @return update count
      */
     int updateByPrimaryKeySelective(Region record);
 
     /**
-     * @Description: update record
-     * @Auther sunshuai
-     * @Date 2020/9/22 17:07
+     * update record
+     *
      * @param record the updated record
-     * @return int update count
+     * @return update count
      */
     int updateByPrimaryKey(Region record);
 }

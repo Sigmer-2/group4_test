@@ -2,6 +2,8 @@ package com.zlk.group4.house.service;
 
 import com.zlk.group4.house.entity.HouseRefLabel;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -25,5 +27,10 @@ public interface HouseRefLabelService {
 
     int updateByPrimaryKey(HouseRefLabel record);
 
+    HouseRefLabel selectLabelByHouseId(Integer id);
+
+    String label(Integer id);
+
 }
+
 

@@ -1,16 +1,18 @@
 package com.zlk.group4.house.entity;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.Date;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.Transient;
 
 /**
  * Created with IntelliJ IDEA.
- * Description: 房屋信息
+ * Description:
  * User: sunshuai
- * Date: 2020-09-22
- * Time: 15:45
+ * Date: 2020-09-23
+ * Time: 14:16
  */
 
 @Data
@@ -56,21 +58,6 @@ public class House {
     private BigDecimal rent;
 
     /**
-     * 房屋照片
-     */
-    private String houseImg;
-
-    /**
-     * 房屋标签
-     */
-    private Integer houseLable;
-
-    /**
-     * 房屋配置
-     */
-    private Integer houseDeploy;
-
-    /**
      * 房屋介绍
      */
     private String houseIntroduction;
@@ -78,7 +65,8 @@ public class House {
     /**
      * 可入住时间
      */
-    private LocalDate checkinTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date checkinTime;
 
     /**
      * 租客性别（0：男女不限，1：男，2：女）
@@ -103,10 +91,20 @@ public class House {
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    private Date createTime;
 
     /**
      * 更新时间
      */
-    private LocalDateTime updateTime;
+    private Date updateTime;
+    /**
+     * 地铁
+     */
+    @Transient
+    private Metro metro;
+    /**
+     * 区域
+     */
+    @Transient
+    private Region region;
 }

@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 import com.zlk.group4.house.entity.HouseRefDeploy;
 import com.zlk.group4.house.service.HouseRefDeployService;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -50,5 +52,11 @@ public class HouseRefDeployServiceImpl implements HouseRefDeployService {
         return houseRefDeployMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public List<HouseRefDeploy> selectDeployByHouseId(Integer id) {
+        return houseRefDeployMapper.selectDeployByHouseId(id);
+    }
+
 }
+
 

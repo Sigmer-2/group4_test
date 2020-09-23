@@ -6,11 +6,11 @@
     <!--@Table metro-->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="metro_line" jdbcType="VARCHAR" property="metroLine" />
-    <result column="street" jdbcType="VARCHAR" property="street" />
+    <result column="station" jdbcType="VARCHAR" property="station" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, metro_line, street
+    id, metro_line, station
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -26,8 +26,8 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zlk.group4.house.entity.Metro" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into metro (metro_line, street)
-    values (#{metroLine,jdbcType=VARCHAR}, #{street,jdbcType=VARCHAR})
+    insert into metro (metro_line, station)
+    values (#{metroLine,jdbcType=VARCHAR}, #{station,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zlk.group4.house.entity.Metro" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -36,16 +36,16 @@
       <if test="metroLine != null and metroLine != ''">
         metro_line,
       </if>
-      <if test="street != null and street != ''">
-        street,
+      <if test="station != null and station != ''">
+        station,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="metroLine != null and metroLine != ''">
         #{metroLine,jdbcType=VARCHAR},
       </if>
-      <if test="street != null and street != ''">
-        #{street,jdbcType=VARCHAR},
+      <if test="station != null and station != ''">
+        #{station,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -56,8 +56,8 @@
       <if test="metroLine != null and metroLine != ''">
         metro_line = #{metroLine,jdbcType=VARCHAR},
       </if>
-      <if test="street != null and street != ''">
-        street = #{street,jdbcType=VARCHAR},
+      <if test="station != null and station != ''">
+        station = #{station,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -66,7 +66,7 @@
     <!--@mbg.generated-->
     update metro
     set metro_line = #{metroLine,jdbcType=VARCHAR},
-      street = #{street,jdbcType=VARCHAR}
+      station = #{station,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

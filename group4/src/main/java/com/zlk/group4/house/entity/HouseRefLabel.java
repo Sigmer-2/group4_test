@@ -2,12 +2,14 @@ package com.zlk.group4.house.entity;
 
 import lombok.Data;
 
+import javax.persistence.Transient;
+
 /**
  * Created with IntelliJ IDEA.
- * Description: 房屋标签关联
+ * Description:
  * User: sunshuai
- * Date: 2020-09-22
- * Time: 15:45
+ * Date: 2020-09-23
+ * Time: 14:16
  */
 
 @Data
@@ -26,4 +28,7 @@ public class HouseRefLabel {
      * 标签id
      */
     private Integer houseLabelId;
+
+    @Transient
+    private HouseLabel houseLabel;
 }

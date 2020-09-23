@@ -5,9 +5,9 @@
       <ProjectProfile>
         <option name="generateService" value="true" />
         <option name="generateServiceInterface" value="true" />
-        <option name="javaMapperPackage" value="com.zlk.group4.ordinary.mapper" />
+        <option name="javaMapperPackage" value="com.zlk.group4.house.mapper" />
         <option name="javaMapperPath" value="$PROJECT_DIR$/group4/src/main/java" />
-        <option name="javaModelPackage" value="com.zlk.group4.ordinary.entity" />
+        <option name="javaModelPackage" value="com.zlk.group4.house.entity" />
         <option name="javaModelPath" value="$PROJECT_DIR$/group4/src/main/java" />
         <option name="lastDatabaseCrudChooseModuleName" value="group4" />
         <option name="lombokDataAnnotation" value="true" />
@@ -17,15 +17,15 @@
             <entry key="group4">
               <value>
                 <UserPackageAndPathInfoByModule>
-                  <option name="javaMapperPackage" value="com.zlk.group4.ordinary.mapper" />
+                  <option name="javaMapperPackage" value="com.zlk.group4.house.mapper" />
                   <option name="javaMapperPath" value="$PROJECT_DIR$/group4/src/main/java" />
-                  <option name="javaModelPacakge" value="com.zlk.group4.ordinary.entity" />
+                  <option name="javaModelPacakge" value="com.zlk.group4.house.entity" />
                   <option name="javaModelPath" value="$PROJECT_DIR$/group4/src/main/java" />
-                  <option name="javaServiceInterfacePackage" value="com.zlk.group4.ordinary.service" />
+                  <option name="javaServiceInterfacePackage" value="com.zlk.group4.house.service" />
                   <option name="javaServiceInterfacePath" value="E:\杂七杂八\16\group\group4\src\main\java" />
-                  <option name="javaServicePackage" value="com.zlk.group4.ordinary.service.impl" />
+                  <option name="javaServicePackage" value="com.zlk.group4.house.service.impl" />
                   <option name="javaServicePath" value="$PROJECT_DIR$/group4/src/main/java" />
-                  <option name="xmlPackage" value="com.zlk.group4.ordinary.mapper" />
+                  <option name="xmlPackage" value="com.zlk.group4.house.mapper" />
                   <option name="xmlPath" value="E:\杂七杂八\16\group\group4\src\main\java" />
                 </UserPackageAndPathInfoByModule>
               </value>
@@ -137,7 +137,7 @@
             </entry>
           </map>
         </option>
-        <option name="xmlMapperPackage" value="com.zlk.group4.ordinary.mapper" />
+        <option name="xmlMapperPackage" value="com.zlk.group4.house.mapper" />
         <option name="xmlMapperPath" value="E:\杂七杂八\16\group\group4\src\main\java" />
       </ProjectProfile>
     </option>

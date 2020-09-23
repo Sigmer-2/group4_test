@@ -1,11 +1,15 @@
 package com.zlk.group4.house.service.impl;
 
 import com.zlk.group4.house.mapper.HouseRefUserMapper;
+import com.zlk.group4.house.service.*;
+import com.zlk.group4.vo.HouseMsg;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 import com.zlk.group4.house.entity.HouseRefUser;
-import com.zlk.group4.house.service.HouseRefUserService;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,6 +24,18 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
 
     @Resource
     private HouseRefUserMapper houseRefUserMapper;
+
+    @Autowired
+    private HouseService houseService;
+
+    @Autowired
+    private HouseRefDeployService houseRefDeployService;
+
+    @Autowired
+    private HouseRefLabelService houseRefLabelService;
+
+    @Autowired
+    private HouseRefImgService houseRefImgService;
 
     @Override
     public int deleteByPrimaryKey(Integer id) {
@@ -51,5 +67,12 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
         return houseRefUserMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public List<HouseMsg> listAll() {
+
+        return null;
+    }
+
 }
+
 

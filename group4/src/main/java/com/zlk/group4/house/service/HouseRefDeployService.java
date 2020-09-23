@@ -2,6 +2,8 @@ package com.zlk.group4.house.service;
 
 import com.zlk.group4.house.entity.HouseRefDeploy;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -25,5 +27,8 @@ public interface HouseRefDeployService {
 
     int updateByPrimaryKey(HouseRefDeploy record);
 
+    List<HouseRefDeploy> selectDeployByHouseId(Integer id);
+
 }
+
 

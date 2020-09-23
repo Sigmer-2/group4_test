@@ -1,70 +1,75 @@
 package com.zlk.group4.house.mapper;
 
+import com.zlk.group4.house.entity.HouseLabel;
 import com.zlk.group4.house.entity.HouseRefLabel;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
- * Description: 房源标签
+ * Description:
  * User: sunshuai
- * Date: 2020-09-22
- * Time: 15:45
+ * Date: 2020-09-23
+ * Time: 14:16
  */
-    
+
 @Mapper
 public interface HouseRefLabelMapper {
-
     /**
-     * @Description: by primary key
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:33
+     * delete by primary key
+     *
      * @param id primaryKey
-     * @return int deleteCount
+     * @return deleteCount
      */
     int deleteByPrimaryKey(Integer id);
 
     /**
-     * @Description: insert record to table
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:45
+     * insert record to table
+     *
      * @param record the record
-     * @return int insert count
+     * @return insert count
      */
     int insert(HouseRefLabel record);
 
     /**
-     * @Description: insert record to table selective
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:46
+     * insert record to table selective
+     *
      * @param record the record
-     * @return int insert count
+     * @return insert count
      */
     int insertSelective(HouseRefLabel record);
 
     /**
-     * @Description: select by primary key
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:46
+     * select by primary key
+     *
      * @param id primary key
-     * @return com.zlk.group4.ordinary.entity.HouseRefLabel
+     * @return object by primary key
      */
     HouseRefLabel selectByPrimaryKey(Integer id);
 
     /**
-     * @Description: update record selective
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:49
+     * update record selective
+     *
      * @param record the updated record
-     * @return int update count
+     * @return update count
      */
     int updateByPrimaryKeySelective(HouseRefLabel record);
 
     /**
-     * @Description: update record
-     * @Auther sunshuai the updated record
-     * @Date 2020/9/22 16:52
-     * @param record
-     * @return int update count
+     * update record
+     *
+     * @param record the updated record
+     * @return update count
      */
     int updateByPrimaryKey(HouseRefLabel record);
+
+    /**
+     * @Description:根据房源id获取房间标签信息
+     * @Auther sunshuai
+     * @Date 2020/9/23 14:45
+     * @param id
+     * @return java.util.List<com.zlk.group4.house.entity.HouseRefLabel>
+     */
+    HouseRefLabel selectLabelByHouseId(Integer id);
 }
