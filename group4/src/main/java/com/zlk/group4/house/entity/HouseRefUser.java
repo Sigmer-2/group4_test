@@ -1,5 +1,6 @@
 package com.zlk.group4.house.entity;
 
+import com.zlk.group4.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,4 +31,8 @@ public class HouseRefUser {
      * 房源id
      */
     private Integer houseId;
+    /**
+     * 注入用户表
+     * */
+    private User user;
 }

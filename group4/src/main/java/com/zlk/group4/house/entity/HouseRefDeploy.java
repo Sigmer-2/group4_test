@@ -30,4 +30,8 @@ public class HouseRefDeploy {
      * 配置id
      */
     private Integer houseDeployId;
+    /**
+     * 注入房间配置表
+     * */
+    private HouseDeploy houseDeploy;
 }

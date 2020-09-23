@@ -57,7 +57,7 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item">
-                    <a href="javascript:;">房屋信息</a>
+                    <a href="<%=basePath%>/houseForAdmin" target="page">招租管理</a>
                     <%--<dl class="layui-nav-child">
                         <dd><a href="javascript:;">房源信息</a></dd>
                         <dd><a href="javascript:;">区域表</a></dd>
@@ -84,7 +84,7 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div style="padding: 15px;">内容主体区域</div>
+        <iframe src="" name="page" style="width: 100%;height: 100%;border: 0 none;vertical-align: middle" frameborder="1"></iframe>
     </div>
 
     <div class="layui-footer">

@@ -29,5 +29,5 @@ public class Metro {
     /**
      * 地铁站名
      */
-    private String street;
+    private String station;
 }

@@ -30,4 +30,8 @@ public class HouseRefLabel {
      * 标签id
      */
     private Integer houseLabelId;
+    /**
+     * 注入房源标签表
+     * */
+    private HouseLabel houseLabel;
 }

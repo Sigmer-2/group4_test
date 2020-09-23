@@ -30,4 +30,8 @@ public class HouseRefImg {
      * 房源照片id
      */
     private Integer houseImgId;
+    /**
+     * 注入房屋照片表
+     * */
+    private HouseImg houseImg;
 }

@@ -3,6 +3,7 @@ package com.zlk.group4.house.entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -114,4 +115,28 @@ public class House {
      * 更新时间
      */
     private LocalDateTime updateTime;
+    /**
+     * 注入用户房源关联表
+     * */
+    private HouseRefUser houseRefUser;
+    /**
+     *注入区域
+     * */
+    private Region region;
+    /**
+     * 注入地铁
+     * */
+    private Metro metro;
+    /**
+     * 注入房间标签关联表
+     * */
+    private HouseRefLabel houseRefLabel;
+    /**
+     * 注入房间配置关联表
+     * */
+    private HouseRefDeploy houseRefDeploy;
+    /**
+     * 注入房屋图片关联表
+     * */
+    private List<HouseRefImg> houseRefImgs;
 }
