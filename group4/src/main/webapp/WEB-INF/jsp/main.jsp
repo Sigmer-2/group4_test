@@ -37,7 +37,7 @@
                 </dl>
             </li>
         </ul>--%>
-        <%--<ul class="layui-nav layui-layout-right">
+        <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
@@ -49,7 +49,7 @@
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="">退了</a></li>
-        </ul>--%>
+        </ul>
     </div>
 
     <div class="layui-side layui-bg-black">
