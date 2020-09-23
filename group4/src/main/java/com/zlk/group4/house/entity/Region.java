@@ -1,6 +1,8 @@
 package com.zlk.group4.house.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,6 +13,8 @@ import lombok.Data;
  */
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Region {
     /**
      * 自增id

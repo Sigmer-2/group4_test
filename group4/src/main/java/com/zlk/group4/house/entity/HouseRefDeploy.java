@@ -1,6 +1,8 @@
 package com.zlk.group4.house.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Transient;
 
@@ -13,6 +15,8 @@ import javax.persistence.Transient;
  */
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class HouseRefDeploy {
     /**
      * 自增id
