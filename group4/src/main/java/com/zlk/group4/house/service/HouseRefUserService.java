@@ -1,6 +1,9 @@
 package com.zlk.group4.house.service;
 
 import com.zlk.group4.house.entity.HouseRefUser;
+import com.zlk.group4.vo.HouseMsg;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,5 +28,9 @@ public interface HouseRefUserService {
 
     int updateByPrimaryKey(HouseRefUser record);
 
+    List<HouseMsg> listAll();
+
+
 }
+
 

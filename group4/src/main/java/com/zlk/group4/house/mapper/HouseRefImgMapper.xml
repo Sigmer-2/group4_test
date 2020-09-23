@@ -7,6 +7,11 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="house_id" jdbcType="INTEGER" property="houseId" />
     <result column="house_img_id" jdbcType="INTEGER" property="houseImgId" />
+      <association property="houseImg" javaType="com.zlk.group4.house.entity.HouseImg">
+          <id column="id" jdbcType="INTEGER" property="id" />
+          <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+          <result column="img_page" jdbcType="INTEGER" property="imgPage" />
+      </association>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -69,4 +74,20 @@
       house_img_id = #{houseImgId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectImgByHouseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+      SELECT
+              hi.*
+      FROM
+              house_ref_img AS hri
+                      INNER JOIN
+              house AS h
+      ON
+              hri.house_id = h.id
+      INNER JOIN
+              house_img AS hi
+      ON
+              hi.id = hri.house_img_id
+      WHERE
+              h.id = #{id}
+  </select>
 </mapper>

@@ -78,6 +78,6 @@ public interface HouseMapper {
      * @return: 房屋信息列表
      * @author: zhc
      * @time: 2020/9/23 16:51
-     */ 
+     */
     List<House> adminManageHouse(Map map);
 }

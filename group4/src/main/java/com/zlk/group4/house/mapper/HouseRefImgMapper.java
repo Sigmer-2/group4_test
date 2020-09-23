@@ -3,68 +3,65 @@ package com.zlk.group4.house.mapper;
 import com.zlk.group4.house.entity.HouseRefImg;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
- * Description: 房源照片
+ * Description:
  * User: sunshuai
- * Date: 2020-09-22
- * Time: 15:45
+ * Date: 2020-09-23
+ * Time: 14:16
  */
-    
+
 @Mapper
 public interface HouseRefImgMapper {
-
     /**
-     * @Description: delete by primary key
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:29
+     * delete by primary key
+     *
      * @param id primaryKey
-     * @return int deleteCount
+     * @return deleteCount
      */
     int deleteByPrimaryKey(Integer id);
 
     /**
-     * @Description: insert record to table
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:29
+     * insert record to table
+     *
      * @param record the record
-     * @return int insert count
+     * @return insert count
      */
     int insert(HouseRefImg record);
 
     /**
-     * @Description: insert record to table selective
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:30
+     * insert record to table selective
+     *
      * @param record the record
-     * @return int insert count
+     * @return insert count
      */
     int insertSelective(HouseRefImg record);
 
     /**
-     * @Description: select by primary key
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:30
+     * select by primary key
+     *
      * @param id primary key
-     * @return com.zlk.group4.ordinary.entity.HouseRefImg
+     * @return object by primary key
      */
     HouseRefImg selectByPrimaryKey(Integer id);
 
     /**
-     * @Description: update record selective
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:31
-     * @param record record the updated record
-     * @return int update count
+     * update record selective
+     *
+     * @param record the updated record
+     * @return update count
      */
     int updateByPrimaryKeySelective(HouseRefImg record);
 
     /**
-     * @Description: update record
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:31
+     * update record
+     *
      * @param record the updated record
-     * @return int update count
+     * @return update count
      */
     int updateByPrimaryKey(HouseRefImg record);
+
+    List<HouseRefImg> selectImgByHouseId(Integer id);
 }

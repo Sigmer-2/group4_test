@@ -52,3 +52,4 @@ public class HouseLabelServiceImpl implements HouseLabelService {
 
 }
 
+

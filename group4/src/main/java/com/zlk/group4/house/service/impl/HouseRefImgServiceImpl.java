@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 import com.zlk.group4.house.entity.HouseRefImg;
 import com.zlk.group4.house.service.HouseRefImgService;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -51,5 +53,11 @@ public class HouseRefImgServiceImpl implements HouseRefImgService {
         return houseRefImgMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public List<HouseRefImg> selectImgByHouseId(Integer id) {
+        return houseRefImgMapper.selectImgByHouseId(id);
+    }
+
 }
+
 

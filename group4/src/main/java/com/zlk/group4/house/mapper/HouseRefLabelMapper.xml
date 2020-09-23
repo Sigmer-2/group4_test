@@ -7,6 +7,18 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="house_id" jdbcType="INTEGER" property="houseId" />
     <result column="house_label_id" jdbcType="INTEGER" property="houseLabelId" />
+      <association property="houseLabel" javaType="com.zlk.group4.house.entity.HouseLabel">
+          <id column="id" jdbcType="INTEGER" property="id" />
+          <result column="short_rent" jdbcType="INTEGER" property="shortRent" />
+          <result column="payment" jdbcType="INTEGER" property="payment" />
+          <result column="southward" jdbcType="INTEGER" property="southward" />
+          <result column="agencyfee" jdbcType="INTEGER" property="agencyfee" />
+          <result column="toilet" jdbcType="INTEGER" property="toilet" />
+          <result column="balcony" jdbcType="INTEGER" property="balcony" />
+          <result column="elevator" jdbcType="INTEGER" property="elevator" />
+          <result column="bay_window" jdbcType="INTEGER" property="bayWindow" />
+          <result column="decoration" jdbcType="INTEGER" property="decoration" />
+      </association>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -69,4 +81,21 @@
       house_label_id = #{houseLabelId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectLabelByHouseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+      SELECT
+              hrl.*,
+              hl.*
+      FROM
+              house AS h
+      INNER JOIN
+              house_ref_label AS hrl
+      ON
+              h.id = hrl.house_id
+      INNER JOIN
+              house_label AS hl
+      ON
+              hrl.house_label_id = hl.id
+      WHERE
+              h.id = #{id}
+  </select>
 </mapper>

@@ -1,8 +1,9 @@
 package com.zlk.group4.house.service.impl;
+import java.util.List;
 
-import com.zlk.group4.house.mapper.HouseMapper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import com.zlk.group4.house.mapper.HouseMapper;
 import com.zlk.group4.house.entity.House;
 import com.zlk.group4.house.service.HouseService;
 
@@ -10,8 +11,8 @@ import com.zlk.group4.house.service.HouseService;
  * Created with IntelliJ IDEA.
  * Description:
  * User: sunshuai
- * Date: 2020-09-22
- * Time: 15:43
+ * Date: 2020-09-23
+ * Time: 11:46
  */
 
 @Service
@@ -49,6 +50,12 @@ public class HouseServiceImpl implements HouseService {
     public int updateByPrimaryKey(House record) {
         return houseMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public List<House> selectAll() {
+        return houseMapper.selectAll();
+    }
+
 
 }
 

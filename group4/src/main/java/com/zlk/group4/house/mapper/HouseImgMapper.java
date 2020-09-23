@@ -5,66 +5,59 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * Created with IntelliJ IDEA.
- * Description: 房间照片
+ * Description:
  * User: sunshuai
- * Date: 2020-09-22
- * Time: 15:45
+ * Date: 2020-09-23
+ * Time: 14:16
  */
-    
+
 @Mapper
 public interface HouseImgMapper {
-
     /**
-     * @Description: delete by primary key
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:05
+     * delete by primary key
+     *
      * @param id primaryKey
-     * @return int deleteCount
+     * @return deleteCount
      */
     int deleteByPrimaryKey(Integer id);
 
     /**
-     * @Description: insert record to table
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:05
+     * insert record to table
+     *
      * @param record the record
-     * @return int insert count
+     * @return insert count
      */
     int insert(HouseImg record);
 
     /**
-     * @Description: insert record to table selective
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:06
+     * insert record to table selective
+     *
      * @param record the record
-     * @return int insert count
+     * @return insert count
      */
     int insertSelective(HouseImg record);
 
     /**
-     * @Description: select by primary key
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:07
+     * select by primary key
+     *
      * @param id primary key
-     * @return com.zlk.group4.ordinary.entity.HouseImg
+     * @return object by primary key
      */
     HouseImg selectByPrimaryKey(Integer id);
 
     /**
-     * @Description: update record selective
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:08
+     * update record selective
+     *
      * @param record the updated record
-     * @return int update count
+     * @return update count
      */
     int updateByPrimaryKeySelective(HouseImg record);
 
     /**
-     * @Description: update record
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:08
+     * update record
+     *
      * @param record the updated record
-     * @return int update count
+     * @return update count
      */
     int updateByPrimaryKey(HouseImg record);
 }

@@ -2,6 +2,8 @@ package com.zlk.group4.house.service;
 
 import com.zlk.group4.house.entity.HouseRefImg;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -25,5 +27,8 @@ public interface HouseRefImgService {
 
     int updateByPrimaryKey(HouseRefImg record);
 
+    List<HouseRefImg> selectImgByHouseId(Integer id);
+
 }
+
 
