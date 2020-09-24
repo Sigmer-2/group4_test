@@ -1,5 +1,6 @@
 package com.zlk.group4.house.service;
 import java.util.List;
+import java.util.Map;
 
 import com.zlk.group4.house.entity.House;
 
@@ -27,6 +28,9 @@ public interface HouseService {
     int updateByPrimaryKey(House record);
 
     List<House> selectAll();
+
+    List<House> adminManageHouse(Map map,Integer page,Integer limit);
+
 
 
 

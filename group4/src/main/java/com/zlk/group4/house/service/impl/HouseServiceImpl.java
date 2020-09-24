@@ -1,6 +1,8 @@
 package com.zlk.group4.house.service.impl;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import com.zlk.group4.house.mapper.HouseMapper;
@@ -56,6 +58,12 @@ public class HouseServiceImpl implements HouseService {
         return houseMapper.selectAll();
     }
 
-
+    @Override
+    public List<House> adminManageHouse(Map map,Integer page,Integer limit) {
+        Integer startIndex = (page-1)*limit;
+        map.put("startIndex",startIndex);
+        map.put("pageSize",limit);
+        return houseMapper.adminManageHouse(map);
+    }
 }
 
