@@ -10,7 +10,7 @@ package com.zlk.group4.house.enums;
  * Time: 9:34
  */
 public enum HouseSexEnum {
-    UNKNOW(0,"男女不限"),MALE(1,"男"),FEMALE(2, "女");
+    UNKNOW(0,"男女均可"),MALE(1,"仅限男"),FEMALE(2, "仅限女");
     private int code;
     private  String desc;
 
@@ -35,10 +35,10 @@ public enum HouseSexEnum {
         if (code == null){
             return UNKNOW;
         }
-        if ("m".equals(code)){
+        if ("限男生".equals(code)){
             return MALE;
         }
-        if ("f".equals(code)){
+        if ("限女生".equals(code)){
             return FEMALE;
         }
         return UNKNOW;

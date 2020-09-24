@@ -2,10 +2,8 @@ package com.zlk.group4.house.service.impl;
 
 
 import com.zlk.group4.house.entity.HouseRefLabel;
-import com.zlk.group4.house.service.HouseRefDeployService;
-import com.zlk.group4.house.service.HouseRefImgService;
-import com.zlk.group4.house.service.HouseRefLabelService;
-import com.zlk.group4.house.service.HouseService;
+import com.zlk.group4.house.enums.HouseSexEnum;
+import com.zlk.group4.house.service.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +32,12 @@ public class HouseServiceImplTest {
 
     @Autowired
     private HouseRefImgService houseRefImgService;
+
+    @Autowired
+    private HouseRefUserService refUserService;
+
+    @Autowired
+    private HouseLabelService labelService;
   @Test
   public void selectAll() {
     System.out.println(1);
@@ -43,6 +47,13 @@ public class HouseServiceImplTest {
     System.out.println(houseRefLabel.getHouseLabelId());
 
     //    System.out.println(houseRefImgService.selectImgByHouseId(1));
-    System.out.println(houseRefLabelService.label(1));
+    //    System.out.println(houseRefLabelService.label(1));
+    //    System.out.println(houseRefDeployService.houseDeploy(1));
+    //    System.out.println(refUserService.selectHouseByUserId(1));
+//    System.out.println(refUserService.listAllByUserId(1));
+//      labelService.insertHouseLabelByString("可短租，月付，无中介费，独卫，电梯房，带飘窗");//1,1,0,1,1,0,1,1,0
+      HouseSexEnum man = HouseSexEnum.getHouseSex("仅限男");
+      int code = man.getCode();
+      System.out.println(man+"   "+code);
   }
 }

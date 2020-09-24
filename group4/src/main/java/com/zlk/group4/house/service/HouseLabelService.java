@@ -25,6 +25,17 @@ public interface HouseLabelService {
 
     int updateByPrimaryKey(HouseLabel record);
 
+    /**
+     * 根据标签字符串更新HouseLabel内容
+     * @Auther sunshuai
+     * @Date 2020/9/23 22:06
+     * @param str
+     * @return int
+     */
+    int updateByString(String str);
+
+    int insertHouseLabelByString(String str);
+
 }
 
 

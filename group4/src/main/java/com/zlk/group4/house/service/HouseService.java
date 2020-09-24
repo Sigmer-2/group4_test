@@ -2,6 +2,7 @@ package com.zlk.group4.house.service;
 import java.util.List;
 
 import com.zlk.group4.house.entity.House;
+import com.zlk.group4.vo.HouseMsg;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,7 +29,7 @@ public interface HouseService {
 
     List<House> selectAll();
 
-
+    House selectAllById(Integer id);
 
 
 

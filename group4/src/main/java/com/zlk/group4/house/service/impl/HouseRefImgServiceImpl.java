@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 
 import com.zlk.group4.house.entity.HouseRefImg;
 import com.zlk.group4.house.service.HouseRefImgService;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,16 +26,19 @@ public class HouseRefImgServiceImpl implements HouseRefImgService {
     private HouseRefImgMapper houseRefImgMapper;
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int deleteByPrimaryKey(Integer id) {
         return houseRefImgMapper.deleteByPrimaryKey(id);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int insert(HouseRefImg record) {
         return houseRefImgMapper.insert(record);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int insertSelective(HouseRefImg record) {
         return houseRefImgMapper.insertSelective(record);
     }
@@ -44,11 +49,13 @@ public class HouseRefImgServiceImpl implements HouseRefImgService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int updateByPrimaryKeySelective(HouseRefImg record) {
         return houseRefImgMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int updateByPrimaryKey(HouseRefImg record) {
         return houseRefImgMapper.updateByPrimaryKey(record);
     }

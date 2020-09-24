@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Transient;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -31,6 +33,9 @@ public class HouseRefUser {
      * 房源id
      */
     private Integer houseId;
+
+    @Transient
+    private House house;
     /**
      * 注入用户表
      * */

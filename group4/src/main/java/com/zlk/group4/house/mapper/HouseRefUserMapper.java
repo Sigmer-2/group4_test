@@ -3,6 +3,8 @@ package com.zlk.group4.house.mapper;
 import com.zlk.group4.house.entity.HouseRefUser;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -60,4 +62,6 @@ public interface HouseRefUserMapper {
      * @return update count
      */
     int updateByPrimaryKey(HouseRefUser record);
+
+    List<HouseRefUser> selectHouseByUserId(Integer id);
 }

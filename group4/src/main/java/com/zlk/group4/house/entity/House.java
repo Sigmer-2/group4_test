@@ -1,8 +1,8 @@
 package com.zlk.group4.house.entity;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -68,10 +68,10 @@ public class House {
     /**
      * 可入住时间
      */
-    private LocalDate checkinTime;
+    private Date checkinTime;
 
     /**
-     * 租客性别（0：男女不限，1：男，2：女）
+     * 租客性别（0：男女均可，1：仅限男，2：仅限女）
      */
     private Integer sex;
 
@@ -93,12 +93,12 @@ public class House {
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    private Date createTime;
 
     /**
      * 更新时间
      */
-    private LocalDateTime updateTime;
+    private Date updateTime;
     /**
      * 注入用户房源关联表
      * */

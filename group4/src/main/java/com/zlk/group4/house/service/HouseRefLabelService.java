@@ -27,6 +27,13 @@ public interface HouseRefLabelService {
 
     int updateByPrimaryKey(HouseRefLabel record);
 
+    /**
+     * @Description:根据房源id获取房间标签信息
+     * @Auther sunshuai
+     * @Date 2020/9/23 14:45
+     * @param id houseid
+     * @return java.util.List<com.zlk.group4.house.entity.HouseRefLabel>
+     */
     HouseRefLabel selectLabelByHouseId(Integer id);
 
     String label(Integer id);

@@ -1,6 +1,10 @@
 package com.zlk.group4.vo;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,19 +15,66 @@ import lombok.Data;
  */
 @Data
 public class HouseMsg {
+
+    /**
+     * 房源id
+     */
+    private Integer id;
+    /**
+     * 房源类型
+     */
     private String houseType;
+    /**
+     *区域位置
+     */
     private String area;
+    /**
+     *地铁位置
+     */
     private String metro;
+    /**
+     *整套户型
+     */
     private String listingsType;
+    /**
+     *出租方式
+     */
     private String rentalMode;
+    /**
+     *房间类型
+     */
     private String roomType;
-    private String rent;
-    private String houseImg;
+    /**
+     *月租金
+     */
+    private BigDecimal rent;
+    /**
+     *房屋标签
+     */
     private String houseLabel;
+    /**
+     *房屋配置
+     */
     private String houseDeploy;
+    /**
+     *房屋介绍
+     */
     private String houseIntroduction;
-    private String checkinTime;
+    /**
+     *可入住时间
+     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date checkinTime;
+    /**
+     *租客性别
+     */
     private String sex;
+    /**
+     *房东称呼
+     */
     private String call;
+    /**
+     *练习方式
+     */
     private String tel;
 }
