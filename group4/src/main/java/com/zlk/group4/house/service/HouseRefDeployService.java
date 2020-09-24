@@ -27,7 +27,23 @@ public interface HouseRefDeployService {
 
     int updateByPrimaryKey(HouseRefDeploy record);
 
-    List<HouseRefDeploy> selectDeployByHouseId(Integer id);
+    /**
+     * 根据houseId查询房屋配置
+     * @Auther sunshuai
+     * @Date 2020/9/23 17:37
+     * @param id houseId
+     * @return com.zlk.group4.house.entity.HouseRefDeploy
+     */
+    HouseRefDeploy selectDeployByHouseId(Integer id);
+    /**
+     * 根据houseId返回配置字符串
+     * @Auther sunshuai
+     * @Date 2020/9/23 19:52
+     * @param id houseId
+     * @return java.lang.String
+     */
+    String houseDeploy(Integer id);
+
 
 }
 

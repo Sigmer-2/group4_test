@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.zlk.group4.house.entity.House;
+import com.zlk.group4.vo.HouseMsg;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,6 +29,8 @@ public interface HouseService {
     int updateByPrimaryKey(House record);
 
     List<House> selectAll();
+
+    House selectAllById(Integer id);
 
     List<House> adminManageHouse(Map map,Integer page,Integer limit);
 

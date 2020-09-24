@@ -63,5 +63,12 @@ public interface HouseRefImgMapper {
      */
     int updateByPrimaryKey(HouseRefImg record);
 
+    /**
+     * @Description:根据houseid查询房间照片
+     * @Auther sunshuai
+     * @Date 2020/9/23 17:36
+     * @param id houseid
+     * @return java.util.List<com.zlk.group4.house.entity.HouseRefImg>
+     */
     List<HouseRefImg> selectImgByHouseId(Integer id);
 }

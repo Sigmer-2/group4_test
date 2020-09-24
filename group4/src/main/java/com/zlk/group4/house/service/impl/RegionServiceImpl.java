@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import com.zlk.group4.house.entity.Region;
 import com.zlk.group4.house.service.RegionService;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,16 +23,19 @@ public class RegionServiceImpl implements RegionService {
     private RegionMapper regionMapper;
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int deleteByPrimaryKey(Integer id) {
         return regionMapper.deleteByPrimaryKey(id);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int insert(Region record) {
         return regionMapper.insert(record);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int insertSelective(Region record) {
         return regionMapper.insertSelective(record);
     }
@@ -41,11 +46,13 @@ public class RegionServiceImpl implements RegionService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int updateByPrimaryKeySelective(Region record) {
         return regionMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int updateByPrimaryKey(Region record) {
         return regionMapper.updateByPrimaryKey(record);
     }

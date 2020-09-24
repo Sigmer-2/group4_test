@@ -7,6 +7,24 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="house_id" jdbcType="INTEGER" property="houseId" />
+      <association property="house" javaType="com.zlk.group4.house.entity.House">
+          <id column="id" jdbcType="INTEGER" property="id" />
+          <result column="house_type" jdbcType="VARCHAR" property="houseType" />
+          <result column="region_id" jdbcType="INTEGER" property="regionId" />
+          <result column="metro_id" jdbcType="INTEGER" property="metroId" />
+          <result column="listings_type" jdbcType="VARCHAR" property="listingsType" />
+          <result column="rental_mode" jdbcType="VARCHAR" property="rentalMode" />
+          <result column="room_type" jdbcType="VARCHAR" property="roomType" />
+          <result column="rent" jdbcType="DECIMAL" property="rent" />
+          <result column="house_introduction" jdbcType="VARCHAR" property="houseIntroduction" />
+          <result column="checkin_time" jdbcType="DATE" property="checkinTime" />
+          <result column="sex" jdbcType="INTEGER" property="sex" />
+          <result column="call" jdbcType="VARCHAR" property="call" />
+          <result column="tel" jdbcType="VARCHAR" property="tel" />
+          <result column="code" jdbcType="INTEGER" property="code" />
+          <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+          <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+      </association>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -69,4 +87,21 @@
       house_id = #{houseId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectHouseByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+      SELECT
+              h.*,
+              hru.*
+      FROM
+              `user` AS u
+      INNER JOIN
+              house_ref_user AS hru
+      ON
+              u.id = hru.user_id
+      INNER JOIN
+              house AS h
+      ON
+              h.id = hru.house_id
+      WHERE
+              u.id = 1
+  </select>
 </mapper>

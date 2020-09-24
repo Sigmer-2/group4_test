@@ -20,47 +20,41 @@
     <result column="code" jdbcType="INTEGER" property="code" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <association property="houseRefUser" javaType="com.zlk.group4.house.entity.HouseRefUser">
-      <id column="id" property="id" jdbcType="INTEGER" />
-      <result column="user_id" property="userId" jdbcType="INTEGER" />
-      <result column="house_id" property="houseId" jdbcType="INTEGER" />
-    </association>
-    <association property="metro" javaType="com.zlk.group4.house.entity.Metro">
-      <id column="id" property="id" jdbcType="INTEGER" />
-      <result column="metro_line" property="metroLine" jdbcType="VARCHAR" />
-      <result column="station" property="station" jdbcType="VARCHAR" />
-    </association>
-    <association property="region" javaType="com.zlk.group4.house.entity.Region">
-      <id column="id" property="id" jdbcType="INTEGER" />
-      <result column="distrct_name" property="distrctName" jdbcType="VARCHAR" />
-      <result column="street" property="street" jdbcType="VARCHAR" />
-    </association>
-    <association property="houseRefDeploy" javaType="com.zlk.group4.house.entity.HouseRefDeploy">
-      <id column="id" property="id" jdbcType="INTEGER" />
-      <result column="house_id" property="houseId" jdbcType="INTEGER" />
-      <result column="house_deploy_id" property="houseDeployId" jdbcType="INTEGER" />
-    </association>
-    <association property="houseRefLabel" javaType="com.zlk.group4.house.entity.HouseRefLabel">
-      <id column="id" property="id" jdbcType="INTEGER" />
-      <result column="house_id" property="houseId" jdbcType="INTEGER" />
-      <result column="house_label_id" property="houseLabelId" jdbcType="INTEGER" />
-    </association>
-<!--    <collection property="houseRefImgs" ofType="com.zlk.group4.house.entity.HouseRefImg">-->
-<!--      <id column="id" property="id" jdbcType="INTEGER" />-->
-<!--      <result column="house_id" property="houseId" jdbcType="INTEGER" />-->
-<!--      <result column="house_img_id" property="houseImgId" jdbcType="INTEGER" />-->
-<!--      <association property="houseImg" javaType="com.zlk.group4.house.entity.HouseImg">-->
-<!--        <id column="id" property="id" jdbcType="INTEGER" />-->
-<!--        <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />-->
-<!--        <result column="img_page" property="imgPage" jdbcType="INTEGER" />-->
-<!--      </association>-->
-<!--    </collection>-->
+      <association property="metro" javaType="com.zlk.group4.house.entity.Metro">
+          <id column="id" jdbcType="INTEGER" property="id" />
+          <result column="metro_line" jdbcType="VARCHAR" property="metroLine" />
+          <result column="station" jdbcType="VARCHAR" property="station" />
+      </association>
+      <association property="region" javaType="com.zlk.group4.house.entity.Region">
+          <id column="id" jdbcType="INTEGER" property="id" />
+          <result column="distrct_name" jdbcType="VARCHAR" property="distrctName" />
+          <result column="street" jdbcType="VARCHAR" property="street" />
+      </association>
+      <association property="houseRefLabel" javaType="com.zlk.group4.house.entity.HouseRefLabel">
+          <id column="id" jdbcType="INTEGER" property="id" />
+          <result column="house_id" jdbcType="INTEGER" property="houseId" />
+          <result column="house_label_id" jdbcType="INTEGER" property="houseLabelId" />
+      </association>
+      <association property="houseRefDeploy" javaType="com.zlk.group4.house.entity.HouseRefDeploy">
+          <id column="id" jdbcType="INTEGER" property="id" />
+          <result column="house_id" jdbcType="INTEGER" property="houseId" />
+          <result column="house_deploy_id" jdbcType="INTEGER" property="houseDeployId" />
+      </association>
+      <!--<association property="houseRefImgs" javaType="java.util.List">
+          <id column="id" jdbcType="INTEGER" property="id" />
+          <result column="house_id" jdbcType="INTEGER" property="houseId" />
+          <result column="house_img_id" jdbcType="INTEGER" property="houseImgId" />
+      </association>-->
+      <association property="houseRefUser" javaType="com.zlk.group4.house.entity.HouseRefUser">
+          <id column="id" jdbcType="INTEGER" property="id" />
+          <result column="user_id" jdbcType="INTEGER" property="userId" />
+          <result column="house_id" jdbcType="INTEGER" property="houseId" />
+      </association>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, house_type, region_id, metro_id, listings_type, rental_mode, room_type, rent, 
-    house_img, house_lable, house_deploy, house_introduction, checkin_time, sex, `call`, 
-    tel, code, create_time, update_time
+    house_introduction, checkin_time, sex, `call`, tel, code, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -78,14 +72,12 @@
     <!--@mbg.generated-->
     insert into house (house_type, region_id, metro_id, 
       listings_type, rental_mode, room_type, 
-      rent, house_img, house_lable, 
-      house_deploy, house_introduction, checkin_time, 
+      rent, house_introduction, checkin_time, 
       sex, `call`, tel, code, 
       create_time, update_time)
     values (#{houseType,jdbcType=VARCHAR}, #{regionId,jdbcType=INTEGER}, #{metroId,jdbcType=INTEGER}, 
       #{listingsType,jdbcType=VARCHAR}, #{rentalMode,jdbcType=VARCHAR}, #{roomType,jdbcType=VARCHAR}, 
-      #{rent,jdbcType=DECIMAL}, #{houseImg,jdbcType=VARCHAR}, #{houseLable,jdbcType=INTEGER}, 
-      #{houseDeploy,jdbcType=INTEGER}, #{houseIntroduction,jdbcType=VARCHAR}, #{checkinTime,jdbcType=DATE}, 
+      #{rent,jdbcType=DECIMAL}, #{houseIntroduction,jdbcType=VARCHAR}, #{checkinTime,jdbcType=DATE}, 
       #{sex,jdbcType=INTEGER}, #{call,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{code,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
@@ -113,15 +105,6 @@
       </if>
       <if test="rent != null">
         rent,
-      </if>
-      <if test="houseImg != null and houseImg != ''">
-        house_img,
-      </if>
-      <if test="houseLable != null">
-        house_lable,
-      </if>
-      <if test="houseDeploy != null">
-        house_deploy,
       </if>
       <if test="houseIntroduction != null and houseIntroduction != ''">
         house_introduction,
@@ -169,15 +152,6 @@
       </if>
       <if test="rent != null">
         #{rent,jdbcType=DECIMAL},
-      </if>
-      <if test="houseImg != null and houseImg != ''">
-        #{houseImg,jdbcType=VARCHAR},
-      </if>
-      <if test="houseLable != null">
-        #{houseLable,jdbcType=INTEGER},
-      </if>
-      <if test="houseDeploy != null">
-        #{houseDeploy,jdbcType=INTEGER},
       </if>
       <if test="houseIntroduction != null and houseIntroduction != ''">
         #{houseIntroduction,jdbcType=VARCHAR},
@@ -230,15 +204,6 @@
       <if test="rent != null">
         rent = #{rent,jdbcType=DECIMAL},
       </if>
-      <if test="houseImg != null and houseImg != ''">
-        house_img = #{houseImg,jdbcType=VARCHAR},
-      </if>
-      <if test="houseLable != null">
-        house_lable = #{houseLable,jdbcType=INTEGER},
-      </if>
-      <if test="houseDeploy != null">
-        house_deploy = #{houseDeploy,jdbcType=INTEGER},
-      </if>
       <if test="houseIntroduction != null and houseIntroduction != ''">
         house_introduction = #{houseIntroduction,jdbcType=VARCHAR},
       </if>
@@ -276,9 +241,6 @@
       rental_mode = #{rentalMode,jdbcType=VARCHAR},
       room_type = #{roomType,jdbcType=VARCHAR},
       rent = #{rent,jdbcType=DECIMAL},
-      house_img = #{houseImg,jdbcType=VARCHAR},
-      house_lable = #{houseLable,jdbcType=INTEGER},
-      house_deploy = #{houseDeploy,jdbcType=INTEGER},
       house_introduction = #{houseIntroduction,jdbcType=VARCHAR},
       checkin_time = #{checkinTime,jdbcType=DATE},
       sex = #{sex,jdbcType=INTEGER},
@@ -289,7 +251,7 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="adminManageHouse" resultMap="BaseResultMap">
+      <select id="adminManageHouse" resultMap="BaseResultMap">
     select house.*,region.*,metro.*
     from house,metro,region,house_ref_user,house_ref_label,house_ref_deploy
     where house.region_id = region.id and house.metro_id = metro.id and house_ref_user.house_id = house.id and house_ref_label.house_id = house.id and house_ref_deploy.house_id = house.id
@@ -302,5 +264,53 @@
     <if test="rent!=null">
       and house.rent = #{rent}
     </if>
+  </select>
+
+<!--auto generated by MybatisCodeHelper on 2020-09-23-->
+  <select id="selectAll" resultMap="BaseResultMap">
+      SELECT
+              h.id,
+              h.house_type,
+              h.listings_type,
+              h.rental_mode,
+              h.room_type,
+              h.rent,
+              h.house_introduction,
+              h.checkin_time,
+              h.sex,
+              h.`call`,
+              h.tel,
+              m.metro_line,
+              m.station,
+              r.distrct_name,
+              r.street
+      FROM
+              house AS h
+      INNER JOIN
+              region AS r
+      ON
+              h.region_id = r.id
+      INNER JOIN
+              metro AS m
+      ON
+              h.metro_id = m.id
+    </select>
+  <select id="selectAllById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+      SELECT
+              h.*,
+              m.*,
+              r.*
+      FROM
+              house AS h
+      INNER JOIN
+              metro AS m
+      ON
+              h.metro_id = m.id
+      INNER JOIN
+              region AS r
+      ON
+              h.region_id = r.id
+      WHERE
+              h.id = #{id}
   </select>
 </mapper>

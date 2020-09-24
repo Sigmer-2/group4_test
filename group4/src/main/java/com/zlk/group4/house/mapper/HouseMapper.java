@@ -1,75 +1,71 @@
 package com.zlk.group4.house.mapper;
 
 import com.zlk.group4.house.entity.House;
-import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;import java.util.List;
 import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
- * Description: 房源
+ * Description:
  * User: sunshuai
- * Date: 2020-09-22
- * Time: 15:45
+ * Date: 2020-09-23
+ * Time: 14:16
  */
-    
+
 @Mapper
 public interface HouseMapper {
-
     /**
-     * @Description: delete by primary key
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:13
-     * @param id id primaryKey
-     * @return int deleteCount
+     * delete by primary key
+     *
+     * @param id primaryKey
+     * @return deleteCount
      */
     int deleteByPrimaryKey(Integer id);
 
     /**
-     * @Description: insert record to table
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:14
+     * insert record to table
+     *
      * @param record the record
-     * @return int insert count
+     * @return insert count
      */
     int insert(House record);
 
     /**
-     * @Description: insert record to table selective
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:14
+     * insert record to table selective
+     *
      * @param record the record
-     * @return int insert count
+     * @return insert count
      */
     int insertSelective(House record);
 
     /**
-     * @Description: select by primary key
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:15
+     * select by primary key
+     *
      * @param id primary key
-     * @return com.zlk.group4.ordinary.entity.House
+     * @return object by primary key
      */
     House selectByPrimaryKey(Integer id);
 
     /**
-     * @Description: update record selective
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:15
+     * update record selective
+     *
      * @param record the updated record
-     * @return int update count
+     * @return update count
      */
     int updateByPrimaryKeySelective(House record);
 
     /**
-     * @Description: update record
-     * @Auther sunshuai
-     * @Date 2020/9/22 16:15
+     * update record
+     *
      * @param record the updated record
-     * @return int update count
+     * @return update count
      */
     int updateByPrimaryKey(House record);
+
+    List<House> selectAll();
+
+    House selectAllById(Integer id);
+
     /**
      *
      *
@@ -80,4 +76,5 @@ public interface HouseMapper {
      * @time: 2020/9/23 16:51
      */
     List<House> adminManageHouse(Map map);
+
 }

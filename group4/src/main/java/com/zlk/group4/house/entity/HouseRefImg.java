@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Transient;
+
 /**
  * Created with IntelliJ IDEA.
  * Description: 房屋照片关联
  * User: sunshuai
- * Date: 2020-09-22
- * Time: 15:45
+ * Date: 2020-09-23
+ * Time: 14:16
  */
 
 @Data
@@ -30,6 +32,8 @@ public class HouseRefImg {
      * 房源照片id
      */
     private Integer houseImgId;
+
+    @Transient
     /**
      * 注入房屋照片表
      * */

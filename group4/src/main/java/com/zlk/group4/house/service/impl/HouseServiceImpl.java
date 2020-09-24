@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 import com.zlk.group4.house.mapper.HouseMapper;
 import com.zlk.group4.house.entity.House;
 import com.zlk.group4.house.service.HouseService;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,16 +26,19 @@ public class HouseServiceImpl implements HouseService {
     private HouseMapper houseMapper;
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int deleteByPrimaryKey(Integer id) {
         return houseMapper.deleteByPrimaryKey(id);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int insert(House record) {
         return houseMapper.insert(record);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int insertSelective(House record) {
         return houseMapper.insertSelective(record);
     }
@@ -44,11 +49,13 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int updateByPrimaryKeySelective(House record) {
         return houseMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int updateByPrimaryKey(House record) {
         return houseMapper.updateByPrimaryKey(record);
     }
@@ -57,6 +64,12 @@ public class HouseServiceImpl implements HouseService {
     public List<House> selectAll() {
         return houseMapper.selectAll();
     }
+
+    @Override
+    public House selectAllById(Integer id) {
+        return houseMapper.selectAllById(id);
+    }
+
 
     @Override
     public List<House> adminManageHouse(Map map,Integer page,Integer limit) {

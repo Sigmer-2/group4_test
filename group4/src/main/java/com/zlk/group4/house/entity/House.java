@@ -1,25 +1,23 @@
 package com.zlk.group4.house.entity;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.Transient;
 
 /**
  * Created with IntelliJ IDEA.
- * Description: 房屋信息
+ * Description:
  * User: sunshuai
- * Date: 2020-09-22
- * Time: 15:45
+ * Date: 2020-09-23
+ * Time: 14:16
  */
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class House {
     /**
      * 自增id
@@ -60,6 +58,7 @@ public class House {
      * 月租金
      */
     private BigDecimal rent;
+
     /**
      * 房屋介绍
      */
@@ -68,7 +67,8 @@ public class House {
     /**
      * 可入住时间
      */
-    private LocalDate checkinTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date checkinTime;
 
     /**
      * 租客性别（0：男女不限，1：男，2：女）
@@ -93,34 +93,42 @@ public class House {
     /**
      * 创建时间
      */
-    private LocalDateTime createTime;
+    private Date createTime;
 
     /**
      * 更新时间
      */
-    private LocalDateTime updateTime;
+    private Date updateTime;
     /**
-     * 注入用户房源关联表
-     * */
-    private HouseRefUser houseRefUser;
-    /**
-     *注入区域
-     * */
-    private Region region;
-    /**
-     * 注入地铁
-     * */
+     * 地铁
+     */
+    @Transient
     private Metro metro;
+    /**
+     * 区域
+     */
+    @Transient
+    private Region region;
+
     /**
      * 注入房间标签关联表
      * */
-    private HouseRefLabel houseRefLabel;
-    /**
+    @Transient
+     private HouseRefLabel houseRefLabel;
+     /**
      * 注入房间配置关联表
      * */
+     @Transient
     private HouseRefDeploy houseRefDeploy;
     /**
      * 注入房屋图片关联表
      * */
+    @Transient
     private List<HouseRefImg> houseRefImgs;
+
+    /**
+     * 注入用户房源关联表
+     * */
+    @Transient
+    private HouseRefUser houseRefUser;
 }

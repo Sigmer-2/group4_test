@@ -47,7 +47,7 @@ public interface HouseDeployMapper {
 
     /**
      * update record selective
-     *
+     *根据主键更新属性不为null的值
      * @param record the updated record
      * @return update count
      */
@@ -55,7 +55,7 @@ public interface HouseDeployMapper {
 
     /**
      * update record
-     *
+     *根据主键更新实体全部字段，null值会被更新
      * @param record the updated record
      * @return update count
      */

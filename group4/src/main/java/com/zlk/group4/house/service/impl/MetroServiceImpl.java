@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 
 import com.zlk.group4.house.entity.Metro;
 import com.zlk.group4.house.service.MetroService;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,16 +24,19 @@ public class MetroServiceImpl implements MetroService {
     private MetroMapper metroMapper;
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int deleteByPrimaryKey(Integer id) {
         return metroMapper.deleteByPrimaryKey(id);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int insert(Metro record) {
         return metroMapper.insert(record);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int insertSelective(Metro record) {
         return metroMapper.insertSelective(record);
     }
@@ -42,11 +47,13 @@ public class MetroServiceImpl implements MetroService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int updateByPrimaryKeySelective(Metro record) {
         return metroMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int updateByPrimaryKey(Metro record) {
         return metroMapper.updateByPrimaryKey(record);
     }

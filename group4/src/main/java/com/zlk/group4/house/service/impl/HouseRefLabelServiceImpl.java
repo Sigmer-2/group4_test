@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 
 import com.zlk.group4.house.entity.HouseRefLabel;
 import com.zlk.group4.house.service.HouseRefLabelService;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,16 +32,19 @@ public class HouseRefLabelServiceImpl implements HouseRefLabelService {
     private HouseLabelMapper houseLabelMapper;
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int deleteByPrimaryKey(Integer id) {
         return houseRefLabelMapper.deleteByPrimaryKey(id);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int insert(HouseRefLabel record) {
         return houseRefLabelMapper.insert(record);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int insertSelective(HouseRefLabel record) {
         return houseRefLabelMapper.insertSelective(record);
     }
@@ -50,11 +55,13 @@ public class HouseRefLabelServiceImpl implements HouseRefLabelService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int updateByPrimaryKeySelective(HouseRefLabel record) {
         return houseRefLabelMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int updateByPrimaryKey(HouseRefLabel record) {
         return houseRefLabelMapper.updateByPrimaryKey(record);
     }
@@ -86,7 +93,7 @@ public class HouseRefLabelServiceImpl implements HouseRefLabelService {
             }if (houseLabel.getBayWindow() == 1){
                 sb.append("带飘窗，");
             }if (houseLabel.getDecoration() == 1){
-                sb.append("精装修");
+                sb.append("精装修，");
             }
 
         return sb.toString();

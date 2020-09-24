@@ -63,5 +63,12 @@ public interface HouseRefDeployMapper {
      */
     int updateByPrimaryKey(HouseRefDeploy record);
 
-    List<HouseRefDeploy> selectDeployByHouseId(Integer id);
+    /**
+     * @Description:根据houseid查询房屋配置
+     * @Auther sunshuai
+     * @Date 2020/9/23 17:37
+     * @param id houseId
+     * @return com.zlk.group4.house.entity.HouseRefDeploy
+     */
+    HouseRefDeploy selectDeployByHouseId(Integer id);
 }
