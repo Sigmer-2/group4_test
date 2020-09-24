@@ -57,7 +57,7 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item">
-                    <a href="javascript:;">房屋信息</a>
+                    <a href="javascript:;">招租管理</a>
                     <%--<dl class="layui-nav-child">
                         <dd><a href="javascript:;">房源信息</a></dd>
                         <dd><a href="javascript:;">区域表</a></dd>
@@ -77,6 +77,9 @@
                 </li>
                 <li class="layui-nav-item">
                     <a href="">问题与咨询</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="<%=request.getContextPath()%>/role">角色管理</a>
                 </li>
             </ul>
         </div>
