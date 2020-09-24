@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MyBatisCodeHelperDatasource">
+    <option name="projectProfile">
+      <ProjectProfile>
+        <option name="generateService" value="true" />
+        <option name="generateServiceInterface" value="true" />
+        <option name="javaMapperPackage" value="com.zlk.group4.house.mapper" />
+        <option name="javaMapperPath" value="$PROJECT_DIR$/group4/src/main/java" />
+        <option name="javaModelPackage" value="com.zlk.group4.house.entity" />
+        <option name="javaModelPath" value="$PROJECT_DIR$/group4/src/main/java" />
+        <option name="lastDatabaseCrudChooseModuleName" value="group4" />
+        <option name="lombokDataAnnotation" value="true" />
+        <option name="mapperAnnotaion" value="true" />
+        <option name="moduleNameToPackageAndPathMap">
+          <map>
+            <entry key="group4">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.zlk.group4.house.mapper" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/group4/src/main/java" />
+                  <option name="javaModelPacakge" value="com.zlk.group4.house.entity" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/group4/src/main/java" />
+                  <option name="javaServiceInterfacePackage" value="com.zlk.group4.house.service" />
+                  <option name="javaServiceInterfacePath" value="E:\杂七杂八\16\group\group4\src\main\java" />
+                  <option name="javaServicePackage" value="com.zlk.group4.house.service.impl" />
+                  <option name="javaServicePath" value="$PROJECT_DIR$/group4/src/main/java" />
+                  <option name="xmlPackage" value="com.zlk.group4.house.mapper" />
+                  <option name="xmlPath" value="E:\杂七杂八\16\group\group4\src\main\java" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="p3CComment" value="true" />
+        <option name="tableGenerateConfigs">
+          <map>
+            <entry key="group4:house">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="House" />
+                  <option name="moduleName" value="group4" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="group4:house_deploy">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="HouseDeploy" />
+                  <option name="moduleName" value="group4" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="group4:house_img">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="HouseImg" />
+                  <option name="moduleName" value="group4" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="group4:house_label">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="HouseLabel" />
+                  <option name="moduleName" value="group4" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="group4:house_ref_deploy">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="HouseRefDeploy" />
+                  <option name="moduleName" value="group4" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="group4:house_ref_img">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="HouseRefImg" />
+                  <option name="moduleName" value="group4" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="group4:house_ref_label">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="HouseRefLabel" />
+                  <option name="moduleName" value="group4" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="group4:house_ref_user">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="HouseRefUser" />
+                  <option name="moduleName" value="group4" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="group4:metro">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="Metro" />
+                  <option name="moduleName" value="group4" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="group4:region">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="id" />
+                  <option name="javaModelName" value="Region" />
+                  <option name="moduleName" value="group4" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="xmlMapperPackage" value="com.zlk.group4.house.mapper" />
+        <option name="xmlMapperPath" value="E:\杂七杂八\16\group\group4\src\main\java" />
+      </ProjectProfile>
+    </option>
+  </component>
+</project>

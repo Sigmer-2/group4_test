@@ -21,18 +21,27 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    //登陆
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-
-    public Map<String, Object> login(@RequestBody User user) throws Exception {
+    public Map<String, Object> login(@RequestBody User user) throws Exception {//登陆
         System.out.println(user.toString());
         Map<String, Object> map = new HashMap<>();
         user.setUserPassword(md5Encrypt32Lower(user.getUserPassword()));
         Integer flag = userService.selectUserLogin(user);
         System.out.println(flag);
+        Integer roleid = userService.findUserRole(user);
         if (flag == 1) {
             map.put("status", 1);
             System.out.println(map.get("status"));
+            if(roleid!=null){
+                if(roleid==2){
+                    map.put("type",2);
+                }else{
+                    map.put("type",1);
+                }
+            }
+            else{
+                map.put("type",1);
+            }
             return map;
         } else {
             map.put("status", 0);
@@ -42,11 +51,10 @@ public class UserController {
     }
 
 
-    //注册
+    /**注册*/
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public Map<String, Object> register(@RequestBody User user) {
+    public Map<String, Object> register(@RequestBody User user) {//注册
         System.out.println(user.toString());
-
         Map<String, Object> map = new HashMap<>();
         //先查询数据库内有无此用户名
         Integer flag1 = userService.selectUserByName(user.getUserName());

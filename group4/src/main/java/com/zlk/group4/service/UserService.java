@@ -38,4 +38,13 @@ public interface UserService {
      * @time: 2020/8/17 11:34
      */
     Integer saveUser(User user);
+    /**
+     *
+     *获取用户的角色属性以决定后台页面的跳转
+     * @description: * @param null
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/22 15:31
+     */
+    Integer findUserRole(User user);
 }

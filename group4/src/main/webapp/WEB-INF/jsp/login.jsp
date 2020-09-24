@@ -122,7 +122,11 @@
                 type:'post',
                 success:function (data) {
                     if (data.status == 1){
-                        layer.msg('登陆成功');
+                        if(data.type == 2){
+                                window.location.href = "main";
+                        }else{
+                                window.location.href = "";
+                        }
                     }else{
                         layer.msg('登录名或密码错误');
                     }

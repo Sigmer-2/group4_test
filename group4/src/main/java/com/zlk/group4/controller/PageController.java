@@ -25,4 +25,10 @@ public class PageController {
     public String main(){
         return "main";
     }
+    /**管理员招租管理跳转*/
+    @RequestMapping(value = "/houseForAdmin")
+    public String houseForAdmin(){
+        return "admin/houseForAdmin";
+    }
+
 }

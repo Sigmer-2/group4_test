@@ -16,12 +16,21 @@ public interface UserMapper {
     /**
      *
      *查询数据库中是否有用户登录数据
-     * @description: * @param null
-     * @return:
+     * @description: user
+     * @return: int
      * @author: zhc
      * @time: 2020/8/16 22:30
      */
     Integer selectUserLogin(User user);
+    /**
+     *
+     *查询用户角色
+     * @description: user
+     * @return: int
+     * @author: zhc
+     * @time: 2020/9/22 15:22
+     */
+    Integer findUserRole(User user);
     /**
      *
      *查询数据库中是否有此用户名

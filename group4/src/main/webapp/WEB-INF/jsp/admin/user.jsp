@@ -76,6 +76,7 @@
                     <input type="text" name="userSex" class="layui-input" autocomplete="on">
                 </div>
             </div>
+
             <div class="layui-form-item">
                 <label class="layui-form-label">密码</label>
                 <div class="layui-input-block">
@@ -88,6 +89,7 @@
                     <input type="text" name="sessionKey" class="layui-input" autocomplete="on">
                 </div>
             </div>
+
             <div class="layui-form-item">
                 <label class="layui-form-label">唯一id</label>
                 <div class="layui-input-block">

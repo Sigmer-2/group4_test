@@ -231,6 +231,7 @@
            var event = obj.event;
 
 
+
            // 删除用户事件
            if (event === 'deleteRole') {
                layer.confirm('确定删除'+data.roleName+data.roleId + '吗？', function (index) {

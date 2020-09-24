@@ -47,4 +47,5 @@
     <select id="findRoleIdAndName" resultMap="RoleEntityMap">
         select id,role_name from role
     </select>
+
 </mapper>

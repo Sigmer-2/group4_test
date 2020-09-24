@@ -37,7 +37,7 @@
                 </dl>
             </li>
         </ul>--%>
-        <%--<ul class="layui-nav layui-layout-right">
+        <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
@@ -49,7 +49,7 @@
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="">退了</a></li>
-        </ul>--%>
+        </ul>
     </div>
 
     <div class="layui-side layui-bg-black">
@@ -57,7 +57,11 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item">
+<<<<<<< HEAD
                     <a href="javascript:;">招租管理</a>
+=======
+                    <a href="<%=basePath%>/houseForAdmin" target="page">招租管理</a>
+>>>>>>> 9f665b050daa737eb26401159d4a86f07b4fbab1
                     <%--<dl class="layui-nav-child">
                         <dd><a href="javascript:;">房源信息</a></dd>
                         <dd><a href="javascript:;">区域表</a></dd>
@@ -87,7 +91,7 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div style="padding: 15px;">内容主体区域</div>
+        <iframe src="" name="page" style="width: 100%;height: 100%;border: 0 none;vertical-align: middle" frameborder="1"></iframe>
     </div>
 
     <div class="layui-footer">
