@@ -2,6 +2,7 @@ package com.zlk.group4.house.mapper;
 
 import com.zlk.group4.house.entity.House;
 import org.apache.ibatis.annotations.Mapper;import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -60,6 +61,11 @@ public interface HouseMapper {
      * @return update count
      */
     int updateByPrimaryKey(House record);
+
+    List<House> selectAll();
+
+    House selectAllById(Integer id);
+
     /**
      *
      *
@@ -71,7 +77,4 @@ public interface HouseMapper {
      */
     List<House> adminManageHouse(Map map);
 
-    List<House> selectAll();
-
-    House selectAllById(Integer id);
 }

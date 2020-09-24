@@ -106,8 +106,8 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
             houseMsg = new HouseMsg();
             houseMsg.setId(houseRefUser.getHouseId());
             houseMsg.setHouseType(house.getHouseType());
-            houseMsg.setArea(house.getRegion().getDistrctName()+house.getRegion().getStreet());
-            houseMsg.setMetro(house.getMetro().getMetroLine()+house.getMetro().getStation());
+            houseMsg.setArea(house.getRegion().getDistrctName()+"，"+house.getRegion().getStreet());
+            houseMsg.setMetro(house.getMetro().getMetroLine()+"，"+house.getMetro().getStation());
             houseMsg.setListingsType(house.getListingsType());
             houseMsg.setRentalMode(house.getRentalMode());
             houseMsg.setRoomType(house.getRoomType());
@@ -176,7 +176,9 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
         house.setUpdateTime(new Date());
         list.add(house);
         String houseLabel = houseMsg.getHouseLabel();
+        list.add(houseLabel);
         String houseDeploy = houseMsg.getHouseDeploy();
+        list.add(houseDeploy);
         return list;
     }
 

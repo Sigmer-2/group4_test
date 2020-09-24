@@ -20,41 +20,6 @@
     <result column="code" jdbcType="INTEGER" property="code" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <association property="houseRefUser" javaType="com.zlk.group4.house.entity.HouseRefUser">
-      <id column="id" property="id" jdbcType="INTEGER" />
-      <result column="user_id" property="userId" jdbcType="INTEGER" />
-      <result column="house_id" property="houseId" jdbcType="INTEGER" />
-    </association>
-    <association property="metro" javaType="com.zlk.group4.house.entity.Metro">
-      <id column="id" property="id" jdbcType="INTEGER" />
-      <result column="metro_line" property="metroLine" jdbcType="VARCHAR" />
-      <result column="station" property="station" jdbcType="VARCHAR" />
-    </association>
-    <association property="region" javaType="com.zlk.group4.house.entity.Region">
-      <id column="id" property="id" jdbcType="INTEGER" />
-      <result column="distrct_name" property="distrctName" jdbcType="VARCHAR" />
-      <result column="street" property="street" jdbcType="VARCHAR" />
-    </association>
-    <association property="houseRefDeploy" javaType="com.zlk.group4.house.entity.HouseRefDeploy">
-      <id column="id" property="id" jdbcType="INTEGER" />
-      <result column="house_id" property="houseId" jdbcType="INTEGER" />
-      <result column="house_deploy_id" property="houseDeployId" jdbcType="INTEGER" />
-    </association>
-    <association property="houseRefLabel" javaType="com.zlk.group4.house.entity.HouseRefLabel">
-      <id column="id" property="id" jdbcType="INTEGER" />
-      <result column="house_id" property="houseId" jdbcType="INTEGER" />
-      <result column="house_label_id" property="houseLabelId" jdbcType="INTEGER" />
-    </association>
-<!--    <collection property="houseRefImgs" ofType="com.zlk.group4.house.entity.HouseRefImg">-->
-<!--      <id column="id" property="id" jdbcType="INTEGER" />-->
-<!--      <result column="house_id" property="houseId" jdbcType="INTEGER" />-->
-<!--      <result column="house_img_id" property="houseImgId" jdbcType="INTEGER" />-->
-<!--      <association property="houseImg" javaType="com.zlk.group4.house.entity.HouseImg">-->
-<!--        <id column="id" property="id" jdbcType="INTEGER" />-->
-<!--        <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />-->
-<!--        <result column="img_page" property="imgPage" jdbcType="INTEGER" />-->
-<!--      </association>-->
-<!--    </collection>-->
       <association property="metro" javaType="com.zlk.group4.house.entity.Metro">
           <id column="id" jdbcType="INTEGER" property="id" />
           <result column="metro_line" jdbcType="VARCHAR" property="metroLine" />
@@ -64,6 +29,26 @@
           <id column="id" jdbcType="INTEGER" property="id" />
           <result column="distrct_name" jdbcType="VARCHAR" property="distrctName" />
           <result column="street" jdbcType="VARCHAR" property="street" />
+      </association>
+      <association property="houseRefLabel" javaType="com.zlk.group4.house.entity.HouseRefLabel">
+          <id column="id" jdbcType="INTEGER" property="id" />
+          <result column="house_id" jdbcType="INTEGER" property="houseId" />
+          <result column="house_label_id" jdbcType="INTEGER" property="houseLabelId" />
+      </association>
+      <association property="houseRefDeploy" javaType="com.zlk.group4.house.entity.HouseRefDeploy">
+          <id column="id" jdbcType="INTEGER" property="id" />
+          <result column="house_id" jdbcType="INTEGER" property="houseId" />
+          <result column="house_deploy_id" jdbcType="INTEGER" property="houseDeployId" />
+      </association>
+      <!--<association property="houseRefImgs" javaType="java.util.List">
+          <id column="id" jdbcType="INTEGER" property="id" />
+          <result column="house_id" jdbcType="INTEGER" property="houseId" />
+          <result column="house_img_id" jdbcType="INTEGER" property="houseImgId" />
+      </association>-->
+      <association property="houseRefUser" javaType="com.zlk.group4.house.entity.HouseRefUser">
+          <id column="id" jdbcType="INTEGER" property="id" />
+          <result column="user_id" jdbcType="INTEGER" property="userId" />
+          <result column="house_id" jdbcType="INTEGER" property="houseId" />
       </association>
   </resultMap>
   <sql id="Base_Column_List">
@@ -266,7 +251,7 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="adminManageHouse" resultMap="BaseResultMap">
+      <select id="adminManageHouse" resultMap="BaseResultMap">
     select house.*,region.*,metro.*
     from house,metro,region,house_ref_user,house_ref_label,house_ref_deploy
     where house.region_id = region.id and house.metro_id = metro.id and house_ref_user.house_id = house.id and house_ref_label.house_id = house.id and house_ref_deploy.house_id = house.id
