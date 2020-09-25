@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zlk.group4.repair.mapper.RepairMapper">
+    <resultMap id="repairEntityMapper" type="com.zlk.group4.repair.entity.Repair">
+        <id property="id" column="id" javaType="java.lang.Integer"></id>
+        <result property="repairUserId" column="repair_userid" javaType="java.lang.Integer"></result>
+        <result property="repairHouseId" column="repair_houseid" javaType="java.lang.Integer"></result>
+        <result property="repairDescribe" column="repair_describe" javaType="java.lang.String"></result>
+        <result property="repairStatus" column="repair_status" javaType="java.lang.Integer"></result>
+    </resultMap>
+    <select id="findAllRepair" parameterType="java.util.Map" resultMap="repairEntityMapper">
+        select * from repair limit #{startIndex},#{pageSize}
+    </select>
+    <select id="findRepairCount" resultType="java.lang.Integer">
+        select count(*) from repair
+    </select>
+    <update id="updateRepairById" parameterType="java.lang.Integer">
+        update repair set repair_status = 1 where id = #{id}
+    </update>
+</mapper>
