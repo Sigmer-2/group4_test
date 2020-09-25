@@ -6,6 +6,7 @@ import com.zlk.group4.house.entity.HouseRefLabel;
 import com.zlk.group4.house.enums.HouseSexEnum;
 import com.zlk.group4.house.mapper.HouseRefUserMapper;
 import com.zlk.group4.house.service.*;
+import com.zlk.group4.util.MyDateUtils;
 import com.zlk.group4.vo.HouseMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +16,8 @@ import com.zlk.group4.house.entity.HouseRefUser;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.text.ParseException;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -108,6 +108,7 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
             houseMsg.setHouseType(house.getHouseType());
             houseMsg.setArea(house.getRegion().getDistrctName()+"，"+house.getRegion().getStreet());
             houseMsg.setMetro(house.getMetro().getMetroLine()+"，"+house.getMetro().getStation());
+            houseMsg.setEstate(house.getEstate());
             houseMsg.setListingsType(house.getListingsType());
             houseMsg.setRentalMode(house.getRentalMode());
             houseMsg.setRoomType(house.getRoomType());
@@ -115,7 +116,7 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
             houseMsg.setHouseLabel(houseRefLabelService.label(houseRefUser.getHouseId()));
             houseMsg.setHouseDeploy(houseRefDeployService.houseDeploy(houseRefUser.getHouseId()));
             houseMsg.setHouseIntroduction(house.getHouseIntroduction());
-            houseMsg.setCheckinTime(house.getCheckinTime());
+            houseMsg.setCheckinTime(MyDateUtils.format(house.getCheckinTime(), "yyyy-MM-dd"));
             houseMsg.setSex(houseSex.getDesc());
             houseMsg.setCall(house.getCall());
             houseMsg.setTel(house.getTel());
@@ -147,8 +148,18 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
 
     @Override
     public int updateByHouseMsg(HouseMsg houseMsg) {
-
-        return 0;
+        Map<String, Object> map = getObjectList(houseMsg);
+        House house =(House) map.get("house");
+        String area = (String) map.get("area");
+        String metro = (String) map.get("metro");
+        String houseLabel = (String) map.get("houseLabel");
+        String houseDeploy = (String) map.get("houseDeploy");
+        int i = houseService.updateByPrimaryKey(house);
+        int i1 = regionService.updateByString(area);
+        int i2 = metroService.updateByString(metro);
+        int i3 = labelService.updateByString(houseLabel);
+        int i4 = deployService.updateByStr(houseDeploy);
+        return i+i1+i2+i3+i4;
     }
 
     /**
@@ -158,8 +169,10 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
      * @param houseMsg
      * @return java.util.List<java.lang.Object>
      */
-    private List<Object> getObjectList(HouseMsg houseMsg){
-        List<Object> list = new ArrayList<>();
+    private Map<String,Object> getObjectList(HouseMsg houseMsg){
+        Map<String,Object> map = new HashMap<>();
+        HouseRefDeploy houseRefDeploy = houseRefDeployService.selectDeployByHouseId(houseMsg.getId());
+        HouseRefLabel houseRefLabel = houseRefLabelService.selectLabelByHouseId(houseMsg.getId());
         House house = houseService.selectByPrimaryKey(houseMsg.getId());
         house.setId(houseMsg.getId());
         house.setListingsType(houseMsg.getListingsType());
@@ -167,19 +180,27 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
         house.setRoomType(houseMsg.getRoomType());
         house.setRent(houseMsg.getRent());
         house.setHouseIntroduction(houseMsg.getHouseIntroduction());
-        house.setCheckinTime(houseMsg.getCheckinTime());
+        try {
+            house.setCheckinTime(MyDateUtils.parse(houseMsg.getCheckinTime(), null));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         house.setSex(HouseSexEnum.getHouseSex(houseMsg.getSex()).getCode());
         house.setCall(houseMsg.getCall());
         house.setTel(houseMsg.getTel());
         house.setCode(1);
         house.setCreateTime(new Date());
         house.setUpdateTime(new Date());
-        list.add(house);
+        map.put("house",house);
+        String area = houseMsg.getArea();
+        map.put("area",area);
+        String metro = houseMsg.getMetro();
+        map.put("metro",metro);
         String houseLabel = houseMsg.getHouseLabel();
-        list.add(houseLabel);
+        map.put("houseLabel",houseLabel);
         String houseDeploy = houseMsg.getHouseDeploy();
-        list.add(houseDeploy);
-        return list;
+        map.put("houseDeploy",houseDeploy);
+        return map;
     }
 
 }

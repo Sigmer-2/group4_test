@@ -25,6 +25,8 @@ public interface RegionService {
 
     int updateByPrimaryKey(Region record);
 
+    int updateByString(String str);
+
 }
 
 

@@ -25,6 +25,8 @@ public interface MetroService {
 
     int updateByPrimaryKey(Metro record);
 
+    int updateByString(String str);
+
 }
 
 

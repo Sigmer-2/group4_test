@@ -1,20 +1,17 @@
 package com.zlk.group4.house.entity;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+import java.util.Date;import java.util.List;
 
-import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.Transient;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;import javax.persistence.Transient;
 
 /**
  * Created with IntelliJ IDEA.
  * Description:
  * User: sunshuai
- * Date: 2020-09-23
- * Time: 14:16
+ * Date: 2020-09-24
+ * Time: 14:52
  */
 
 @Data
@@ -38,6 +35,11 @@ public class House {
      * 地铁id
      */
     private Integer metroId;
+
+    /**
+     * 小区位置
+     */
+    private String estate;
 
     /**
      * 房源户型
@@ -67,7 +69,7 @@ public class House {
     /**
      * 可入住时间
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date checkinTime;
 
     /**
@@ -109,26 +111,24 @@ public class House {
      */
     @Transient
     private Region region;
-
     /**
      * 注入房间标签关联表
-     * */
+     */
     @Transient
-     private HouseRefLabel houseRefLabel;
-     /**
+    private HouseRefLabel houseRefLabel;
+    /**
      * 注入房间配置关联表
-     * */
-     @Transient
+     */
+    @Transient
     private HouseRefDeploy houseRefDeploy;
     /**
      * 注入房屋图片关联表
-     * */
+     */
     @Transient
     private List<HouseRefImg> houseRefImgs;
-
     /**
      * 注入用户房源关联表
-     * */
+     */
     @Transient
     private HouseRefUser houseRefUser;
 }

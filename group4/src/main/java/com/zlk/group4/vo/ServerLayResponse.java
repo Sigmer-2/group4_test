@@ -17,9 +17,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ServerLayResponse<T> {
-
     private Integer code;
-    private Long count;
+    private Integer count;
     private String msg;
     private T data;
 }

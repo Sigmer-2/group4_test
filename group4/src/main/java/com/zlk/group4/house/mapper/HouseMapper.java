@@ -1,15 +1,14 @@
 package com.zlk.group4.house.mapper;
 
 import com.zlk.group4.house.entity.House;
-import org.apache.ibatis.annotations.Mapper;import java.util.List;
-import java.util.Map;
+import org.apache.ibatis.annotations.Mapper;import java.util.List;import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
  * Description:
  * User: sunshuai
- * Date: 2020-09-23
- * Time: 14:16
+ * Date: 2020-09-24
+ * Time: 14:52
  */
 
 @Mapper
@@ -67,14 +66,11 @@ public interface HouseMapper {
     House selectAllById(Integer id);
 
     /**
-     *
-     *
-     * @description: 管理员-房屋信息-输出
      * @param map
+     * @description: 管理员-房屋信息-输出
      * @return: 房屋信息列表
      * @author: zhc
      * @time: 2020/9/23 16:51
      */
     List<House> adminManageHouse(Map map);
-
 }
