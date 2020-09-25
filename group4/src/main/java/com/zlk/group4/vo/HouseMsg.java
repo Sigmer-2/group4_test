@@ -1,5 +1,6 @@
 package com.zlk.group4.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -33,6 +34,10 @@ public class HouseMsg {
      */
     private String metro;
     /**
+     *小区位置
+     */
+    private String estate;
+    /**
      *整套户型
      */
     private String listingsType;
@@ -63,8 +68,9 @@ public class HouseMsg {
     /**
      *可入住时间
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date checkinTime;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+//    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private String checkinTime;
     /**
      *租客性别
      */

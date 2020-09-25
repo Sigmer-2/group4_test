@@ -58,6 +58,19 @@ public class MetroServiceImpl implements MetroService {
         return metroMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public int updateByString(String str) {
+        return updateByPrimaryKey(getMetro(str));
+    }
+
+
+    private Metro getMetro(String str){
+        Metro metro = new Metro();
+        String[] strs = str.split("，");
+        metro.setMetroLine(strs[0]);
+        metro.setStation(strs[1]);
+        return metro;
+    }
 }
 
 

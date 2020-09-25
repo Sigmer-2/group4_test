@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Transient;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;import javax.persistence.Transient;
 
 /**
  * Created with IntelliJ IDEA.
@@ -45,7 +47,7 @@ public class House {
 
     /**
      * 小区位置
-     * */
+     */
     private String estate;
 
     /**
@@ -76,7 +78,7 @@ public class House {
     /**
      * 可入住时间
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date checkinTime;
 
     /**

@@ -57,6 +57,19 @@ public class RegionServiceImpl implements RegionService {
         return regionMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public int updateByString(String str) {
+        return updateByPrimaryKey(getRegion(str));
+    }
+
+    private Region getRegion(String str){
+        Region region = new Region();
+        String[] strs = str.split("，");
+        region.setDistrctName(strs[0]);
+        region.setStreet(strs[1]);
+        return region;
+    }
+
 }
 
 

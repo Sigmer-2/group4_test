@@ -12,6 +12,7 @@
           <result column="house_type" jdbcType="VARCHAR" property="houseType" />
           <result column="region_id" jdbcType="INTEGER" property="regionId" />
           <result column="metro_id" jdbcType="INTEGER" property="metroId" />
+          <result column="estate" jdbcType="VARCHAR" property="estate" />
           <result column="listings_type" jdbcType="VARCHAR" property="listingsType" />
           <result column="rental_mode" jdbcType="VARCHAR" property="rentalMode" />
           <result column="room_type" jdbcType="VARCHAR" property="roomType" />
@@ -102,6 +103,6 @@
       ON
               h.id = hru.house_id
       WHERE
-              u.id = 1
+              u.id = #{id}
   </select>
 </mapper>
