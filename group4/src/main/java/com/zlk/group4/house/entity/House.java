@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Transient;
@@ -18,6 +20,8 @@ import javax.persistence.Transient;
  */
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class House {
     /**
      * 自增id
@@ -38,6 +42,11 @@ public class House {
      * 地铁id
      */
     private Integer metroId;
+
+    /**
+     * 小区位置
+     * */
+    private String estate;
 
     /**
      * 房源户型

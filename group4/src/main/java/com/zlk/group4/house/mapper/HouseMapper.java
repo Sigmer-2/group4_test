@@ -76,5 +76,15 @@ public interface HouseMapper {
      * @time: 2020/9/23 16:51
      */
     List<House> adminManageHouse(Map map);
+    /**
+     *
+     * 招租房屋总数
+     * @description:
+     * @param
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/25 10:16
+     */
+    Integer findHouseCount();
 
 }

@@ -78,5 +78,10 @@ public class HouseServiceImpl implements HouseService {
         map.put("pageSize",limit);
         return houseMapper.adminManageHouse(map);
     }
+
+    @Override
+    public Integer findHouseCount() {
+        return houseMapper.findHouseCount();
+    }
 }
 

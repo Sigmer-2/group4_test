@@ -34,6 +34,8 @@ public interface HouseService {
 
     List<House> adminManageHouse(Map map,Integer page,Integer limit);
 
+    Integer findHouseCount();
+
 
 
 
