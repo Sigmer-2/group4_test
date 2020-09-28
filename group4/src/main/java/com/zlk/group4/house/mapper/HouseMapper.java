@@ -78,6 +78,17 @@ public interface HouseMapper {
     List<House> adminManageHouse(Map map);
     /**
      *
+     *
+     * @description: 管理员-房屋信息-查询
+     * @param map
+     * @description: 管理员-房屋信息-查询
+     * @return: 房屋信息列表
+     * @author: zhc
+     * @time: 2020/9/23 16:51
+     */
+    List<House> adminFindHouse(Map map);
+    /**
+     *
      * 招租房屋总数
      * @description:
      * @param

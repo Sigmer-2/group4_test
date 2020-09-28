@@ -17,7 +17,7 @@
     <title>后台大布局</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/layui/css/layui.css" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
-    <script src="<%=request.getContextPath()%>/js/jquery.js"></script>
+    <script src="<%=request.getContextPath()%>/js/jquery-3.4.1.js"></script>
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">

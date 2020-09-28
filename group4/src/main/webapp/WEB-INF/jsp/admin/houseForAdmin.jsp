@@ -32,9 +32,11 @@
         <label class="layui-form-label" >查询方式:</label>
         <div class="layui-input-block" >
             <select name="city" lay-verify="required" lay-filter="selectfilter">
-                <option value="0">订单编号</option>
-                <option value="1">客户名称</option>
-                <option value="2">产品名称</option>
+                <option value="0">区域</option>
+                <option value="1">地铁</option>
+                <option value="2">月租金</option>
+                <option value="3">房源类型</option>
+                <option value="4">出租方式</option>
             </select>
         </div>
     </div>
@@ -71,24 +73,50 @@
     </div>
 </script>
 <script type="text/html" id="titleTpl1">
-
-
     <a href='javascript:;' class=" layui-btn layui-btn-primary layui-btn-xs" onclick="regionClick('{{d.regionId}}');">{{d.region.distrctName}}<b>·</b>{{d.region.street}}</a>
 </script>
 <script type="text/html" id="titleTpl2">
-
-
     <a href='javascript:;' class=" layui-btn layui-btn-primary layui-btn-xs" onclick="metroClick('{{d.metroId}}');">{{d.metro.metroLine}}<b>·</b>{{d.metro.station}}</a>
-
 </script>
 <script type="text/html" id="titleTpl3">
-
-
-    <a href='javascript:;' class=" layui-btn layui-btn-primary layui-btn-xs" onclick="noteClick('{{d.orderId}}','{{d.note}}');">订单要求</a>
+    <a href='javascript:;' class=" layui-btn layui-btn-primary layui-btn-xs" onclick="noteClick('{{d.id}}','{{d.houseIntroduction}}');">查看详情</a>
     <%--return '<div class=" layui-btn layui-btn-primary layui-btn-xs">'+"客户介绍"+'</div>'--%>
 </script>
+<script type="text/html" id="titleTpl4">
+<%--{{# console.log(d.houseRefImgs);}}--%>
+<%--{{# var list = JSON.stringify(d.houseRefImgs);}}--%>
+<%--{{# console.log(list);}}--%>
+    <img src="{{d.houseRefImgs[0].houseImg.imgUrl}}"  onclick="imgClick('{{d.id}}');"> </img>
+</script>
+<%--<script type="text/html" id="imgDetail">--%>
+<%--    {{#  layui.each(d, function(index1, item1){ }}--%>
+<%--   <div id="img{{d.id}}">--%>
+<%--       {{#  layui.each(item1.houseRefImgs, function(index2, item2){ }}--%>
+<%--       {{#  if({{item2.houseImg.imgPage}}==1){ }}--%>
+<%--       <img src="{{item2.houseImg.imgUrl}}">封面<br>--%>
+<%--       {{#  }else{  }}--%>
+<%--       <img src="{{item2.houseImg.imgUrl}}"><br>--%>
+<%--       {{# } }}--%>
+<%--       {{#  }); }}--%>
+<%--   </div>--%>
+<%--    {{#  }); }}--%>
 
+<%--</script>--%>
+<table class="layui-table" lay-size="lg" id="img1">
+<%--    <colgroup>--%>
+<%--        <col width="150">--%>
+<%--        <col width="200">--%>
+<%--    </colgroup>--%>
+<%--    <thead>--%>
+<%--    <tr>--%>
+<%--        <th>图片</th>--%>
+<%--        <th>是否为封面</th>--%>
+<%--    </tr>--%>
+<%--    </thead>--%>
+<%--    <tbody id="img">--%>
 
+<%--    </tbody>--%>
+</table>
 <form  class="layui-form" action="" style="display: none" enctype="multipart/form-data" id="formInsert">
     <br><br>
 
@@ -204,9 +232,6 @@
         </div>
     </div>
 </form>
-
-
-
 
 <form  class="layui-form" action="" id="formUpdate" style="display: none" lay-filter="formUpdateFilter">
 
@@ -436,7 +461,6 @@
     </div>
 </form>
 
-
 <script>
     layui.config({
         version: '1594038786020' //为了更新 js 缓存，可忽略
@@ -450,7 +474,6 @@
             ,layedit = layui.layedit //富文本编辑器
             ,$=layui.$
             ,upload=layui.upload;
-
 
         //执行一个 table 实例
         table.render({
@@ -467,6 +490,7 @@
                 ,{field: 'id', title: '房屋编号', width:100,align:'center'}
                 ,{title: '区域', width:140,templet:$("#titleTpl1"),align:'left'}
                 ,{title: '地铁', width:140,templet:$("#titleTpl2"),align:'left'}
+                ,{field: 'estate', title: '小区位置', width:100,align:'center'}
                 ,{field: 'houseType', title: '房源类型', width:110, sort: true,align:'center'}
                 ,{field: 'listingsType', title: '房源户型', width: 110, sort: true,align:'center'}
                 ,{field: 'rentalMode', title: '出租方式', width:80,align:'center'}
@@ -474,13 +498,21 @@
                 ,{field: 'rent', title: '月租金', width: 110, sort: true,align:'center'}
                 ,{field: 'houseIntroduction', title: '房屋介绍', width: 100,align:'center',templet:$("#titleTpl3")}
                 ,{field: 'checkinTime', title: '可入住时间', width: 110, sort: true,align:'center'}
-                ,{field: 'sex', title: '租客性别', width: 110, sort: true,align:'center'}
+                ,{field: 'sex', title: '租客性别', width: 110, sort: true,templet:function (item) {
+                        if(item.sex==0){
+                            return "男女不限";
+                        }else if(item.sex==1){
+                            return "只限男";
+                        }else if(item.sex==2){
+                            return "只限女";
+                        }
+                    },align:'center'}
                 ,{field: 'call', title: '房东称呼', width: 110, sort: true,align:'center'}
                 ,{field: 'tel', title: '联系方式', width: 110, sort: true,align:'center'}
                 ,{field: 'code', title: '出租状态', width:100, sort: true, templet:function (item) {
-                        if(item.status==0){
+                        if(item.code==0){
                             return ' <span style="color: #FF5722;">' + "未租出" + '</span>'
-                        }else if(item.status==1){
+                        }else if(item.code==1){
                             return ' <span style="color: #5FB878;">' + "已租出" + '</span>'
                         }
                     },align:'center'}
@@ -499,7 +531,7 @@
                         }
                     },align:'center'}
 
-                ,{field: 'image', title: '房屋图片', width: 100,align:'center'}
+                ,{title: '房屋图片', width: 100,align:'center',templet:$("#titleTpl4")}
                 ,{field: 'file', title: '房间配置', width: 100,align:'center'}
                 ,{field: 'file', title: '房间标签', width: 100,align:'center'}
                 ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
@@ -521,7 +553,7 @@
 
                 //执行重载
                 table.reload('testReload', {
-                    url:"<%=request.getContextPath()%>/findOrderBy",
+                    url:"<%=request.getContextPath()%>/AdminfindHouseBy",
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }
@@ -1124,7 +1156,7 @@
             layer.open({
                 type:1
                 ,area:['700px', '480px']
-                ,title:'产品介绍'
+                ,title:'房屋简介'
                 ,content:$("#formIntroduce") //'请修改用户信息'
                 //,btn: ['修改']
                 ,success:function (layero, index) {
@@ -1161,6 +1193,67 @@
                         });
                         return false;
                     });
+                }
+            });
+
+
+        });
+    }
+    function imgClick(id) {
+        //console.log(JSON.stringify(imgList));
+
+        // var img = "#img"+id;
+        // console.log(img);
+
+        layui.use([ 'layer', 'form','jquery'], function() {
+            var layer = layui.layer,
+                form = layui.form,
+                $ = layui.$;
+            layer.open({
+                type:1
+                ,area:['700px', '480px']
+                ,title:'房屋图片'
+                ,content:$("#img1")
+                ,success:function (layero, index) {
+                    console.log(id);
+                    $.ajax({
+                        type: "POST",
+                        url: "<%=basePath%>/findImgsByHouseId",
+                        async :false,
+                        data:{
+                            "id":id
+                        },
+                        success: function(msg){
+                            //console.log(msg);
+                            //var lis = [];
+                            var html = "";
+                            html+="<colgroup><col width=\"150\"><col width=\"200\"></colgroup><thead><tr><th>图片</th><th>是否为封面</th></tr></thead><tbody>";
+
+                            //console.log(msg.data);
+                            $.each(msg.data,function (index,value) {
+
+
+                                console.log(value);
+                                if(value.houseImg.imgPage==1)
+                                {
+                                    html+="<tr><td><img src='<%=request.getContextPath()%>"+value.houseImg.imgUrl+"'></td><td>是</td></tr></tbody>"
+                                }
+                                else
+                                {
+                                    html+="<tr><td><img src='<%=request.getContextPath()%>"+value.houseImg.imgUrl+"'></td><td>否</td></tr></tbody>"
+                                }
+                               // $("#img").append(html);
+                            });
+                            $("#img1").append(html);
+                            // lis.push(
+                            //     html
+                            // );
+                        }
+                    });
+                }
+                ,cancel: function() {
+                    //右上角关闭回调
+                    $("#img1").empty();
                 }
             });
 

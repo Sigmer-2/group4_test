@@ -268,15 +268,29 @@
     select house.*,region.*,metro.*
     from house,metro,region,house_ref_user,house_ref_label,house_ref_deploy
     where house.region_id = region.id and house.metro_id = metro.id and house_ref_user.house_id = house.id and house_ref_label.house_id = house.id and house_ref_deploy.house_id = house.id
-    <if test="distrctName!=null">
-      and region.distrct_name = #{distrctName}
-    </if>
-    <if test="metroLine!=null">
-      and metro.metro_line = #{metroLine}
-    </if>
-    <if test="rent!=null">
-      and house.rent = #{rent}
-    </if>
+    limit #{startIndex},#{pageSize}
+  </select>
+  <select id="adminFindHouse" resultMap="BaseResultMap">
+    select house.*,region.*,metro.*
+    from house,metro,region,house_ref_user,house_ref_label,house_ref_deploy
+    where house.region_id = region.id and house.metro_id = metro.id and house_ref_user.house_id = house.id and house_ref_label.house_id = house.id and house_ref_deploy.house_id = house.id
+    <choose>
+    <when test="region!=null and region !=''">
+      and region.distrct_name=#{region}
+    </when>
+    <when test="metro!=null and metro !=''">
+      and metro.metro_line=#{metro}
+    </when>
+    <when test="rent!=null and rent !=''">
+      and house.rent between #{rent}-500 and #{rent}+500
+    </when>
+    <when test="houseType!=null and houseType !=''">
+      and house.house_type = #{houseType}
+    </when>
+    <when test="rentalModel!=null and rentalModel !=''">
+      and house.rental_mode = #{rentalModel}
+    </when>
+    </choose>
   </select>
   <select id="findHouseCount" resultType="java.lang.Integer">
     select count(*) from house

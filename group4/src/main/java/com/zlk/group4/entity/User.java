@@ -32,7 +32,7 @@ public class User {
     /**用户session*/
     private String sessionKey;
     /**OPEN ID*/
-    private Integer openId;
+    private String openId;
     /**商户类型*/
     private String type;
     /**商家类型*/

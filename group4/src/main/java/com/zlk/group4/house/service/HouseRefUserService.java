@@ -55,6 +55,16 @@ public interface HouseRefUserService {
      * @return int
      */
     int updateByHouseMsg(HouseMsg houseMsg);
+    /**
+     *
+     * 通过房屋id查询用户
+     * @description: *
+     * @param id
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/27 14:15
+     */
+    HouseRefUser selectUserByHouseId(Integer id);
 
 
 
