@@ -1,6 +1,7 @@
 package com.zlk.group4.house.mapper;
 
 import com.zlk.group4.house.entity.House;
+import com.zlk.group4.house.entity.HouseIdParam;
 import org.apache.ibatis.annotations.Mapper;import java.util.List;import java.util.Map;
 
 /**
@@ -97,5 +98,94 @@ public interface HouseMapper {
      * @time: 2020/9/25 10:16
      */
     Integer findHouseCount();
-
+    /**
+     *
+     * 管理员删除单条房屋信息
+     * @description: *
+     * @param id
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/28 16:54
+     */
+    Integer adminDeleteHouseById(Integer id);
+    /**
+     *
+     * 管理员删除单条房屋信息与用户之间的关联
+     * @description: *
+     * @param id
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/28 16:54
+     */
+    Integer deleteRefUserById(Integer id);
+    /**
+     *
+     * 管理员删除单条房屋信息与标签之间的关联
+     * @description: *
+     * @param id
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/28 16:54
+     */
+    Integer deleteRefLabelById(Integer id);
+    /**
+     *
+     * 管理员删除单条房屋信息与配置之间的关联
+     * @description: *
+     * @param id
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/28 16:54
+     */
+    Integer deleteRefDeployById(Integer id);
+    /**
+     *
+     * 管理员删除多条房屋信息
+     * @description: *
+     * @param param
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/28 16:54
+     */
+    Integer adminDeleteHouseByIds(HouseIdParam param);
+    /**
+     *
+     * 管理员删除多条房屋信息与用户之间的关联
+     * @description: *
+     * @param param
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/28 16:54
+     */
+    Integer deleteRefUserByIds(HouseIdParam param);
+    /**
+     *
+     * 管理员删除多条房屋信息与标签之间的关联
+     * @description: *
+     * @param param
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/28 16:54
+     */
+    Integer deleteRefLabelByIds(HouseIdParam param);
+    /**
+     *
+     * 管理员删除多条房屋信息与配置之间的关联
+     * @description: *
+     * @param param
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/28 16:54
+     */
+    Integer deleteRefDeployByIds(HouseIdParam param);
+    /**
+     *
+     * 管理员对房屋信息进行修改
+     * @description: *
+     * @param house
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/29 19:12
+     */
+    Integer adminUpdateHouseById(House house);
 }

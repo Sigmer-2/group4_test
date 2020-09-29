@@ -69,4 +69,17 @@
       street = #{street,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="adminUpdateRegion" parameterType="com.zlk.group4.house.entity.Region">
+    <!--@mbg.generated-->
+    update region
+    <set>
+      <if test="distrctName != null">
+        distrct_name = #{distrctName,jdbcType=VARCHAR},
+      </if>
+      <if test="street != null ">
+        street = #{street,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zlk.group4.house.entity.HouseIdParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -139,6 +140,27 @@ public class HouseServiceImpl implements HouseService {
         map1.put("rent","");
         map1.put("houseType","");
         return houseMapper.adminFindHouse(map1);
+    }
+
+    @Override
+    public Integer adminDeleteHouseById(Integer id) {
+        houseMapper.deleteRefUserById(id);
+        houseMapper.deleteRefDeployById(id);
+        houseMapper.deleteRefLabelById(id);
+        return houseMapper.adminDeleteHouseById(id);
+    }
+
+    @Override
+    public Integer adminDeleteHouseByIds(HouseIdParam param) {
+        houseMapper.deleteRefUserByIds(param);
+        houseMapper.deleteRefDeployByIds(param);
+        houseMapper.deleteRefLabelByIds(param);
+        return houseMapper.adminDeleteHouseByIds(param);
+    }
+
+    @Override
+    public Integer adminUpdateHouseById(House house) {
+        return houseMapper.adminUpdateHouseById(house);
     }
 }
 

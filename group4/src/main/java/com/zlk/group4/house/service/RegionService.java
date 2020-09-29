@@ -26,6 +26,16 @@ public interface RegionService {
     int updateByPrimaryKey(Region record);
 
     int updateByString(String str);
+    /**
+     *
+     * 管理员更新房屋区域信息
+     * @description: *
+     * @param region
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/29 17:44
+     */
+    Integer adminUpdateRegion(Region region);
 
 }
 

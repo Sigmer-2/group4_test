@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.zlk.group4.house.entity.House;
+import com.zlk.group4.house.entity.HouseIdParam;
 import com.zlk.group4.vo.HouseMsg;
 
 /**
@@ -102,8 +103,36 @@ public interface HouseService {
      * @time: 2020/9/28 10:48
      */
     List<House> findHouseByRentalModel(String data);
-
-
+    /**
+     *
+     * 管理员删除单条房屋信息
+     * @description: *
+     * @param id
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/28 16:37
+     */
+    Integer adminDeleteHouseById(Integer id);
+    /**
+     *
+     * 管理员删除多条房屋信息
+     * @description: *
+     * @param param
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/28 16:37
+     */
+    Integer adminDeleteHouseByIds(HouseIdParam param);
+    /**
+     *
+     * 管理员对房屋信息进行修改
+     * @description: *
+     * @param house
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/29 19:12
+     */
+    Integer adminUpdateHouseById(House house);
 
 }
 

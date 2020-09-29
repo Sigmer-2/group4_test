@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zlk.group4.mapper.ChangchunMapper">
+    <select id="findAllArea" resultType="com.zlk.group4.entity.Area">
+        select * from changchun_area
+    </select>
+    <select id="findStreet" parameterType="java.lang.Integer" resultType="com.zlk.group4.entity.Street">
+        select * from changchun_street where area_id = #{id}
+    </select>
+    <select id="findAllLine" resultType="com.zlk.group4.entity.Line">
+        select * from changchun_line
+    </select>
+    <select id="findStation" parameterType="java.lang.Integer" resultType="com.zlk.group4.entity.Station">
+        select * from changchun_station where line_id = #{id}
+    </select>
+</mapper>
