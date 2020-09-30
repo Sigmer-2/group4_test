@@ -34,4 +34,28 @@ public class HouseRefDeploy {
      * 注入房间配置表
      * */
     private HouseDeploy houseDeploy;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getHouseId() {
+        return houseId;
+    }
+
+    public void setHouseId(Integer houseId) {
+        this.houseId = houseId;
+    }
+
+    public Integer getHouseDeployId() {
+        return houseDeployId;
+    }
+
+    public void setHouseDeployId(Integer houseDeployId) {
+        this.houseDeployId = houseDeployId;
+    }
 }

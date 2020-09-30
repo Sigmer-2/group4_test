@@ -5,7 +5,7 @@
 <mapper namespace="com.zlk.group4.user.mapper.UserPageMapper">
     <resultMap id="UserEntityMap" type="com.zlk.group4.user.entity.UserPage">
         <id property="userId" column="id" javaType="java.lang.Integer"/>
-        <result property="userRoleName" column="user_roleName" javaType="java.lang.String"/>
+        <result property="userRoleId" column="user_roleId" javaType="java.lang.Integer"/>
         <result property="userTel" column="tel" javaType="java.lang.String"/>
         <result property="userImg" column="user_img" javaType="java.lang.String"/>
         <result property="userName" column="user_name" javaType="java.lang.String"/>
@@ -14,19 +14,24 @@
         <result property="userPassword" column="user_password" javaType="java.lang.String"/>
         <result property="sessionKey" column="session_key" javaType="java.lang.String"/>
         <result property="openId" column="open_id" javaType="java.lang.Integer"/>
+        <association property="role" javaType="com.zlk.group4.user.entity.Role">
+            <id property="roleId" column="id" javaType="java.lang.Integer"/>
+            <result property="roleName" column="role_name" javaType="java.lang.String"/>
+        </association>
     </resultMap>
-    <resultMap id="RoleEntityMap" type="com.zlk.group4.user.entity.Role">
+    <!--<resultMap id="RoleEntityMap" type="com.zlk.group4.user.entity.Role">
         <id property="roleId" column="id" javaType="java.lang.Integer"/>
         <result property="roleName" column="role_name" javaType="java.lang.String"/>
-    </resultMap>
+    </resultMap>-->
     <select id="findUserList" parameterType="java.util.Map" resultMap="UserEntityMap">
-        select * from user order by id limit #{startIndex},#{pageSize}
+        select * from user,role where user.user_roleId = role.id
+        order by user.id limit #{startIndex},#{pageSize}
     </select>
     <select id="findUserCount" resultType="java.lang.Integer">
         select count(*) from user
     </select>
     <insert id="saveUser0" parameterType="com.zlk.group4.user.entity.UserPage">
-       INSERT INTO user(id,user_roleName,tel,user_img,user_name,user_place,user_sex,user_password,session_key,open_id)
+       INSERT INTO user(id,user_roleId,tel,user_img,user_name,user_place,user_sex,user_password,session_key,open_id)
         VALUES(#{userId},#{userRoleName},#{userTel},#{userImg},#{userName},#{userPlace},#{userSex},#{userPassword},
         #{sessionKey},#{openId})
     </insert>
@@ -34,7 +39,7 @@
        DELETE FROM user WHERE id =#{userId}
     </delete>
     <update id="updateUserById" parameterType="com.zlk.group4.user.entity.UserPage">
-      UPDATE user SET user_RoleName=#{userRoleName},tel=#{userTel},user_img=#{userImg},user_name=#{userName},
+      UPDATE user SET user_RoleId=#{userRoleId},tel=#{userTel},user_img=#{userImg},user_name=#{userName},
       user_place=#{userPlace},user_sex=#{userSex},user_password=#{userPassword},session_key=#{sessionKey},
       open_id=#{openId} WHERE id =#{userId}
     </update>
@@ -44,7 +49,7 @@
     <select id="findUserListByIdCount" resultType="integer">
          select count(*) from user where id=#{userId}
     </select>
-    <select id="findRoleIdAndName" resultMap="RoleEntityMap">
+    <select id="findRoleIdAndName" resultType="com.zlk.group4.user.entity.Role">
         select id,role_name from role
     </select>
 

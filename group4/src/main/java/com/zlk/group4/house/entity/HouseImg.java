@@ -30,4 +30,13 @@ public class HouseImg {
      * 是否为封面（0：不是，1：是）
      */
     private Integer imgPage;
+
+    @Override
+    public String toString() {
+        return "HouseImg{" +
+                "id=" + id +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", imgPage=" + imgPage +
+                '}';
+    }
 }

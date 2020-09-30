@@ -42,7 +42,7 @@ public class UserPageController {
 
      @ResponseBody
      @RequestMapping(value = "/saveUser",method = RequestMethod.POST)
-     private Map<String,Object> add(@RequestBody UserPage user){
+     public Map<String,Object> add(@RequestBody UserPage user){
          Integer flag = userPageService.saveUser0(user);
          Map<String,Object> map = new HashMap<String, Object>();
          if(flag > 0){
@@ -55,7 +55,7 @@ public class UserPageController {
 
     @ResponseBody
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
-    private Map<String,Object> deleteById(@PathVariable("id") int id){
+    public Map<String,Object> deleteById(@PathVariable("id") int id){
          int result = userPageService.deleteUserById(id);
          Map<String,Object> map = new HashMap<String, Object>();
          if(result >0){
@@ -68,7 +68,7 @@ public class UserPageController {
 
      @ResponseBody
      @RequestMapping(value = "",method = RequestMethod.PUT)
-    private  Map<String,Object> update(@RequestBody UserPage user){
+    public Map<String,Object> update(@RequestBody UserPage user){
          int result = userPageService.updateUserById(user);
          Map<String,Object> map = new HashMap<String, Object>();
          if(result > 0){

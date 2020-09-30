@@ -65,4 +65,20 @@ public class HouseLabel {
      * 精装修
      */
     private Integer decoration;
+
+    @Override
+    public String toString() {
+        return "HouseLabel{" +
+                "id=" + id +
+                ", shortRent=" + shortRent +
+                ", payment=" + payment +
+                ", southward=" + southward +
+                ", agencyfee=" + agencyfee +
+                ", toilet=" + toilet +
+                ", balcony=" + balcony +
+                ", elevator=" + elevator +
+                ", bayWindow=" + bayWindow +
+                ", decoration=" + decoration +
+                '}';
+    }
 }

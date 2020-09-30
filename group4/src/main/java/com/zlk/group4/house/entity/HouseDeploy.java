@@ -105,4 +105,172 @@ public class HouseDeploy {
      * 台灯
      */
     private Integer led;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getBed() {
+        return bed;
+    }
+
+    public void setBed(Integer bed) {
+        this.bed = bed;
+    }
+
+    public Integer getWifi() {
+        return wifi;
+    }
+
+    public void setWifi(Integer wifi) {
+        this.wifi = wifi;
+    }
+
+    public Integer getConditioner() {
+        return conditioner;
+    }
+
+    public void setConditioner(Integer conditioner) {
+        this.conditioner = conditioner;
+    }
+
+    public Integer getWardrobe() {
+        return wardrobe;
+    }
+
+    public void setWardrobe(Integer wardrobe) {
+        this.wardrobe = wardrobe;
+    }
+
+    public Integer getDesk() {
+        return desk;
+    }
+
+    public void setDesk(Integer desk) {
+        this.desk = desk;
+    }
+
+    public Integer getChair() {
+        return chair;
+    }
+
+    public void setChair(Integer chair) {
+        this.chair = chair;
+    }
+
+    public Integer getSofa() {
+        return sofa;
+    }
+
+    public void setSofa(Integer sofa) {
+        this.sofa = sofa;
+    }
+
+    public Integer getRefrigerator() {
+        return refrigerator;
+    }
+
+    public void setRefrigerator(Integer refrigerator) {
+        this.refrigerator = refrigerator;
+    }
+
+    public Integer getWashing() {
+        return washing;
+    }
+
+    public void setWashing(Integer washing) {
+        this.washing = washing;
+    }
+
+    public Integer getTv() {
+        return tv;
+    }
+
+    public void setTv(Integer tv) {
+        this.tv = tv;
+    }
+
+    public Integer getHeater() {
+        return heater;
+    }
+
+    public void setHeater(Integer heater) {
+        this.heater = heater;
+    }
+
+    public Integer getStove() {
+        return stove;
+    }
+
+    public void setStove(Integer stove) {
+        this.stove = stove;
+    }
+
+    public Integer getMicrowave() {
+        return microwave;
+    }
+
+    public void setMicrowave(Integer microwave) {
+        this.microwave = microwave;
+    }
+
+    public Integer getLampblack() {
+        return lampblack;
+    }
+
+    public void setLampblack(Integer lampblack) {
+        this.lampblack = lampblack;
+    }
+
+    public Integer getDining() {
+        return dining;
+    }
+
+    public void setDining(Integer dining) {
+        this.dining = dining;
+    }
+
+    public Integer getLock() {
+        return lock;
+    }
+
+    public void setLock(Integer lock) {
+        this.lock = lock;
+    }
+
+    public Integer getLed() {
+        return led;
+    }
+
+    public void setLed(Integer led) {
+        this.led = led;
+    }
+
+    @Override
+    public String toString() {
+        return "HouseDeploy{" +
+                "id=" + id +
+                ", bed=" + bed +
+                ", wifi=" + wifi +
+                ", conditioner=" + conditioner +
+                ", wardrobe=" + wardrobe +
+                ", desk=" + desk +
+                ", chair=" + chair +
+                ", sofa=" + sofa +
+                ", refrigerator=" + refrigerator +
+                ", washing=" + washing +
+                ", tv=" + tv +
+                ", heater=" + heater +
+                ", stove=" + stove +
+                ", microwave=" + microwave +
+                ", lampblack=" + lampblack +
+                ", dining=" + dining +
+                ", lock=" + lock +
+                ", led=" + led +
+                '}';
+    }
 }

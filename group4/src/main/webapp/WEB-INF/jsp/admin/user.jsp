@@ -41,7 +41,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">用户类型</label>
                 <div class="layui-input-block">
-                    <select id="select1" name="userRoleName" lay-verify="required" lay-filter="selectFilter1">
+                    <select id="select1" name="userRoleId" lay-verify="required" lay-filter="selectFilter1">
                         <option value=""></option>
                     </select>
                 </div>
@@ -111,7 +111,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">用户类型</label>
                 <div class="layui-input-block">
-                    <select id="select2" name="userRoleName" lay-verify="required" lay-filter="selectFilter2">
+                    <select id="select2" name="userRoleId" lay-verify="required" lay-filter="selectFilter2">
                         <option value=""></option>
                     </select>
                 </div>
@@ -171,7 +171,9 @@
         </div>
     </form>
 </div>
-
+<script type="text/html" id="roleName">
+{{d.role.roleName}}
+</script>
 <script>
     layui.use(['jquery','table','layer','form'],function () {
         // 加载layui模块，使用其推荐的【预先加载】方式，详见官网【模块规范】一节
@@ -187,7 +189,7 @@
                 // console.log(msg);
                 $.each(msg, function (index, value) {
                     //console.log(value);
-                    $("#select1").append(new Option( value.roleName));
+                    $("#select1").append(new Option(value.roleName,value.roleId));
                 });
                 form.render("select1");
             }
@@ -200,7 +202,7 @@
                 // console.log(msg);
                 $.each(msg, function (index, value) {
                     //console.log(value);
-                    $("#select2").append(new Option(value.roleName));
+                    $("#select2").append(new Option(value.roleName,value.roleId));
                     //var iid=value.roleId;
                 });
                 form.render("select2");
@@ -215,7 +217,7 @@
             cols: [[
                 //{checkbox: true, fixed: true}
                 {field: 'userId', title: '用户id', width: 100, sort: true}
-                , {field: 'userRoleName', title: '用户类型', width: 110}
+                , {field: 'userRoleId', title: '用户类型', width: 110,templet:$("#roleName")}
                 , {field: 'userTel', title: '联系方式', width: 177}
                 , {field: 'userImg', title: '用户头像', width: 177}
                 , {field: 'userName', title: '用户昵称', width: 100}
@@ -271,7 +273,6 @@
 
             // var checkStatus = table.checkStatus(obj.config.id);
             var data = obj.data;
-
 
             switch (obj.event) {
                 case 'refresh':
@@ -371,7 +372,7 @@
                 var userId=data.userId;
                 form.val('update-user-form', {
                     "userId": data.userId,
-                    "userRoleName": data.userRoleName,
+                    "userRoleId": data.userRoleId,
                     "userTel": data.userTel,
                     "userImg": data.userImg,
                     "userName": data.userName,
@@ -394,7 +395,7 @@
                 form.on('submit(update-user-form-submit)', function (data) {
                     var course={
                         "userId":userId,
-                        "userRoleName":data.field.userRoleName,
+                        "userRoleId":data.field.userRoleId,
                         "userTel":data.field.userTel,
                         "userImg":data.field.userImg,
                         "userName":data.field.userName,

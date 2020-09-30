@@ -44,7 +44,7 @@ public class RoleController {
 
     @ResponseBody
     @RequestMapping(value = "/saveRole",method = RequestMethod.POST)
-    private Map<String,Object> add(@RequestBody Role role){
+    public Map<String,Object> add(@RequestBody Role role){
         Integer flag = roleService.saveRole(role);
         Map<String,Object> map = new HashMap<String, Object>();
         if(flag > 0){
@@ -57,7 +57,7 @@ public class RoleController {
 
     @ResponseBody
     @RequestMapping(value = "/deleteRole/{id}",method = RequestMethod.DELETE)
-    private Map<String,Object> deleteById(@PathVariable("id") int id){
+    public Map<String,Object> deleteById(@PathVariable("id") int id){
         int result = roleService.deleteRoleById(id);
         Map<String,Object> map = new HashMap<String, Object>();
         if(result >0){
@@ -70,7 +70,7 @@ public class RoleController {
 
     @ResponseBody
     @RequestMapping(value = "/updateRole",method = RequestMethod.PUT)
-    private  Map<String,Object> update(@RequestBody Role role){
+    public Map<String,Object> update(@RequestBody Role role){
         int result = roleService.updateRoleById(role);
         Map<String,Object> map = new HashMap<String, Object>();
         if(result > 0){

@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zlk.group4.person.mapper.PersonMapper">
+    <resultMap id="BaseResultMap" type="com.zlk.group4.entity.User">
+        <id property="id" column="id" javaType="java.lang.Integer"/>
+        <result property="userRoleid" column="user_roleId" javaType="java.lang.Integer"/>
+        <result property="tel" column="tel" javaType="java.lang.String"/>
+        <result property="userImg" column="user_img" javaType="java.lang.String"/>
+        <result property="userName" column="user_name" javaType="java.lang.String"/>
+        <result property="userPlace" column="user_place" javaType="java.lang.String"/>
+        <result property="userSex" column="user_sex" javaType="java.lang.String"/>
+        <result property="userPassword" column="user_password" javaType="java.lang.String"/>
+        <result property="sessionKey" column="session_key" javaType="java.lang.String"/>
+        <result property="openId" column="open_id" javaType="java.lang.Integer"/>
+    </resultMap>
+
+    <resultMap id="AreaMap" type="com.zlk.group4.area.entity.Area">
+        <id property="id" column="id" javaType="java.lang.Integer"/>
+        <result property="areaName" column="area_name" javaType="java.lang.String"/>
+    </resultMap>
+
+    <resultMap id="StreetMap" type="com.zlk.group4.area.entity.Street">
+        <id property="id" column="id" javaType="java.lang.Integer"/>
+        <result property="areaId" column="area_id" javaType="java.lang.String"/>
+        <result property="streetName" column="street_name" javaType="java.lang.String"/>
+    </resultMap>
+
+
+    <select id="findUserName" resultType="string">
+        select user_name from user where id={id}
+    </select>
+    
+    <select id="findUserImg" resultType="string">
+        select user_img from user where id = {id}
+    </select>
+
+    <insert id="saveHouse" parameterType="com.zlk.group4.house.entity.House">
+        insert into house
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="houseType!=null and houseType!=''">
+                house_type,
+            </if>
+            <if test="regionId!=null and regionId!=''">
+                region_id,
+            </if>
+            <if test="metroId!=null and metroId!=''">
+                metro_id,
+            </if>
+            <if test="listingsType!=null and listingsType!=''">
+                listings_type,
+            </if>
+            <if test="rentalMode!=null and rentalMode!=''">
+                rental_mode,
+            </if>
+            <if test="roomType!=null and roomType!=''">
+                room_type,
+            </if>
+            <if test="rent!=null and rent!=''">
+                rent,
+            </if>
+            <if test="houseIntroduction!=null and houseIntroduction!=''">
+                house_introduction,
+            </if>
+            <if test="checkinTime!=null">
+                checkin_time,
+            </if>
+            <if test="sex!=null and sex!=''">
+                sex,
+            </if>
+            <if test="call!=null and call!=''">
+                `call`,
+            </if>
+            <if test="tel!=null and tel!=''">
+                tel,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="houseType!=null and houseType!=''">
+                #{houseType},
+            </if>
+            <if test="regionId!=null and regionId!=''">
+                #{regionId},
+            </if>
+            <if test="metroId!=null and metroId!=''">
+                #{metroId},
+            </if>
+            <if test="listingsType!=null and listingsType!=''">
+                #{listingsType},
+            </if>
+            <if test="rentalMode!=null and rentalMode!=''">
+                #{rentalMode},
+            </if>
+            <if test="roomType!=null and roomType!=''">
+                #{roomType},
+            </if>
+            <if test="rent!=null and rent!=''">
+                #{rent},
+            </if>
+            <if test="houseIntroduction!=null and houseIntroduction!=''">
+                #{houseIntroduction},
+            </if>
+            <if test="checkinTime!=null">
+                #{checkinTime},
+            </if>
+            <if test="sex!=null and sex!=''">
+                #{sex},
+            </if>
+            <if test="call!=null and call!=''">
+                #{call},
+            </if>
+            <if test="tel!=null and tel!=''">
+                #{tel},
+            </if>
+        </trim>
+    </insert>
+
+
+   <!-- <insert id="saveHouse" parameterType="integer">
+        insert into house (house_type,region_id,listings_type,rental_mode,room_type,rent,house_introduction,checkin_time,sex,call,tell)
+        values(#{houseType},#{regionId},#{listingsType},#{rentalMode},#{roomType},#{rent},#{houseIntroduction},#{checkinTime},#{sex},#{call},#{tell})
+    </insert>-->
+
+    <insert id="saveHouseImg" parameterType="com.zlk.group4.house.entity.HouseImg">
+        insert into house_img
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null and id!=''">
+                id,
+            </if>
+            <if test="imgUrl!=null and imgUrl!=''">
+                img_url,
+            </if>
+            <if test="imgPage!=null and imgPage!=''">
+                img_page,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null and id!=''">
+                #{id},
+            </if>
+            <if test="imgUrl!=null and imgUrl!=''">
+                #{imgUrl},
+            </if>
+            <if test="imgPage!=null and imgPage!=''">
+                #{imgPage},
+            </if>
+        </trim>
+    </insert>
+   <!-- <insert id="saveHouseImg" parameterType="com.zlk.group4.house.entity.HouseImg">
+        insert into house_img(id,img_url,img_page)
+        values(#{id},#{imgUrl},#{imgPage})
+    </insert>-->
+
+    <insert id="saveHouseLabel" parameterType="com.zlk.group4.house.entity.HouseLabel">
+        insert into house_label
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null and id!=''">
+                id,
+            </if>
+            <if test="shortRent!=null and shortRent!=''">
+                short_rent,
+            </if>
+            <if test="payment!=null and payment!=''">
+                payment,
+            </if>
+            <if test="southward!=null and southward!=''">
+                southward,
+            </if>
+            <if test="agencyfee!=null and agencyfee!=''">
+                agencyfee,
+            </if>
+            <if test="toilet!=null and toilet!=''">
+                toilet,
+            </if>
+            <if test="balcony!=null and balcony!=''">
+                balcony,
+            </if>
+            <if test="elevator!=null and elevator!=''">
+                elevator,
+            </if>
+            <if test="bayWindow!=null and bayWindow!=''">
+                bay_window,
+            </if>
+            <if test="decoration!=null and decoration!=''">
+                decoration,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null and id!=''">
+                #{id},
+            </if>
+            <if test="shortRent!=null and shortRent!=''">
+                #{shortRent},
+            </if>
+            <if test="payment!=null and payment!=''">
+                #{payment},
+            </if>
+            <if test="southward!=null and southward!=''">
+                #{southward},
+            </if>
+            <if test="agencyfee!=null and agencyfee!=''">
+                #{agencyfee},
+            </if>
+            <if test="toilet!=null and toilet!=''">
+                #{toilet},
+            </if>
+            <if test="balcony!=null and balcony!=''">
+                #{balcony},
+            </if>
+            <if test="elevator!=null and elevator!=''">
+                #{elevator},
+            </if>
+            <if test="bayWindow!=null and bayWindow!=''">
+                #{bayWindow},
+            </if>
+            <if test="decoration!=null and decoration!=''">
+                #{decoration},
+            </if>
+        </trim>
+    </insert>
+   <!-- <insert id="saveHouseLable" parameterType="integer">
+        insert into house_lable(id,short_rent,payment,southward,agencyfee,toilet,balcony,elevator,bay_window,decoration)
+        values(#{id},#{shortRent},#{payment},#{southward},#{agencyfee},#{toilet},#{balcony},#{elevator},#{bayWindow},#{decoration})
+    </insert>-->
+
+    <insert id="saveHouseDeploy" parameterType="com.zlk.group4.house.entity.HouseDeploy">
+        insert into house_deploy
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null and id!=''">
+                id,
+            </if>
+            <if test="bed!=null and bed!=''">
+                bed,
+            </if>
+            <if test="wifi!=null and wifi!=''">
+                wifi,
+            </if>
+            <if test="conditioner!=null and conditioner!=''">
+                conditioner,
+            </if>
+            <if test="wardrobe!=null and wardrobe!=''">
+                wardrobe,
+            </if>
+            <if test="desk!=null and desk!=''">
+                desk,
+            </if>
+            <if test="chair!=null and chair!=''">
+                chair,
+            </if>
+            <if test="sofa!=null and sofa!=''">
+                sofa,
+            </if>
+            <if test="refrigerator!=null and refrigerator!=''">
+                refrigerator,
+            </if>
+            <if test="washing!=null and washing!=''">
+                washing,
+            </if>
+            <if test="tv!=null and tv!=''">
+                tv,
+            </if>
+            <if test="heater!=null and heater!=''">
+                heater,
+            </if>
+            <if test="stove!=null and stove!=''">
+                stove,
+            </if>
+            <if test="microwave!=null and microwave!=''">
+                microwave,
+            </if>
+            <if test="lampblack!=null and lampblack!=''">
+                lampblack,
+            </if>
+            <if test="dining!=null and dining!=''">
+                dining,
+            </if>
+            <if test="lock!=null and lock!=''">
+                lock,
+            </if>
+            <if test="led!=null and led!=''">
+                led,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null and id!=''">
+                #{id},
+            </if>
+            <if test="bed!=null and bed!=''">
+                #{bed},
+            </if>
+            <if test="wifi!=null and wifi!=''">
+                #{wifi},
+            </if>
+            <if test="conditioner!=null and conditioner!=''">
+                #{conditioner},
+            </if>
+            <if test="wardrobe!=null and wardrobe!=''">
+                #{wardrobe},
+            </if>
+            <if test="desk!=null and desk!=''">
+                #{desk},
+            </if>
+            <if test="chair!=null and chair!=''">
+                #{chair},
+            </if>
+            <if test="sofa!=null and sofa!=''">
+                #{sofa},
+            </if>
+            <if test="refrigerator!=null and refrigerator!=''">
+                #{refrigerator},
+            </if>
+            <if test="washing!=null and washing!=''">
+                #{washing},
+            </if>
+            <if test="tv!=null and tv!=''">
+                #{tv},
+            </if>
+            <if test="heater!=null and heater!=''">
+                #{heater},
+            </if>
+            <if test="stove!=null and stove!=''">
+                #{stove},
+            </if>
+            <if test="microwave!=null and microwave!=''">
+                #{microwave},
+            </if>
+            <if test="lampblack!=null and lampblack!=''">
+                #{lampblack},
+            </if>
+            <if test="dining!=null and dining!=''">
+                #{dining},
+            </if>
+            <if test="lock!=null and lock!=''">
+                #{lock},
+            </if>
+            <if test="led!=null and led!=''">
+                #{led},
+            </if>
+        </trim>
+    </insert>
+
+
+
+    <!-- <insert id="saveHouseDeploy" parameterType="com.zlk.group4.house.entity.HouseDeploy">
+         insert into house_deploy(id,bed,wifi,conditioner,wardrobe,desk,chair,sofa,refrigerator,washing,tv,heater,stove,microwave,lampblack,dining,lock,led)
+         values(#{id},#{bed},#{wifi},#{conditioner},#{wardrobe},#{desk},#{chair},#{sofa},#{refrigerator},#{washing},#{tv},#{heater},#{stove},#{microwave},#{lampblack},#{dining},#{lock},#{led})
+     </insert>
+ -->
+
+    <select id="findChangChunAreaAll" parameterType="java.util.Map" resultMap="AreaMap">
+        select * from changchun_area order by id limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="findChangChunAreaCount" resultType="integer">
+        select count(*) from changchun_area
+    </select>
+    
+    <select id="findStreetByAreaId" resultMap="StreetMap" parameterType="java.util.Map">
+        select * from changchun_street where area_id = #{id} order by id limit #{startIndex},#{pageSize}
+    </select>
+
+    <select id="findChangChunStreetCount" resultType="integer">
+        select count(*) from changchun_street where area_id = #{id}
+    </select>
+
+
+</mapper>

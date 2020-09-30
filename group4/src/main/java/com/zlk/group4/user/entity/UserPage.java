@@ -9,7 +9,7 @@ public class UserPage {
     /**用户id*/
     private Integer userId;
     /**用户类型*/
-    private String userRoleName;
+    private Integer userRoleId;
     /**联系方式*/
     private String userTel;
     /**用户头像*/
@@ -27,12 +27,22 @@ public class UserPage {
     /***/
     private Integer openId;
 
+    private Role role;
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public UserPage() {
     }
 
-    public UserPage(Integer userId, String userRoleName, String userTel, String userImg, String userName, String userPlace, String userSex, String userPassword, String sessionKey, Integer openId) {
+    public UserPage(Integer userId, Integer userRoleId, String userTel, String userImg, String userName, String userPlace, String userSex, String userPassword, String sessionKey, Integer openId) {
         this.userId = userId;
-        this.userRoleName = userRoleName;
+        this.userRoleId = userRoleId;
         this.userTel = userTel;
         this.userImg = userImg;
         this.userName = userName;
@@ -51,12 +61,12 @@ public class UserPage {
         this.userId = userId;
     }
 
-    public String getUserRoleName() {
-        return userRoleName;
+    public Integer getUserRoleId() {
+        return userRoleId;
     }
 
-    public void setUserRoleName(String userRoleName) {
-        this.userRoleName = userRoleName;
+    public void setUserRoleId(Integer userRoleId) {
+        this.userRoleId = userRoleId;
     }
 
     public String getUserTel() {
@@ -127,7 +137,7 @@ public class UserPage {
     public String toString() {
         return "UserPage{" +
                 "userId=" + userId +
-                ", userRoleName='" + userRoleName + '\'' +
+                ", userRoleId=" + userRoleId +
                 ", userTel='" + userTel + '\'' +
                 ", userImg='" + userImg + '\'' +
                 ", userName='" + userName + '\'' +
@@ -138,5 +148,4 @@ public class UserPage {
                 ", openId=" + openId +
                 '}';
     }
-
 }

@@ -131,4 +131,34 @@ public class House {
      */
     @Transient
     private HouseRefUser houseRefUser;
+
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "id=" + id +
+                ", houseType='" + houseType + '\'' +
+                ", regionId=" + regionId +
+                ", metroId=" + metroId +
+                ", estate='" + estate + '\'' +
+                ", listingsType='" + listingsType + '\'' +
+                ", rentalMode='" + rentalMode + '\'' +
+                ", roomType='" + roomType + '\'' +
+                ", rent=" + rent +
+                ", houseIntroduction='" + houseIntroduction + '\'' +
+                ", checkinTime=" + checkinTime +
+                ", sex=" + sex +
+                ", call='" + call + '\'' +
+                ", tel='" + tel + '\'' +
+                ", code=" + code +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", metro=" + metro +
+                ", region=" + region +
+                ", houseRefLabel=" + houseRefLabel +
+                ", houseRefDeploy=" + houseRefDeploy +
+                ", houseRefImgs=" + houseRefImgs +
+                ", houseRefUser=" + houseRefUser +
+                '}';
+    }
 }
