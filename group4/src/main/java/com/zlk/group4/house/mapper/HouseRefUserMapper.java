@@ -64,4 +64,14 @@ public interface HouseRefUserMapper {
     int updateByPrimaryKey(HouseRefUser record);
 
     List<HouseRefUser> selectHouseByUserId(Integer id);
+    /**
+     *
+     * 通过房屋id查询user
+     * @description: *
+     * @param id
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/27 14:12
+     */
+    HouseRefUser selectUserByHouseId(Integer id);
 }

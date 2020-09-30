@@ -71,6 +71,11 @@ public class MetroServiceImpl implements MetroService {
         metro.setStation(strs[1]);
         return metro;
     }
+
+    @Override
+    public Integer adminUpdateMetro(Metro metro) {
+        return metroMapper.adminUpdateMetro(metro);
+    }
 }
 
 

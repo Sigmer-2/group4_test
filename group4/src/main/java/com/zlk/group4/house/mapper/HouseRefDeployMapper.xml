@@ -91,7 +91,7 @@
   </update>
   <select id="selectDeployByHouseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
       SELECT
-              hrd.*,
+              hrd.house_id,hrd.house_deploy_id,
               hd.*
       FROM
               house AS h

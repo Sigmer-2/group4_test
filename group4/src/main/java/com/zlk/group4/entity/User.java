@@ -16,7 +16,7 @@ public class User {
     /**用户id*/
     private Integer id;
     /**角色id*/
-    private Integer userRoleid;
+    private Integer userRoleId;
     /**联系方式*/
     private String tel;
     /**用户头像*/
@@ -32,13 +32,19 @@ public class User {
     /**用户session*/
     private String sessionKey;
     /**OPEN ID*/
-    private Integer openId;
+    private String openId;
+    /**商户类型*/
+    private String type;
+    /**商家类型*/
+    private String businessName;
+    /**房源量*/
+    private Integer houseNumber;
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", userRoleid=" + userRoleid +
+                ", userRoleid=" + userRoleId +
                 ", tel='" + tel + '\'' +
                 ", userImg='" + userImg + '\'' +
                 ", userName='" + userName + '\'' +
@@ -47,6 +53,9 @@ public class User {
                 ", userPassword='" + userPassword + '\'' +
                 ", sessionKey='" + sessionKey + '\'' +
                 ", openId=" + openId +
+                ", type='" + type + '\'' +
+                ", business_name='" + businessName + '\'' +
+                ", house_number=" + houseNumber +
                 '}';
     }
 }

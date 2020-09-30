@@ -76,7 +76,7 @@
   </update>
   <select id="selectImgByHouseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
       SELECT
-              hri.*,
+              hri.house_id,hri.house_img_id,
               hi.*
       FROM
               house_ref_img AS hri

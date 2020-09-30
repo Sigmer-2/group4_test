@@ -1,6 +1,7 @@
 package com.zlk.group4.house.mapper;
 
 import com.zlk.group4.house.entity.Metro;
+import com.zlk.group4.house.entity.Region;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -60,4 +61,14 @@ public interface MetroMapper {
      * @return update count
      */
     int updateByPrimaryKey(Metro record);
+    /**
+     *
+     * 管理员更新房屋地铁信息
+     * @description: *
+     * @param metro
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/29 17:46
+     */
+    Integer adminUpdateMetro(Metro metro);
 }

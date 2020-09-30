@@ -70,6 +70,10 @@ public class RegionServiceImpl implements RegionService {
         return region;
     }
 
+    @Override
+    public Integer adminUpdateRegion(Region region) {
+        return regionMapper.adminUpdateRegion(region);
+    }
 }
 
 

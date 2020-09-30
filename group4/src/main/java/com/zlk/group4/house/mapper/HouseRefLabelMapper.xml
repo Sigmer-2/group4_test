@@ -83,7 +83,7 @@
   </update>
   <select id="selectLabelByHouseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
       SELECT
-              hrl.*,
+              hrl.house_id,hrl.house_label_id,
               hl.*
       FROM
               house AS h

@@ -1,7 +1,10 @@
 package com.zlk.group4.house.service.impl;
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zlk.group4.house.entity.HouseIdParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
@@ -77,6 +80,87 @@ public class HouseServiceImpl implements HouseService {
         map.put("startIndex",startIndex);
         map.put("pageSize",limit);
         return houseMapper.adminManageHouse(map);
+    }
+
+    @Override
+    public Integer findHouseCount() {
+        return houseMapper.findHouseCount();
+    }
+
+    @Override
+    public List<House> findHouseByRegion(String data) {
+        HashMap<String, Object> map1 = new HashMap<>();
+        map1.put("region",data);
+        map1.put("metro","");
+        map1.put("rent","");
+        map1.put("houseType","");
+        map1.put("rentalModel","");
+        return houseMapper.adminFindHouse(map1);
+    }
+
+    @Override
+    public List<House> findHouseByMetro(String data) {
+        HashMap<String, Object> map1 = new HashMap<>();
+        map1.put("metro",data);
+        map1.put("region","");
+        map1.put("rent","");
+        map1.put("houseType","");
+        map1.put("rentalModel","");
+        return houseMapper.adminFindHouse(map1);
+    }
+
+    @Override
+    public List<House> findHouseByRent(BigDecimal data) {
+        HashMap<String, Object> map1 = new HashMap<>();
+        map1.put("rent",data);
+        map1.put("region","");
+        map1.put("metro","");
+        map1.put("houseType","");
+        map1.put("rentalModel","");
+        return houseMapper.adminFindHouse(map1);
+    }
+
+    @Override
+    public List<House> findHouseByHouseType(String data) {
+        HashMap<String, Object> map1 = new HashMap<>();
+        map1.put("houseType",data);
+        map1.put("region","");
+        map1.put("metro","");
+        map1.put("rent","");
+        map1.put("rentalModel","");
+        return houseMapper.adminFindHouse(map1);
+    }
+
+    @Override
+    public List<House> findHouseByRentalModel(String data) {
+        HashMap<String, Object> map1 = new HashMap<>();
+        map1.put("rentalModel",data);
+        map1.put("region","");
+        map1.put("metro","");
+        map1.put("rent","");
+        map1.put("houseType","");
+        return houseMapper.adminFindHouse(map1);
+    }
+
+    @Override
+    public Integer adminDeleteHouseById(Integer id) {
+        houseMapper.deleteRefUserById(id);
+        houseMapper.deleteRefDeployById(id);
+        houseMapper.deleteRefLabelById(id);
+        return houseMapper.adminDeleteHouseById(id);
+    }
+
+    @Override
+    public Integer adminDeleteHouseByIds(HouseIdParam param) {
+        houseMapper.deleteRefUserByIds(param);
+        houseMapper.deleteRefDeployByIds(param);
+        houseMapper.deleteRefLabelByIds(param);
+        return houseMapper.adminDeleteHouseByIds(param);
+    }
+
+    @Override
+    public Integer adminUpdateHouseById(House house) {
+        return houseMapper.adminUpdateHouseById(house);
     }
 }
 

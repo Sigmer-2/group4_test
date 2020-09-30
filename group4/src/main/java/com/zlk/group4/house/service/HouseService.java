@@ -1,8 +1,10 @@
 package com.zlk.group4.house.service;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
 import com.zlk.group4.house.entity.House;
+import com.zlk.group4.house.entity.HouseIdParam;
 import com.zlk.group4.vo.HouseMsg;
 
 /**
@@ -31,12 +33,106 @@ public interface HouseService {
     List<House> selectAll();
 
     House selectAllById(Integer id);
-
+    /**
+     * 管理员查询房屋信息
+     *
+     * @description: *
+     * @param map,page,limit
+     * @return: List<house>
+     * @author: zhc
+     * @time: 2020/9/27 13:07
+     */
     List<House> adminManageHouse(Map map,Integer page,Integer limit);
-
-
-
-
+/**
+ *
+ * 管理员查询房屋总数
+ * @description: *
+ * @param
+ * @return: num
+ * @author: zhc
+ * @time: 2020/9/27 13:08
+ */
+    Integer findHouseCount();
+    /**
+     * 模糊查询
+     * 通过区域查询
+     * @description: *
+     * @param data
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/28 10:48
+     */
+    List<House> findHouseByRegion(String data);
+    /**
+     * 模糊查询
+     * 通过地铁查询
+     * @description: *
+     * @param data
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/28 10:48
+     */
+    List<House> findHouseByMetro(String data);
+    /**
+     * 模糊查询
+     * 通过月租金查询
+     * @description: *
+     * @param data
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/28 10:48
+     */
+    List<House> findHouseByRent(BigDecimal data);
+    /**
+     * 模糊查询
+     * 通过房源类型查询
+     * @description: *
+     * @param data
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/28 10:48
+     */
+    List<House> findHouseByHouseType(String data);
+    /**
+     * 模糊查询
+     * 通过出租类型查询
+     * @description: *
+     * @param data
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/28 10:48
+     */
+    List<House> findHouseByRentalModel(String data);
+    /**
+     *
+     * 管理员删除单条房屋信息
+     * @description: *
+     * @param id
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/28 16:37
+     */
+    Integer adminDeleteHouseById(Integer id);
+    /**
+     *
+     * 管理员删除多条房屋信息
+     * @description: *
+     * @param param
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/28 16:37
+     */
+    Integer adminDeleteHouseByIds(HouseIdParam param);
+    /**
+     *
+     * 管理员对房屋信息进行修改
+     * @description: *
+     * @param house
+     * @return:
+     * @author: zhc
+     * @time: 2020/9/29 19:12
+     */
+    Integer adminUpdateHouseById(House house);
 
 }
 

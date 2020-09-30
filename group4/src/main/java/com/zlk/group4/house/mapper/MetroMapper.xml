@@ -69,4 +69,17 @@
       station = #{station,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="adminUpdateMetro" parameterType="com.zlk.group4.house.entity.Metro">
+    <!--@mbg.generated-->
+    update metro
+    <set>
+      <if test="metroLine != null">
+        metro_line = #{metroLine,jdbcType=VARCHAR},
+      </if>
+      <if test="station != null">
+        station = #{station,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

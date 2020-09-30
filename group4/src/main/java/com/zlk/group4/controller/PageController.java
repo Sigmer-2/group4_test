@@ -30,5 +30,15 @@ public class PageController {
     public String houseForAdmin(){
         return "admin/houseForAdmin";
     }
+    /**举报信息查看页面*/
+    @RequestMapping(value = "/report")
+    public String report(){
+        return "admin/report";
+    }
+    /**报修信息查看页面*/
+    @RequestMapping(value = "/repair")
+    public String repair(){
+        return "admin/repair";
+    }
 
 }

@@ -203,6 +203,10 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
         return map;
     }
 
+    @Override
+    public HouseRefUser selectUserByHouseId(Integer id) {
+        return houseRefUserMapper.selectUserByHouseId(id);
+    }
 }
 
 
