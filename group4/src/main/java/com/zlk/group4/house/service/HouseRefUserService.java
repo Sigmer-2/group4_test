@@ -1,9 +1,11 @@
 package com.zlk.group4.house.service;
 
+import com.zlk.group4.house.entity.House;
 import com.zlk.group4.house.entity.HouseRefUser;
 import com.zlk.group4.vo.HouseMsg;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -55,6 +57,24 @@ public interface HouseRefUserService {
      * @return int
      */
     int updateByHouseMsg(HouseMsg houseMsg);
+
+    /**
+     * 根据houseMsg增加房源信息并返回新增houseId
+     * @Auther sunshuai
+     * @Date 2020/9/25 10:36
+     * @param houseMsg
+     * @return int 新增houseId
+     */
+    int insertHouseMsg(HouseMsg houseMsg);
+
+    /**
+     * 根据houseId查询所有信息
+     * @Auther sunshuai
+     * @Date 2020/9/28 16:52
+     * @param houseId
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
+    Map<String,Object> listAllByHouseId(Integer houseId);
     /**
      *
      * 通过房屋id查询用户
@@ -65,7 +85,6 @@ public interface HouseRefUserService {
      * @time: 2020/9/27 14:15
      */
     HouseRefUser selectUserByHouseId(Integer id);
-
 
 
 }

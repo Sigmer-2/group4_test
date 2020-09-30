@@ -37,6 +37,15 @@ public interface RegionService {
      */
     Integer adminUpdateRegion(Region region);
 
+    /**
+     * 返回新增regionId
+     * @Auther sunshuai
+     * @Date 2020/9/25 11:47
+     * @param str 区域信息
+     * @return int 新增regionId
+     */
+    int insertByString(String str);
+
 }
 
 

@@ -64,6 +64,13 @@ public class HouseDeployServiceImpl implements HouseDeployService {
         return updateByPrimaryKey(houseDeploy);
     }
 
+    @Override
+    public int insertByStr(String str) {
+        HouseDeploy houseDeploy = getHouseDeploy(str);
+        insert(houseDeploy);
+        return houseDeploy.getId();
+    }
+
     /**
      * 根据配置字符串通过截取字符串将对应的值存入到HouseDeploy对象
      * 中去
@@ -74,7 +81,7 @@ public class HouseDeployServiceImpl implements HouseDeployService {
      */
     private HouseDeploy getHouseDeploy(String str){
         HouseDeploy houseDeploy = null;
-        String[] strs = str.split("，");
+        String[] strs = str.split(",");
         houseDeploy = new HouseDeploy();
         for (String s : strs) {
             switch (s){

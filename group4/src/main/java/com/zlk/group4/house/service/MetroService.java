@@ -28,6 +28,14 @@ public interface MetroService {
 
     int updateByString(String str);
     /**
+     * 根据地铁信息返回新增id
+     * @Auther sunshuai
+     * @Date 2020/9/25 11:45
+     * @param str
+     * @return int metroId
+     */
+    int insertByString(String str);
+    /**
      *
      * 管理员更新房屋地铁信息
      * @description: *
@@ -37,6 +45,7 @@ public interface MetroService {
      * @time: 2020/9/29 17:44
      */
     Integer adminUpdateMetro(Metro metro);
+
 
 }
 

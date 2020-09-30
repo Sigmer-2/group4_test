@@ -62,9 +62,16 @@ public class RegionServiceImpl implements RegionService {
         return updateByPrimaryKey(getRegion(str));
     }
 
+    @Override
+    public int insertByString(String str) {
+        Region region = getRegion(str);
+        insert(region);
+        return region.getId();
+    }
+
     private Region getRegion(String str){
         Region region = new Region();
-        String[] strs = str.split("，");
+        String[] strs = str.split(",");
         region.setDistrctName(strs[0]);
         region.setStreet(strs[1]);
         return region;

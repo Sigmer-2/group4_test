@@ -63,10 +63,17 @@ public class MetroServiceImpl implements MetroService {
         return updateByPrimaryKey(getMetro(str));
     }
 
+    @Override
+    public int insertByString(String str) {
+        Metro metro = getMetro(str);
+        insert(metro);
+        return metro.getId();
+    }
+
 
     private Metro getMetro(String str){
         Metro metro = new Metro();
-        String[] strs = str.split("，");
+        String[] strs = str.split(",");
         metro.setMetroLine(strs[0]);
         metro.setStation(strs[1]);
         return metro;

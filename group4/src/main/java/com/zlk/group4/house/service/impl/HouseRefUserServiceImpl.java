@@ -99,15 +99,15 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
         HouseMsg houseMsg = null;
         List<HouseRefUser> houseRefUsers = houseRefUserMapper.selectHouseByUserId(id);
         for (HouseRefUser houseRefUser : houseRefUsers) {
-          //
+            //
             House house = houseService.selectAllById(houseRefUser.getHouseId());
             Integer code = house.getSex();
             HouseSexEnum houseSex = HouseSexEnum.getHouseSex(code);
             houseMsg = new HouseMsg();
             houseMsg.setId(houseRefUser.getHouseId());
             houseMsg.setHouseType(house.getHouseType());
-            houseMsg.setArea(house.getRegion().getDistrctName()+"，"+house.getRegion().getStreet());
-            houseMsg.setMetro(house.getMetro().getMetroLine()+"，"+house.getMetro().getStation());
+            houseMsg.setArea(house.getRegion().getDistrctName()+","+house.getRegion().getStreet());
+            houseMsg.setMetro(house.getMetro().getMetroLine()+","+house.getMetro().getStation());
             houseMsg.setEstate(house.getEstate());
             houseMsg.setListingsType(house.getListingsType());
             houseMsg.setRentalMode(house.getRentalMode());
@@ -132,7 +132,9 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int deleteHouseMsg(Integer id) {
+        //缺少houserefuser表字段删除
         House house = houseService.selectByPrimaryKey(id);
         HouseRefDeploy houseRefDeploy = houseRefDeployService.selectDeployByHouseId(id);
         HouseRefLabel houseRefLabel = houseRefLabelService.selectLabelByHouseId(id);
@@ -147,6 +149,7 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int updateByHouseMsg(HouseMsg houseMsg) {
         Map<String, Object> map = getObjectList(houseMsg);
         House house =(House) map.get("house");
@@ -162,34 +165,55 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
         return i+i1+i2+i3+i4;
     }
 
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
+    public int insertHouseMsg(HouseMsg houseMsg) {
+        //缺少houserefuser字段添加缺少userid，后期加上
+        HouseRefUser User = new HouseRefUser();//insert houserefuser
+        HouseRefDeploy deploy = new HouseRefDeploy();
+        HouseRefLabel label = new HouseRefLabel();
+        House house = getHouseObject(houseMsg);
+        int regionId = regionService.insertByString(houseMsg.getArea());//insert region
+        int metroId = metroService.insertByString(houseMsg.getMetro());//insert metro
+        house.setRegionId(regionId);
+        house.setMetroId(metroId);
+        int deployId = deployService.insertByStr(houseMsg.getHouseDeploy());//insert deploy
+        int labelId = labelService.insertHouseLabelByString(houseMsg.getHouseLabel());//insert label
+        houseService.insert(house);//house
+        Integer houseId = house.getId();
+        deploy.setHouseDeployId(deployId);
+        deploy.setHouseId(houseId);
+        houseRefDeployService.insert(deploy);//insert houserefdeploy
+        label.setHouseLabelId(labelId);
+        label.setHouseId(houseId);
+        houseRefLabelService.insert(label);//insert housereflabel
+        if (houseId !=null){
+            return houseId;
+        }
+        return 0;
+    }
+
+    @Override
+    public Map<String, Object> listAllByHouseId(Integer houseId) {//未完成
+        Map<String,Object> map = new HashMap<>();
+        HouseMsg houseMsg = getHouseMsgByHouseId(houseId);
+        map.put("houseMsg",houseMsg);
+        return null;
+    }
+
     /**
-     * 根据houseMsg获取所需对象集合
+     * 根据houseMsg获取所需对象集合，修改房源信息时使用
      * @Auther sunshuai
      * @Date 2020/9/24 9:11
-     * @param houseMsg
+     * @param houseMsg houseMsgId不能为空
      * @return java.util.List<java.lang.Object>
      */
     private Map<String,Object> getObjectList(HouseMsg houseMsg){
         Map<String,Object> map = new HashMap<>();
-        HouseRefDeploy houseRefDeploy = houseRefDeployService.selectDeployByHouseId(houseMsg.getId());
-        HouseRefLabel houseRefLabel = houseRefLabelService.selectLabelByHouseId(houseMsg.getId());
-        House house = houseService.selectByPrimaryKey(houseMsg.getId());
-        house.setId(houseMsg.getId());
-        house.setListingsType(houseMsg.getListingsType());
-        house.setRentalMode(houseMsg.getRentalMode());
-        house.setRoomType(houseMsg.getRoomType());
-        house.setRent(houseMsg.getRent());
-        house.setHouseIntroduction(houseMsg.getHouseIntroduction());
-        try {
-            house.setCheckinTime(MyDateUtils.parse(houseMsg.getCheckinTime(), null));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        house.setSex(HouseSexEnum.getHouseSex(houseMsg.getSex()).getCode());
-        house.setCall(houseMsg.getCall());
-        house.setTel(houseMsg.getTel());
-        house.setCode(1);
-        house.setCreateTime(new Date());
+        House house1 = houseService.selectByPrimaryKey(houseMsg.getId());
+        House house = getHouseObject(houseMsg);
+        house.setRegionId(house1.getRegionId());
+        house.setMetroId(house1.getMetroId());
         house.setUpdateTime(new Date());
         map.put("house",house);
         String area = houseMsg.getArea();
@@ -203,10 +227,72 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
         return map;
     }
 
+    /**
+     * 通过houseMsg获取House对象
+     * @Auther sunshuai
+     * @Date 2020/9/25 11:01
+     * @param houseMsg
+     * @return com.zlk.group4.house.entity.House
+     */
+    private House getHouseObject(HouseMsg houseMsg){
+        House house = new House();
+        house.setId(houseMsg.getId());
+        house.setHouseType(houseMsg.getHouseType());
+        house.setRentalMode(houseMsg.getRentalMode());
+        house.setRoomType(houseMsg.getRoomType());
+        house.setEstate(houseMsg.getEstate());
+        house.setListingsType(houseMsg.getListingsType());
+        house.setRent(houseMsg.getRent());
+        house.setHouseIntroduction(houseMsg.getHouseIntroduction());
+        try {
+            house.setCheckinTime(MyDateUtils.parse(houseMsg.getCheckinTime(), null));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        house.setSex(HouseSexEnum.getHouseSex(houseMsg.getSex()).getCode());
+        house.setCall(houseMsg.getCall());
+        house.setTel(houseMsg.getTel());
+        house.setCode(1);
+        house.setCreateTime(new Date());
+        house.setUpdateTime(new Date());
+        return house;
+    }
+
+    /**
+     * 根据houseid获取houseMsg
+     * @Auther sunshuai
+     * @Date 2020/9/28 16:57
+     * @param id
+     * @return com.zlk.group4.vo.HouseMsg
+     */
+    private HouseMsg getHouseMsgByHouseId(Integer id){
+        HouseMsg houseMsg = new HouseMsg();
+        House house = houseService.selectAllById(id);
+        Integer code = house.getSex();
+        HouseSexEnum houseSex = HouseSexEnum.getHouseSex(code);
+        houseMsg.setId(id);
+        houseMsg.setHouseType(house.getHouseType());
+        houseMsg.setArea(house.getRegion().getDistrctName()+","+house.getRegion().getStreet());
+        houseMsg.setMetro(house.getMetro().getMetroLine()+","+house.getMetro().getStation());
+        houseMsg.setEstate(house.getEstate());
+        houseMsg.setListingsType(house.getListingsType());
+        houseMsg.setRentalMode(house.getRentalMode());
+        houseMsg.setRoomType(house.getRoomType());
+        houseMsg.setRent(house.getRent());
+        houseMsg.setHouseLabel(houseRefLabelService.label(id));
+        houseMsg.setHouseDeploy(houseRefDeployService.houseDeploy(id));
+        houseMsg.setHouseIntroduction(house.getHouseIntroduction());
+        houseMsg.setCheckinTime(MyDateUtils.format(house.getCheckinTime(), "yyyy-MM-dd"));
+        houseMsg.setSex(houseSex.getDesc());
+        houseMsg.setCall(house.getCall());
+        houseMsg.setTel(house.getTel());
+        return houseMsg;
+    }
     @Override
     public HouseRefUser selectUserByHouseId(Integer id) {
         return houseRefUserMapper.selectUserByHouseId(id);
     }
+
 }
 
 

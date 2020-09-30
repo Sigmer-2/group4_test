@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zlk.group4.user.mapper.MerchantUserMapper">
+  <resultMap id="BaseResultMap" type="com.zlk.group4.user.entity.MerchantUser">
+    <!--@mbg.generated-->
+    <!--@Table `user`-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_roleId" jdbcType="INTEGER" property="userRoleid" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="user_img" jdbcType="VARCHAR" property="userImg" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_place" jdbcType="VARCHAR" property="userPlace" />
+    <result column="user_sex" jdbcType="VARCHAR" property="userSex" />
+    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+    <result column="session_key" jdbcType="VARCHAR" property="sessionKey" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="business_name" jdbcType="VARCHAR" property="businessName" />
+    <result column="house_number" jdbcType="INTEGER" property="houseNumber" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, user_roleId, tel, user_img, user_name, user_place, user_sex, user_password, session_key, 
+    open_id, `type`, business_name, house_number
+  </sql>
+  <select id="selectMerchantUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    type,
+    user_name,
+    tel,
+    user_place,
+    business_name,
+    house_number
+    from `user`
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zlk.group4.user.entity.MerchantUser" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `user`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userRoleid != null">
+        user_roleId,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="userImg != null">
+        user_img,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userPlace != null">
+        user_place,
+      </if>
+      <if test="userSex != null">
+        user_sex,
+      </if>
+      <if test="userPassword != null">
+        user_password,
+      </if>
+      <if test="sessionKey != null">
+        session_key,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="businessName != null">
+        business_name,
+      </if>
+      <if test="houseNumber != null">
+        house_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userRoleid != null">
+        #{userRoleid,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="userImg != null">
+        #{userImg,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPlace != null">
+        #{userPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionKey != null">
+        #{sessionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="businessName != null">
+        #{businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNumber != null">
+        #{houseNumber,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

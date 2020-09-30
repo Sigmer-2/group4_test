@@ -34,6 +34,15 @@ public interface HouseDeployService {
      */
     int updateByStr(String str);
 
+    /**
+     * 根据房源配置信息新增并返回新增Id
+     * @Auther sunshuai
+     * @Date 2020/9/25 11:53
+     * @param str
+     * @return int 新增id
+     */
+    int insertByStr(String str);
+
 }
 
 
