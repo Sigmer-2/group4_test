@@ -12,19 +12,45 @@ import java.util.List;
  * @Date: 2020/9/23 9:10
  **/
 public interface ReportService {
-    /*
+    /**
+     * 查询所有举报记录
      * @author: wujian
      * @Date: 2020/9/23 9:37
      * @PARAM:[page, limit]
      * @return: java.util.List<com.zlk.group4.report.entity.Report>
      */
     List<Report> findAllReport(Integer page, Integer limit);
-    /*
+
+    /**
+     * 查询举报数量
      * @author: wujian
      * @Date: 2020/9/23 9:39
      * @PARAM:[]
      * @return: java.lang.Integer
      */
     Integer findReportCount();
+    /**
+     *更新举报审核状态
+     * @author: wujian
+     * @Date: 2020/10/1 15:12
+     * @PARAM:[id]
+     * @return: java.lang.Integer
+     */
     Integer updateReport(Integer id);
+    /**
+     *根据用户查询举报记录
+     * @author: wujian
+     * @Date: 2020/10/1 15:12
+     * @PARAM:[data]
+     * @return: java.util.List<com.zlk.group4.report.entity.Report>
+     */
+    List<Report> selectReportByUser(String data);
+    /**
+     *根据房屋查询举报记录
+     * @author: wujian
+     * @Date: 2020/10/1 15:12
+     * @PARAM:[data]
+     * @return: java.util.List<com.zlk.group4.report.entity.Report>
+     */
+    List<Report> selectReportByHouse(String data);
 }

@@ -1,5 +1,7 @@
 package com.zlk.group4.report.entity;
 
+import com.zlk.group4.entity.User;
+import com.zlk.group4.house.entity.House;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +29,10 @@ public class Report {
     private String reportDetails;
     /**举报处理状态*/
     private Integer reportStatus;
-
+    /**注入房间对象*/
+    private House house;
+    /**注入用户对象*/
+    private User user;
     @Override
     public String toString() {
         return "Report{" +

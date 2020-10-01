@@ -8,9 +8,19 @@
         <result property="reportReason" column="report_reason" javaType="java.lang.String"></result>
         <result property="reportDetails" column="report_details" javaType="java.lang.String"></result>
         <result property="reportStatus" column="report_status" javaType="java.lang.Integer"></result>
+        <association property="house" javaType="com.zlk.group4.house.entity.House">
+            <id property="id" column="id" javaType="java.lang.Integer"></id>
+            <result property="call" column="call" javaType="java.lang.String"></result>
+            <result property="tel" column="tel" javaType="java.lang.String"></result>
+        </association>
+        <association property="user" javaType="com.zlk.group4.entity.User">
+            <id property="id" column="id" javaType="java.lang.Integer"></id>
+            <result property="userName" column="user_name" javaType="java.lang.String"></result>
+            <result property="tel" column="tel" javaType="java.lang.String"></result>
+        </association>
     </resultMap>
     <select id="findAllReport" resultMap="reportEntity">
-        SELECT * FROM report  limit #{startIndex},#{pageSize}
+         SELECT report.*,house.call,house.tel,user.user_name,user.tel FROM report,house,user WHERE report.report_userid = user.id AND report.report_houseid = house.id LIMIT #{startIndex},#{pageSize}
     </select>
     <select id="findReportCount" resultType="java.lang.Integer">
          select count(*) from report
@@ -18,5 +28,11 @@
     <update id="updateReport" parameterType="java.lang.Integer">
         update report set report_status = 1 where id = #{id}
     </update>
+    <select id="selectReportByUser"  resultMap="reportEntity">
+        SELECT report.*,house.call,house.tel,user.user_name,user.tel FROM report,house,user WHERE report.report_userid = user.id AND report.report_houseid = house.id and user.user_name = #{data}
+    </select>
+    <select id="selectReportByHouse"  resultMap="reportEntity">
+        SELECT report.*,house.call,house.tel,user.user_name,user.tel FROM report,house,user WHERE report.report_userid = user.id AND report.report_houseid = house.id and house.call = #{data}
+    </select>
 
 </mapper>

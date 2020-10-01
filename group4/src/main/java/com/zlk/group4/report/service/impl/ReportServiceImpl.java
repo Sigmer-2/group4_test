@@ -39,4 +39,15 @@ public class ReportServiceImpl implements ReportService {
     public Integer updateReport(Integer id) {
         return reportMapper.updateReport(id);
     }
+
+    @Override
+    public List<Report> selectReportByUser(String data) {
+        return reportMapper.selectReportByUser(data);
+    }
+
+    @Override
+    public List<Report> selectReportByHouse(String data) {
+        return reportMapper.selectReportByHouse(data);
+    }
+
 }

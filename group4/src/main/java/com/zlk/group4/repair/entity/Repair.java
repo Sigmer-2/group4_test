@@ -1,5 +1,7 @@
 package com.zlk.group4.repair.entity;
 
+import com.zlk.group4.entity.User;
+import com.zlk.group4.house.entity.House;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +27,10 @@ public class Repair {
     private String repairDescribe;
     /**维修状态*/
     private Integer repairStatus;
+    /**注入房间对象*/
+    private House house;
+    /**注入用户对象*/
+    private User user;
 
     @Override
     public String toString() {

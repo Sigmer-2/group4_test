@@ -39,4 +39,14 @@ public class RepairServiceImpl implements RepairService {
     public Integer updateRepairById(Integer id) {
         return repairMapper.updateRepairById(id);
     }
+
+    @Override
+    public List<Repair> selectRepairByUser(String data) {
+        return repairMapper.selectRepairByUser(data);
+    }
+
+    @Override
+    public List<Repair> selectRepairByHouse(String data) {
+        return repairMapper.selectRepairByHouse(data);
+    }
 }

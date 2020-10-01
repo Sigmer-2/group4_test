@@ -70,10 +70,10 @@
                     </dl>--%>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="<%=basePath%>/report">举报</a>
+                    <a href="<%=basePath%>/report" target = "page">举报管理</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="<%=basePath%>/repair">报修</a>
+                    <a href="<%=basePath%>/repair" target = "page">报修管理</a>
                 </li>
                 <li class="layui-nav-item">
                     <a href="">问题与咨询</a>

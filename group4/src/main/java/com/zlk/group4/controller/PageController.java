@@ -40,7 +40,5 @@ public class PageController {
     public String repair(){
         return "admin/repair";
     }
-    /**普通用户招租表*/
-    @RequestMapping(value = "/home")
-    public String home()throws Exception{ return "/ordinary/home"; }
+
 }
