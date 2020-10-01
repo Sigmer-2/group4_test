@@ -91,7 +91,7 @@
 
             if (layEvent === 'update') { //更改
                 $.ajax({
-                        type: "post",
+                        type: "put",
                         url: "<%=basePath%>/repair/updateRepair/" + data.id,
                         contentType: "application/json",
                         dataType: "json",

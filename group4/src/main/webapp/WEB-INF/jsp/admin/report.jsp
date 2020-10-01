@@ -84,7 +84,7 @@
 
             if (layEvent === 'update') { //更改
                     $.ajax({
-                          type:"post",
+                          type:"put",
                         url:"<%=basePath%>/report/updateReportById/"+data.id,
                         contentType:"application/json",
                         dataType:"json",

@@ -25,7 +25,7 @@ import java.util.Map;
 public class RepairController {
     @Autowired
     private RepairService repairService;
-    @RequestMapping("/repairMessage")
+    @RequestMapping(value = "/repairMessage",method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> repairMessage(Integer page,Integer limit) throws Exception{//查询所有报修信息
         Integer count = repairService.findRepairCount();
@@ -36,7 +36,7 @@ public class RepairController {
         map.put("count",count);
         return map;
     }
-    @RequestMapping("/updateRepair/{id}")
+    @RequestMapping(value = "/updateRepair/{id}",method = RequestMethod.PUT)
     @ResponseBody
     public Map<String,Object> updateRepair(@PathVariable("id") Integer id) throws Exception{//更新审核状态
         Integer flag = repairService.updateRepairById(id);

@@ -25,7 +25,7 @@ import java.util.Map;
 public class ReportController {
     @Autowired
     private ReportService reportService;
-    @RequestMapping("/reportMessage")
+    @RequestMapping(value = "/reportMessage",method = RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> reportMessage(Integer page, Integer limit) throws Exception {//查询所有举报记录
         List<Report> reportList = reportService.findAllReport(page, limit);
@@ -36,7 +36,7 @@ public class ReportController {
         map.put("count", reportCount);
         return map;
     }
-    @RequestMapping("/updateReportById/{id}")
+    @RequestMapping(value = "/updateReportById/{id}",method = RequestMethod.PUT)
     @ResponseBody
     public Map<String,Object> updateReport(@PathVariable("id") Integer id){//更新举报审核状态
         Integer flag = reportService.updateReport(id);
