@@ -2,6 +2,7 @@ package com.zlk.group4.person.service.impl;
 
 import com.zlk.group4.area.entity.Area;
 import com.zlk.group4.area.entity.Street;
+import com.zlk.group4.entity.User;
 import com.zlk.group4.house.entity.House;
 import com.zlk.group4.house.entity.HouseDeploy;
 import com.zlk.group4.house.entity.HouseImg;
@@ -79,6 +80,20 @@ public class PersonServiceImpl implements PersonService{
         return personMapper.findChangChunStreetCount(id);
     }
 
+    @Override
+    public User findUserByOpenId(String openId) {
+        return personMapper.findUserByOpenId(openId);
+    }
+
+    @Override
+    public Integer updateSessionKey(Integer id,String sessionKey) {
+        return personMapper.updateSessionKey(id,sessionKey);
+    }
+
+    @Override
+    public Integer insertUserInformation(User user) {
+        return personMapper.insertUserInformation(user);
+    }
 
 
 }

@@ -1,14 +1,20 @@
 package com.zlk.group4.person.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.zlk.group4.area.entity.Area;
 import com.zlk.group4.area.entity.Street;
+import com.zlk.group4.entity.User;
 import com.zlk.group4.house.entity.House;
 import com.zlk.group4.house.entity.HouseDeploy;
 import com.zlk.group4.house.entity.HouseImg;
 import com.zlk.group4.house.entity.HouseLabel;
 import com.zlk.group4.person.service.PersonService;
-import net.sf.json.JSONArray;
+import com.zlk.group4.person.util.HttpClientUtil;
+import com.zlk.group4.person.util.StaticDataUtil;
+
+//import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+//import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,10 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.Callable;
 
 /**
@@ -108,4 +111,70 @@ public class PersonController {
         return map;
     }
 
+    /**
+     * 登录接口
+     *
+     * @param code
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/wxLogin", method = RequestMethod.POST)
+    public Map<String, Object> wxLogin(String code) throws Exception {
+        //处理URL
+        String url = String.format(StaticDataUtil.CODE_URL, StaticDataUtil.APPID, StaticDataUtil.SECRET, code);
+        Map<String, Object> map = new HashMap<>();
+        Integer flag=null;
+        try {
+            Map<String, Object> response = HttpClientUtil.sendGet(url);
+            //JSONObject json = JSONObject.fromObject(response).getJSONArray.get("entity");
+            JSONObject json = JSONObject.fromObject(response.get("entity"));//
+            String openId = json.getString("openid");
+            String sessionKey = json.getString("session_key");
+            if(openId!=null){
+                User user = personService.findUserByOpenId(openId);
+                if(user!=null){
+                    if(!sessionKey.equals(user.getSessionKey())){
+                        flag = personService.updateSessionKey(user.getId(), sessionKey);
+                    }else{
+                        flag=1;
+                    }
+                    map.put("openId", openId);
+                    map.put("sessionKey", sessionKey);
+                    map.put("userId", user.getId());
+                    //logger.debug("登录statusCode="+flag);
+                    map.put("statusCode", flag);
+                    return map;
+                }else{
+                    //String userId = UUID.randomUUID().toString().substring(0, 13);//自动生成主键
+                    User userInsert = new User(sessionKey, openId);
+
+                    flag = personService.insertUserInformation(userInsert);
+                    Integer userId = userInsert.getId();
+                    if(flag==1){
+                        map.put("openId", openId);
+                        map.put("sessionKey", sessionKey);
+                        map.put("userId", userId);
+                        map.put("statusCode", flag);
+                        //logger.debug("登录statusCode="+flag);
+                        return map;
+                    }else{
+                        map.put("statusCode", flag);
+                        //logger.debug("登录statusCode="+flag);
+                        return map;
+                    }
+                }
+            }else{
+                map.put("statusCode", 0);
+                //logger.debug("登录statusCode=0");
+                return map;
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("statusCode", 0);
+            //logger.debug("登录statusCode=0");
+            return map;
+        }
+    }
 }

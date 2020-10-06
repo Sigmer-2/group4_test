@@ -2,6 +2,7 @@ package com.zlk.group4.person.service;
 
 import com.zlk.group4.area.entity.Area;
 import com.zlk.group4.area.entity.Street;
+import com.zlk.group4.entity.User;
 import com.zlk.group4.house.entity.House;
 import com.zlk.group4.house.entity.HouseDeploy;
 import com.zlk.group4.house.entity.HouseImg;
@@ -70,6 +71,30 @@ public interface PersonService {
      * @return:java.lang.Integer
      */
     Integer findChangChunStreetCount(Integer id);
+    /**
+     * @describetion:根据openId查询用户信息
+     * @author:sunjiahe
+     * @date:2020/10/5 8:02
+     * @param:[id]
+     * @return:com.zlk.group4.entity.User
+     */
+    User findUserByOpenId(String openId);
+    /**
+     * @describetion:根据用户id更新sessionKey
+     * @author:sunjiahe
+     * @date:2020/10/5 10:17
+     * @param:[openId]
+     * @return:java.lang.Integer
+     */
+    Integer updateSessionKey(Integer id,String sessionKey);
+    /**
+     * @describetion:添加用户信息
+     * @author:sunjiahe
+     * @date:2020/10/6 14:59
+     * @param:[user]
+     * @return:java.lang.Integer
+     */
+    Integer insertUserInformation(User user);
 
 
 
