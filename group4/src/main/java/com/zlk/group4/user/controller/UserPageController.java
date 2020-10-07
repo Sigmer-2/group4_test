@@ -28,7 +28,7 @@ public class UserPageController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/userManager")
+    @RequestMapping(value = "/userManager",method = RequestMethod.GET)
     public Map<String,Object> userManager(Integer page,Integer limit){
         List<UserPage> userList = userPageService.findUserList(page,limit);
         Integer userCount = userPageService.findUserCount();
@@ -80,7 +80,7 @@ public class UserPageController {
      }
 
     @ResponseBody
-    @RequestMapping("/findUserListById")
+    @RequestMapping(value = "/findUserListById",method = RequestMethod.GET)
     public Map<String,Object> findUserListById(Integer id){
          List<UserPage> userList = userPageService.findUserListById(id);
          Integer count = userPageService.findUserListByIdCount(id);
@@ -91,7 +91,7 @@ public class UserPageController {
          return map;
      }
 
-    @RequestMapping("/findRoleIdAndName")
+    @RequestMapping(value = "/findRoleIdAndName",method = RequestMethod.GET)
     @ResponseBody
     public List<Role> findRoleIdAndName(){
         try {
