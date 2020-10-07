@@ -30,7 +30,7 @@ public class RoleController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/roleManager")
+    @RequestMapping(value = "/roleManager",method = RequestMethod.GET)
     public Map<String,Object> roleManager(Integer page, Integer limit){
         List<Role> roleList = roleService.findRoleList(page,limit);
         Integer roleCount = roleService.findRoleCount();
@@ -82,7 +82,7 @@ public class RoleController {
     }
 
     @ResponseBody
-    @RequestMapping("/findRoleListById")
+    @RequestMapping(value = "/findRoleListById",method = RequestMethod.GET)
     public Map<String,Object> findRoleListById(Integer id){
         List<Role> roleList = roleService.findRoleListById(id);
         Integer count = roleService.findRoleListByIdCount(id);

@@ -40,6 +40,132 @@ public class User {
     /**房源量*/
     private Integer houseNumber;
 
+
+    public User(String sessionKey, String openId) {
+        this.sessionKey = sessionKey;
+        this.openId = openId;
+    }
+
+    /*public User(Integer id, Integer userRoleId, String tel, String userImg, String userName, String userPlace, String userSex, String userPassword, String sessionKey, String openId, String type, String businessName, Integer houseNumber) {
+            this.id = id;
+            this.userRoleId = userRoleId;
+            this.tel = tel;
+            this.userImg = userImg;
+            this.userName = userName;
+            this.userPlace = userPlace;
+            this.userSex = userSex;
+            this.userPassword = userPassword;
+            this.sessionKey = sessionKey;
+            this.openId = openId;
+            this.type = type;
+            this.businessName = businessName;
+            this.houseNumber = houseNumber;
+        }
+    */
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getUserRoleId() {
+        return userRoleId;
+    }
+
+    public void setUserRoleId(Integer userRoleId) {
+        this.userRoleId = userRoleId;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getUserImg() {
+        return userImg;
+    }
+
+    public void setUserImg(String userImg) {
+        this.userImg = userImg;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserPlace() {
+        return userPlace;
+    }
+
+    public void setUserPlace(String userPlace) {
+        this.userPlace = userPlace;
+    }
+
+    public String getUserSex() {
+        return userSex;
+    }
+
+    public void setUserSex(String userSex) {
+        this.userSex = userSex;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
+    public String getSessionKey() {
+        return sessionKey;
+    }
+
+    public void setSessionKey(String sessionKey) {
+        this.sessionKey = sessionKey;
+    }
+
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
+
+    public Integer getHouseNumber() {
+        return houseNumber;
+    }
+
+    public void setHouseNumber(Integer houseNumber) {
+        this.houseNumber = houseNumber;
+    }
+
     @Override
     public String toString() {
         return "User{" +

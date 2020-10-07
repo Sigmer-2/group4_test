@@ -5,7 +5,7 @@
 <mapper namespace="com.zlk.group4.person.mapper.PersonMapper">
     <resultMap id="BaseResultMap" type="com.zlk.group4.entity.User">
         <id property="id" column="id" javaType="java.lang.Integer"/>
-        <result property="userRoleid" column="user_roleId" javaType="java.lang.Integer"/>
+        <result property="userRoleId" column="user_roleId" javaType="java.lang.Integer"/>
         <result property="tel" column="tel" javaType="java.lang.String"/>
         <result property="userImg" column="user_img" javaType="java.lang.String"/>
         <result property="userName" column="user_name" javaType="java.lang.String"/>
@@ -13,7 +13,7 @@
         <result property="userSex" column="user_sex" javaType="java.lang.String"/>
         <result property="userPassword" column="user_password" javaType="java.lang.String"/>
         <result property="sessionKey" column="session_key" javaType="java.lang.String"/>
-        <result property="openId" column="open_id" javaType="java.lang.Integer"/>
+        <result property="openId" column="open_id" javaType="java.lang.String"/>
     </resultMap>
 
     <resultMap id="AreaMap" type="com.zlk.group4.area.entity.Area">
@@ -29,11 +29,11 @@
 
 
     <select id="findUserName" resultType="string">
-        select user_name from user where id={id}
+        select user_name from user where id = #{id}
     </select>
     
     <select id="findUserImg" resultType="string">
-        select user_img from user where id = {id}
+        select user_img from user where id = #{id}
     </select>
 
     <insert id="saveHouse" parameterType="com.zlk.group4.house.entity.House">
@@ -367,6 +367,38 @@
     <select id="findChangChunStreetCount" resultType="integer">
         select count(*) from changchun_street where area_id = #{id}
     </select>
+    <select id="findUserByOpenId" resultMap="BaseResultMap">
+        select * from user where open_id=#{openId}
+    </select>
+    <update id="updateSessionKey">
+        update user set session_key=#{sessionKey} where id=#{id}
+    </update>
+    <insert id="insertUserInformation" parameterType="com.zlk.group4.entity.User" useGeneratedKeys="true" keyProperty="id">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+               id,
+            </if>
+            <if test="sessionKey!=null">
+                session_key,
+            </if>
+            <if test="openId!=null">
+                open_id,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                #{id},
+            </if>
+            <if test="sessionKey!=null">
+                #{sessionKey},
+            </if>
+            <if test="openId!=null">
+                #{openId},
+            </if>
+        </trim>
+    </insert>
 
 
 </mapper>
