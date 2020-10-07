@@ -40,5 +40,10 @@ public class PageController {
     public String repair(){
         return "admin/repair";
     }
+    /**问题与咨询信息查看页面*/
+    @RequestMapping(value = "/question")
+    public String question(){
+        return "admin/question";
+    }
 
 }
