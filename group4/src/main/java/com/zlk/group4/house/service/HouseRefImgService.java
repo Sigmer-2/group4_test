@@ -1,5 +1,6 @@
 package com.zlk.group4.house.service;
 
+import com.zlk.group4.house.entity.HouseImg;
 import com.zlk.group4.house.entity.HouseRefImg;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public interface HouseRefImgService {
     int updateByPrimaryKey(HouseRefImg record);
 
     List<HouseRefImg> selectImgByHouseId(Integer id);
+
 
 }
 

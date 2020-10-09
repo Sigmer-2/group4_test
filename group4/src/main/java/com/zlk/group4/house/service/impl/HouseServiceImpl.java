@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.zlk.group4.house.entity.HouseIdParam;
+import com.zlk.group4.house.entity.HouseRefImg;
+import com.zlk.group4.house.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import com.zlk.group4.house.mapper.HouseMapper;
 import com.zlk.group4.house.entity.House;
-import com.zlk.group4.house.service.HouseService;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +28,27 @@ public class HouseServiceImpl implements HouseService {
 
     @Resource
     private HouseMapper houseMapper;
+
+    @Autowired
+    private HouseRefDeployService houseRefDeployService;
+
+    @Autowired
+    private HouseRefLabelService houseRefLabelService;
+
+    @Autowired
+    private HouseRefImgService houseRefImgService;
+
+    @Autowired
+    private RegionService regionService;
+
+    @Autowired
+    private MetroService metroService;
+
+    @Autowired
+    private HouseDeployService deployService;
+
+    @Autowired
+    private HouseLabelService labelService;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
@@ -161,6 +183,16 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public Integer adminUpdateHouseById(House house) {
         return houseMapper.adminUpdateHouseById(house);
+    }
+
+    @Override
+    public Map<String, Object> findHouseInfoById(Integer houseId) {
+        Map<String, Object> map = new HashMap<>();
+        House house = houseMapper.selectAllById(houseId);
+        List<HouseRefImg> houseRefImgs = houseRefImgService.selectImgByHouseId(houseId);
+        map.put("house",house);
+        map.put("img",houseRefImgs);
+        return map;
     }
 }
 

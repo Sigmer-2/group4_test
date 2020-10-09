@@ -1,7 +1,6 @@
 package com.zlk.group4.house.service;
 
 import com.zlk.group4.house.entity.Metro;
-import com.zlk.group4.house.entity.Region;
 
 /**
  * Created with IntelliJ IDEA.

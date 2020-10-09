@@ -78,7 +78,7 @@
         <!-- 内容主体区域 -->
         <table id="demo" lay-filter="test"></table>
         <script type="text/html" id="barDemo">
-            <a id="house-img" class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看照片</a>
+            <a id="house-img" class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">上传房间照片</a>
         </script>
         <div style="display:none;" id="houseToolBar" class="layui-inline">
             <button type="button" class="layui-btn layui-btn-sm" id="add-house-btn"  lay-event="add">增加</button>

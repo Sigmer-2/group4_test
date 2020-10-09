@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.zlk.group4.house.entity.House;
 import com.zlk.group4.house.entity.HouseIdParam;
-import com.zlk.group4.vo.HouseMsg;
 
 /**
  * Created with IntelliJ IDEA.
@@ -43,15 +42,15 @@ public interface HouseService {
      * @time: 2020/9/27 13:07
      */
     List<House> adminManageHouse(Map map,Integer page,Integer limit);
-/**
- *
- * 管理员查询房屋总数
- * @description: *
- * @param
- * @return: num
- * @author: zhc
- * @time: 2020/9/27 13:08
- */
+    /**
+     *
+     * 管理员查询房屋总数
+     * @description: *
+     * @param
+     * @return: num
+     * @author: zhc
+     * @time: 2020/9/27 13:08
+     */
     Integer findHouseCount();
     /**
      * 模糊查询
@@ -133,6 +132,14 @@ public interface HouseService {
      * @time: 2020/9/29 19:12
      */
     Integer adminUpdateHouseById(House house);
+    /**
+     * 根据房源id查询房源信息集合
+     * @Auther sunshuai
+     * @Date 2020/10/8 9:43
+     * @param houseId
+     * @return
+     */
+    Map<String,Object> findHouseInfoById(Integer houseId);
 
 }
 

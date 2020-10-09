@@ -125,7 +125,7 @@
                         if(data.type == 2){
                                 window.location.href = "main";
                         }else{
-                                window.location.href = "";
+                                window.location.href = "home";
                         }
                     }else{
                         layer.msg('登录名或密码错误');

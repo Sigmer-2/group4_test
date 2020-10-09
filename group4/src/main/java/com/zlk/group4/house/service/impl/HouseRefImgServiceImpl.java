@@ -1,6 +1,10 @@
 package com.zlk.group4.house.service.impl;
 
+import com.zlk.group4.house.entity.HouseImg;
+import com.zlk.group4.house.mapper.HouseImgMapper;
 import com.zlk.group4.house.mapper.HouseRefImgMapper;
+import com.zlk.group4.house.service.HouseImgService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
@@ -24,6 +28,8 @@ public class HouseRefImgServiceImpl implements HouseRefImgService {
 
     @Resource
     private HouseRefImgMapper houseRefImgMapper;
+    @Autowired
+    private HouseImgService imgService;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
@@ -64,6 +70,8 @@ public class HouseRefImgServiceImpl implements HouseRefImgService {
     public List<HouseRefImg> selectImgByHouseId(Integer id) {
         return houseRefImgMapper.selectImgByHouseId(id);
     }
+
+
 
 }
 
