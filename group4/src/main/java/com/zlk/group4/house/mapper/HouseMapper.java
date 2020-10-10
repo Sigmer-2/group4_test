@@ -188,4 +188,14 @@ public interface HouseMapper {
      * @time: 2020/9/29 19:12
      */
     Integer adminUpdateHouseById(House house);
+    /**
+     *
+     * 微信小程序对房屋的查询
+     * @description: *
+     * @param map
+     * @return:
+     * @author: zhc
+     * @time: 2020/10/10 14:15
+     */
+    List<House> wxSelectHouse(Map map);
 }

@@ -57,5 +57,44 @@ public interface ChangchunMapper {
      * @time: 2020/9/29 12:01
      */
     List<Station> findStation(Integer id);
-
+    /**
+     *
+     * 根据区域id查询区域名称
+     * @description: *
+     * @param id
+     * @return:
+     * @author: zhc
+     * @time: 2020/10/10 11:42
+     */
+    String findAreaName(Integer id);
+    /**
+     *
+     * 根据街道id查询街道名称
+     * @description: *
+     * @param id
+     * @return:
+     * @author: zhc
+     * @time: 2020/10/10 11:38
+     */
+    String findStreetName(Integer id);
+    /**
+     *
+     * 根据线路id查询线路名称
+     * @description: *
+     * @param id
+     * @return:
+     * @author: zhc
+     * @time: 2020/10/10 11:38
+     */
+    String findLineName(Integer id);
+    /**
+     *
+     * 根据站点id查询站点名称
+     * @description: *
+     * @param id
+     * @return:
+     * @author: zhc
+     * @time: 2020/10/10 11:38
+     */
+    String findStationName(Integer id);
 }

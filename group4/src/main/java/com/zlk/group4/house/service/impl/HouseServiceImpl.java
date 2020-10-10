@@ -81,6 +81,13 @@ public class HouseServiceImpl implements HouseService {
         map.put("pageSize",limit);
         return houseMapper.adminManageHouse(map);
     }
+    @Override
+    public List<House> wxSelectHouse(Map map,Integer page,Integer limit) {
+        Integer startIndex = (page-1)*limit;
+        map.put("startIndex",startIndex);
+        map.put("pageSize",limit);
+        return houseMapper.wxSelectHouse(map);
+    }
 
     @Override
     public Integer findHouseCount() {

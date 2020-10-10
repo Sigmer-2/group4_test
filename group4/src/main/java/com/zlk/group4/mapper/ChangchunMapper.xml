@@ -13,4 +13,16 @@
     <select id="findStation" parameterType="java.lang.Integer" resultType="com.zlk.group4.entity.Station">
         select * from changchun_station where line_id = #{id}
     </select>
+    <select id="findAreaName" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select area_name from changchun_area where id = #{id}
+    </select>
+    <select id="findStreetName" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select street_name from changchun_street where id = #{id}
+    </select>
+    <select id="findLineName" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select line_name from changchun_line where id = #{id}
+    </select>
+    <select id="findStationName" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select station_name from changchun_station where id = #{id}
+    </select>
 </mapper>
