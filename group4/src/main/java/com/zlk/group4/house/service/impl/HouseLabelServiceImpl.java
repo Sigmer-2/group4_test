@@ -66,13 +66,14 @@ public class HouseLabelServiceImpl implements HouseLabelService {
     @Override
     public int insertHouseLabelByString(String str) {
         HouseLabel houseLabel = getHouseLabel(str);
-        return insert(houseLabel);
+        insert(houseLabel);
+        return houseLabel.getId();
     }
 
 
     private HouseLabel getHouseLabel(String str){
         HouseLabel houseLabel = null;
-        String[] strs = str.split("，");
+        String[] strs = str.split(",");
         houseLabel = new HouseLabel();
         for (String s : strs) {
           //

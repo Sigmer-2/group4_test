@@ -1,14 +1,16 @@
 package com.zlk.group4.report.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zlk.group4.report.entity.Report;
 import com.zlk.group4.report.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +64,30 @@ public class ReportController {
             map.put("msg", "");
             map.put("data", reportList);
         }
+        return map;
+    }
+
+    @PostMapping(value = "/saveReport",produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public Map<String,Object> saveReport(HttpServletRequest request, HttpServletResponse response){
+        Map<String, Object> map = new HashMap<>();
+        System.out.println("小程序调用");
+        JSONObject result = null;
+        StringBuilder sb = new StringBuilder();
+        try (BufferedReader reader = request.getReader();) {
+            char[] buff = new char[1024];
+            int len;
+            while ((len = reader.read(buff)) != -1) {
+                sb.append(buff, 0, len);
+            }
+            result = JSONObject.parseObject(sb.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String reportReason = result.getString("reportReason");
+        System.out.println(reportReason);
+        String reportDetails = result.getString("reportDetails");
+        System.out.println(reportDetails);
         return map;
     }
 }

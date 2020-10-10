@@ -198,7 +198,7 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
         Map<String,Object> map = new HashMap<>();
         HouseMsg houseMsg = getHouseMsgByHouseId(houseId);
         map.put("houseMsg",houseMsg);
-        return null;
+        return map;
     }
 
     /**
@@ -292,6 +292,9 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
     public HouseRefUser selectUserByHouseId(Integer id) {
         return houseRefUserMapper.selectUserByHouseId(id);
     }
+
+    @Override
+    public List selectHouseIdByUserId(Integer id) { return houseRefUserMapper.selectHouseIdByUserId(id); }
 
 }
 

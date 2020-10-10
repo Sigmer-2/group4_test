@@ -34,6 +34,13 @@ public interface HouseLabelService {
      */
     int updateByString(String str);
 
+    /**
+     * 根据标签字符串新增HouseLabel内容
+     * @Auther sunshuai
+     * @Date 2020/9/25 13:51
+     * @param str
+     * @return int 新增houseLabelId
+     */
     int insertHouseLabelByString(String str);
 
 }

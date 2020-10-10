@@ -63,7 +63,13 @@ public interface HouseMapper {
     int updateByPrimaryKey(House record);
 
     List<House> selectAll();
-
+    /**
+     * 根据id查询房源信息包含地铁、标签、配置
+     * @Auther sunshuai
+     * @Date 2020/10/8 9:59
+     * @param id
+     * @return com.zlk.group4.house.entity.House
+     */
     House selectAllById(Integer id);
 
     /**
@@ -188,4 +194,14 @@ public interface HouseMapper {
      * @time: 2020/9/29 19:12
      */
     Integer adminUpdateHouseById(House house);
+    /**
+     *
+     * 微信小程序对房屋的查询
+     * @description: *
+     * @param map
+     * @return:
+     * @author: zhc
+     * @time: 2020/10/10 14:15
+     */
+    List<House> wxSelectHouse(Map map);
 }

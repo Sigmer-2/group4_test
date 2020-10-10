@@ -36,7 +36,7 @@ public interface HouseRefUserService {
      * @param id userId
      * @return java.util.List<com.zlk.group4.vo.HouseMsg>
      */
-    List<HouseMsg> listAllByUserId(Integer id);
+    List<HouseMsg>  listAllByUserId(Integer id);
 
     List<HouseRefUser> selectHouseByUserId(Integer id);
 
@@ -85,6 +85,18 @@ public interface HouseRefUserService {
      * @time: 2020/9/27 14:15
      */
     HouseRefUser selectUserByHouseId(Integer id);
+
+
+    /**
+     * 根据userId查询houseId
+     * @Auther lihongying
+     * @Date 2020/10/8 17:08
+     * @param id
+     * @return List
+     */
+
+
+    List selectHouseIdByUserId(Integer id);
 
 
 }

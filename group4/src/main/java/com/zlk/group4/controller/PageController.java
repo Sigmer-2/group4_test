@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PageController {
     /**登录*/
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = {"/","/login"})
     public String login(){
         return "login";
     }
@@ -46,4 +46,7 @@ public class PageController {
         return "admin/question";
     }
 
+    /**普通用户招租表*/
+    @RequestMapping(value = "/home")
+    public String home()throws Exception{ return "/ordinary/home"; }
 }

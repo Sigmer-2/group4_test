@@ -40,4 +40,24 @@ public class ChangchunServiceImpl implements ChangchunService {
     public List<Station> findStation(Integer id) {
         return changchunMapper.findStation(id);
     }
+
+    @Override
+    public String findAreaName(Integer id) {
+        return changchunMapper.findAreaName(id);
+    }
+
+    @Override
+    public String findStreetName(Integer id) {
+        return changchunMapper.findStreetName(id);
+    }
+
+    @Override
+    public String findLineName(Integer id) {
+        return changchunMapper.findLineName(id);
+    }
+
+    @Override
+    public String findStationName(Integer id) {
+        return changchunMapper.findStationName(id);
+    }
 }

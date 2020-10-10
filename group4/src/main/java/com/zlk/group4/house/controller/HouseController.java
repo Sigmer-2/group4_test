@@ -77,7 +77,190 @@ public class HouseController {
         map.put("count", count);
         return map;
     }
-
+    /**
+     *
+     * 微信根据条件查询房屋信息
+     * @description: *
+     * @param selectParams
+     * @return:
+     * @author: zhc
+     * @time: 2020/10/9 15:35
+     */
+    @RequestMapping(value = "/wxSelectHouse", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> wxSelectHouse(@RequestBody SelectParams selectParams) throws Exception {
+        System.out.println(selectParams.toString());
+        Map<String, Object> paraMap = new HashMap<String, Object>();
+        Integer page = selectParams.getPage();
+        Integer limit = selectParams.getLimit();
+        List<Integer> ids =selectParams.getLabel();
+        List<Integer> fangshi = selectParams.getListingType();
+        BigDecimal rent1 = new BigDecimal(0);
+        BigDecimal rent2 = new BigDecimal(0);
+        paraMap.put("estate",selectParams.getSearchValue());
+        if(selectParams.getRent()==-1) {
+         paraMap.put("rent1",null);
+         paraMap.put("rent2",null);
+        }
+        if(selectParams.getRent()==0) {
+            rent2= BigDecimal.valueOf(1000);
+            paraMap.put("rent1",rent1);
+            paraMap.put("rent2",rent2);
+        }
+        if(selectParams.getRent()==1) {
+            rent1= BigDecimal.valueOf(1000);
+            rent2= BigDecimal.valueOf(2000);
+            paraMap.put("rent1",rent1);
+            paraMap.put("rent2",rent2);
+        }
+        if(selectParams.getRent()==2) {
+            rent1= BigDecimal.valueOf(2000);
+            rent2= BigDecimal.valueOf(3000);
+            paraMap.put("rent1",rent1);
+            paraMap.put("rent2",rent2);
+        }
+        if(selectParams.getRent()==3) {
+            rent1= BigDecimal.valueOf(3000);
+            rent2= BigDecimal.valueOf(4000);
+            paraMap.put("rent1",rent1);
+            paraMap.put("rent2",rent2);
+        }
+        if(selectParams.getRent()==4) {
+            rent1= BigDecimal.valueOf(4000);
+            rent2= BigDecimal.valueOf(5000);
+            paraMap.put("rent1",rent1);
+            paraMap.put("rent2",rent2);
+        }
+        if(selectParams.getRent()==5) {
+            rent1= BigDecimal.valueOf(5000);
+            rent2= BigDecimal.valueOf(500000000);
+            paraMap.put("rent1",rent1);
+            paraMap.put("rent2",rent2);
+        }
+        if(selectParams.getRentalModel()==-1) {
+            paraMap.put("rentalModel",null);
+        }
+        if(selectParams.getRentalModel()==0) {
+            paraMap.put("rentalModel","整租");
+        }
+        if(selectParams.getRentalModel()==1) {
+            paraMap.put("rentalModel","合租");
+        }
+        if(selectParams.getHouseType()==-1)
+        {
+            paraMap.put("houseType",null);
+        }
+        if(selectParams.getHouseType()==0)
+        {
+            paraMap.put("houseType","房东直租");
+        }
+        if(selectParams.getHouseType()==1)
+        {
+            paraMap.put("houseType","有房转租");
+        }
+        if(selectParams.getHouseType()==2)
+        {
+            paraMap.put("houseType","有房找室友");
+        }
+        if(selectParams.getSex()==-1) {
+            paraMap.put("sex",null);
+        }else{
+            paraMap.put("sex",selectParams.getSex());
+        }
+        if(selectParams.getSort()==0)
+        {
+            paraMap.put("sort",null);
+        }
+        if(selectParams.getSort()==1)
+        {
+            paraMap.put("sort","ASC");
+        }
+        if(selectParams.getSort()==2)
+        {
+            paraMap.put("sort","DESC");
+        }
+            paraMap.put("shortRent",null);
+            paraMap.put("payment",null);
+            paraMap.put("southward",null);
+            paraMap.put("agencyfee",null);
+            paraMap.put("toilet",null);
+            paraMap.put("balcony",null);
+            paraMap.put("elevator",null);
+            paraMap.put("bayWindow",null);
+            paraMap.put("decoration",null);
+        if (ids!= null) {
+            for (int i = 0; i < ids.size(); i++) {
+                if (ids.get(i) == 0) {
+                    paraMap.put("shortRent",1);
+                }
+                if (ids.get(i) == 1) {
+                    paraMap.put("payment",1);
+                }
+                if (ids.get(i) == 2) {
+                    paraMap.put("southward",1);
+                }
+                if (ids.get(i) == 3) {
+                    paraMap.put("agencyfee",1);
+                }
+                if (ids.get(i) == 4) {
+                    paraMap.put("toilet",1);
+                }
+                if (ids.get(i) == 5) {
+                    paraMap.put("balcony",1);
+                }
+                if (ids.get(i) == 6) {
+                    paraMap.put("elevator",1);
+                }
+                if (ids.get(i) == 7) {
+                    paraMap.put("bayWindow",1);
+                }
+                if (ids.get(i) == 8) {
+                    paraMap.put("decoration",1);
+                }
+            }
+        }
+        paraMap.put("yishi",null);
+        paraMap.put("ershi",null);
+        paraMap.put("sanshi",null);
+        paraMap.put("sishi",null);
+        paraMap.put("wushi",null);
+        if (fangshi!= null) {
+            for (int i = 0; i < fangshi.size(); i++) {
+                if (fangshi.get(i) == 0) {
+                    paraMap.put("yishi","1室");
+                }
+                if (fangshi.get(i) == 1) {
+                    paraMap.put("ershi","2室");
+                }
+                if (fangshi.get(i) == 2) {
+                    paraMap.put("sanshi","3室");
+                }
+                if (fangshi.get(i) == 3) {
+                    paraMap.put("sishi","4室");
+                }
+                if (fangshi.get(i) == 4) {
+                    paraMap.put("wushi","5室");
+                }
+            }
+        }
+        paraMap.put("area",changchunService.findAreaName(selectParams.getArea()));
+        paraMap.put("street",changchunService.findStreetName(selectParams.getStreet()));
+        paraMap.put("line",changchunService.findLineName(selectParams.getLine()));
+        paraMap.put("station",changchunService.findStationName(selectParams.getStation()));
+        List<House> houseList = houseService.wxSelectHouse(paraMap, page, limit);
+        for (House house : houseList) {
+            Integer i = house.getHouseRefLabel().getId();
+            house.setHouseRefLabel(houseRefLabelService.selectLabelByHouseId(house.getId()));
+            house.getHouseRefLabel().setId(i);
+            house.setHouseRefImgs(houseRefImgService.selectImgByHouseId(house.getId()));
+        }
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("code", 0);
+        map.put("msg", "");
+        map.put("data", houseList);
+        //map.put("count", count);
+        return map;
+    }
     /**
      * 获取房间所包含的图片
      *
