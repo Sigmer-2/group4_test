@@ -198,7 +198,7 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
         Map<String,Object> map = new HashMap<>();
         HouseMsg houseMsg = getHouseMsgByHouseId(houseId);
         map.put("houseMsg",houseMsg);
-        return null;
+        return map;
     }
 
     /**

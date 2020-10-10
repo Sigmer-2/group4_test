@@ -134,6 +134,15 @@ public interface HouseService {
      */
     Integer adminUpdateHouseById(House house);
     /**
+     * 根据房源id查询房源信息集合
+     * @Auther sunshuai
+     * @Date 2020/10/8 9:43
+     * @param houseId
+     * @return
+     */
+    Map<String,Object> findHouseInfoById(Integer houseId);
+
+    /**
      *
      * 小程序对房屋的查询
      * @description: *
