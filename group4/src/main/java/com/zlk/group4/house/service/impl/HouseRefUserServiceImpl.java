@@ -293,6 +293,9 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
         return houseRefUserMapper.selectUserByHouseId(id);
     }
 
+    @Override
+    public List selectHouseIdByUserId(Integer id) { return houseRefUserMapper.selectHouseIdByUserId(id); }
+
 }
 
 

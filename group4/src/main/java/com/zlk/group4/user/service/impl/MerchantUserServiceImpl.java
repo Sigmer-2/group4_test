@@ -5,6 +5,8 @@ import javax.annotation.Resource;
 import com.zlk.group4.user.mapper.MerchantUserMapper;
 import com.zlk.group4.user.entity.MerchantUser;
 import com.zlk.group4.user.service.MerchantUserService;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class MerchantUserServiceImpl implements MerchantUserService{
     private MerchantUserMapper merchantUserMapper;
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
     public int insertSelectiveMerchant(MerchantUser record) {
         return merchantUserMapper.insertSelective(record);
     }

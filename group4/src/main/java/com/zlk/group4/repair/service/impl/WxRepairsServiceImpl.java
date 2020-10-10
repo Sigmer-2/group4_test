@@ -34,7 +34,7 @@ public class WxRepairsServiceImpl implements WxRepairsService {
 
 
     @Override
-    public WxRepair findRepairsByUserid(Integer repairUserid) {
+    public List<WxRepair> findRepairsByUserid(Integer repairUserid) {
         return wxRepairsMapper.findRepairsByUserid(repairUserid);
     }
 
