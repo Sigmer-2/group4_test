@@ -208,9 +208,9 @@
                     <label class="layui-form-label">租客性别</label>
                     <div class="layui-input-block">
                         <select name="sex" lay-filter="sex">
-                            <option value="0" selected="">男女均可</option>
-                            <option value="1" >限男生</option>
-                            <option value="2">限女生</option>
+                            <option value="男女均可" selected="">男女均可</option>
+                            <option value="限男生" >限男生</option>
+                            <option value="限女生">限女生</option>
                         </select>
                     </div>
                 </div>
@@ -246,7 +246,11 @@
                 <div class="layui-form-item" style="height: 20px" >
                     <label class="layui-form-label">房源类型</label>
                     <div class="layui-input-block">
-                        <input type="text" name="houseType" class="layui-input" lay-verify="required" autocomplete="off">
+                        <select name="houseType" lay-filter="houseType">
+                            <option value="房东直租" selected="">房东直租</option>
+                            <option value="有房转租" >有房转租</option>
+                            <option value="有房找室友">有房找室友</option>
+                        </select>
                     </div>
                 </div>
                 <div class="layui-form-item" style="height: 20px;;margin-top: 30px" >
@@ -276,13 +280,21 @@
                 <div class="layui-form-item" style="height: 20px;margin-top: 30px" >
                     <label class="layui-form-label">出租方式</label>
                     <div class="layui-input-block">
-                        <input type="text" name="rentalMode" class="layui-input" lay-verify="required" autocomplete="off">
+                        <select name="rentalMode" lay-filter="rentalMode">
+                            <option value="整租" selected="">整租</option>
+                            <option value="合租" >合租</option>
+                        </select>
                     </div>
                 </div>
                 <div class="layui-form-item" style="height: 20px;margin-top: 30px" >
                     <label class="layui-form-label">房间类型</label>
                     <div class="layui-input-block">
-                        <input type="text" name="roomType" class="layui-input" autocomplete="off">
+                        <select name="roomType" lay-filter="roomType">
+                            <option value=""></option>
+                            <option value="主卧" selected="">主卧</option>
+                            <option value="次卧" >次卧</option>
+                            <option value="隔间">隔间</option>
+                        </select>
                     </div>
                 </div>
                 <div class="layui-form-item" style="height: 20px;margin-top: 30px" >
@@ -291,22 +303,53 @@
                         <input type="text" name="rent" class="layui-input" lay-verify="required" autocomplete="off">
                     </div>
                 </div>
-                <div class="layui-form-item" style="height: 20px;margin-top: 30px" >
+                <div class="layui-form-item" style="margin-top: 30px">
                     <label class="layui-form-label">房屋标签</label>
                     <div class="layui-input-block">
-                        <input type="text" name="houseLabel" class="layui-input" lay-verify="required" autocomplete="off">
+                        <input type="checkbox" name="houseLabel" title="可短租" value="可短租" >
+                        <input type="checkbox" name="houseLabel" title="月付" value="月付"  >
+                        <input type="checkbox" name="houseLabel" title="南向" value="南向"  >
+                        <input type="checkbox" name="houseLabel" title="无中介费" value="无中介费"  >
+                        <input type="checkbox" name="houseLabel" title="独卫" value="独卫" >
+                        <input type="checkbox" name="houseLabel" title="独立阳台" value="独立阳台"  >
+                        <input type="checkbox" name="houseLabel" title="电梯房" value="电梯房"  >
+                        <input type="checkbox" name="houseLabel" title="带飘窗" value="带飘窗"  >
+                        <input type="checkbox" name="houseLabel" title="精装修" value="精装修"  >
                     </div>
                 </div>
-                <div class="layui-form-item" style="height: 20px;margin-top: 30px" >
+
+                <div class="layui-form-item">
                     <label class="layui-form-label">房屋配置</label>
                     <div class="layui-input-block">
-                        <input type="text" name="houseDeploy" class="layui-input" lay-verify="required" autocomplete="off">
+                        <input type="checkbox" name="houseDeploy" title="床" value="床" >
+                        <input type="checkbox" name="houseDeploy" title="WIFI" value="WIFI"  >
+                        <input type="checkbox" name="houseDeploy" title="空调" value="空调"  >
+                        <input type="checkbox" name="houseDeploy" title="衣柜" value="衣柜"  >
+                        <input type="checkbox" name="houseDeploy" title="书桌" value="书桌" >
+                        <input type="checkbox" name="houseDeploy" title="椅子" value="椅子"  >
+                        <input type="checkbox" name="houseDeploy" title="沙发" value="沙发"  >
+                        <input type="checkbox" name="houseDeploy" title="冰箱" value="冰箱"  >
+                        <input type="checkbox" name="houseDeploy" title="洗衣机" value="洗衣机"  >
+                        <input type="checkbox" name="houseDeploy" title="电视机" value="电视机" >
+                        <input type="checkbox" name="houseDeploy" title="热水器" value="热水器"  >
+                        <input type="checkbox" name="houseDeploy" title="燃气灶" value="燃气灶"  >
+                        <input type="checkbox" name="houseDeploy" title="微波炉" value="微波炉"  >
+                        <input type="checkbox" name="houseDeploy" title="油烟机" value="油烟机" >
+                        <input type="checkbox" name="houseDeploy" title="餐桌椅" value="餐桌椅"  >
+                        <input type="checkbox" name="houseDeploy" title="智能锁" value="智能锁"  >
+                        <input type="checkbox" name="houseDeploy" title="台灯" value="台灯"  >
                     </div>
                 </div>
-                <div class="layui-form-item" style="height: 20px;margin-top: 30px" >
+<%--                <div class="layui-form-item" style="height: 20px;margin-top: 30px" >--%>
+<%--                    <label class="layui-form-label">房屋介绍</label>--%>
+<%--                    <div class="layui-input-block">--%>
+<%--                        <input type="text" name="houseIntroduction" class="layui-input" lay-verify="required" autocomplete="off">--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+                <div class="layui-form-item layui-form-text" style="margin-top: 30px">
                     <label class="layui-form-label">房屋介绍</label>
                     <div class="layui-input-block">
-                        <input type="text" name="houseIntroduction" class="layui-input" lay-verify="required" autocomplete="off">
+                        <textarea placeholder="为提高您的转租速度，请描述房源核心优势" name="houseIntroduction" class="layui-textarea"></textarea>
                     </div>
                 </div>
                 <div class="layui-form-item" style="height: 20px;margin-top: 30px" >
@@ -318,7 +361,11 @@
                 <div class="layui-form-item" style="height: 20px;margin-top: 30px" >
                     <label class="layui-form-label">租客性别</label>
                     <div class="layui-input-block">
-                        <input type="text" name="sex" class="layui-input" lay-verify="required" autocomplete="off">
+                        <select name="sex" lay-filter="sex">
+                            <option value="男女均可" selected="">男女均可</option>
+                            <option value="限男生" >限男生</option>
+                            <option value="限女生">限女生</option>
+                        </select>
                     </div>
                 </div>
                 <div class="layui-form-item" style="height: 20px;margin-top: 30px" >
@@ -408,7 +455,7 @@
                 ,{field: 'sex', title: '租客性别', width: 100}
                 ,{field: 'call', title: '您的称呼', width:150}
                 ,{field: 'tel', title: '联系方式', width: 200}
-                ,{fixed: 'right', width: 85, align:'center', toolbar: '#barDemo'}
+                ,{fixed: 'right', width: 100, align:'center', toolbar: '#barDemo'}
             ]],
             // 表格容器id，用于表格重载
             id: 'demo',
@@ -520,13 +567,14 @@
                         "houseType":data[0].houseType,
                         "area": data[0].area,
                         "metro":data[0].metro,
+                        "estate":data[0].estate,
                         "listingsType":data[0].listingsType,
                         "rentalMode":data[0].rentalMode,
                         "roomType":data[0].roomType,
                         "rent":data[0].rent,
                         "houseImg":data[0].houseImg,
-                        "houseLabel":data[0].houseLabel,
-                        "houseDeploy":data[0].houseDeploy,
+                        // "houseLabel":data[0].houseLabel,
+                        // "houseDeploy":data[0].houseDeploy,
                         "houseIntroduction":data[0].houseIntroduction,
                         "checkinTime":data[0].checkinTime,
                         "sex":data[0].sex,
