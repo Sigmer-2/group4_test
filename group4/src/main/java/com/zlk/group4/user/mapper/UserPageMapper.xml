@@ -19,10 +19,10 @@
             <result property="roleName" column="role_name" javaType="java.lang.String"/>
         </association>
     </resultMap>
-    <!--<resultMap id="RoleEntityMap" type="com.zlk.group4.user.entity.Role">
+    <resultMap id="RoleEntityMap" type="com.zlk.group4.user.entity.Role">
         <id property="roleId" column="id" javaType="java.lang.Integer"/>
         <result property="roleName" column="role_name" javaType="java.lang.String"/>
-    </resultMap>-->
+    </resultMap>
     <select id="findUserList" parameterType="java.util.Map" resultMap="UserEntityMap">
         select * from user,role where user.user_roleId = role.id
         order by user.id limit #{startIndex},#{pageSize}
@@ -32,7 +32,7 @@
     </select>
     <insert id="saveUser0" parameterType="com.zlk.group4.user.entity.UserPage">
        INSERT INTO user(id,user_roleId,tel,user_img,user_name,user_place,user_sex,user_password,session_key,open_id)
-        VALUES(#{userId},#{userRoleName},#{userTel},#{userImg},#{userName},#{userPlace},#{userSex},#{userPassword},
+        VALUES(#{userId},#{userRoleId},#{userTel},#{userImg},#{userName},#{userPlace},#{userSex},#{userPassword},
         #{sessionKey},#{openId})
     </insert>
     <delete id="deleteUserById" parameterType="java.lang.Integer">
@@ -49,7 +49,7 @@
     <select id="findUserListByIdCount" resultType="integer">
          select count(*) from user where id=#{userId}
     </select>
-    <select id="findRoleIdAndName" resultType="com.zlk.group4.user.entity.Role">
+    <select id="findRoleIdAndName" resultMap="RoleEntityMap">
         select id,role_name from role
     </select>
 

@@ -1,5 +1,9 @@
 package com.zlk.group4.fdfs;
 
+<<<<<<< HEAD
+import com.github.tobato.fastdfs.domain.MateData;
+=======
+>>>>>>> dc9776d1a69f00737e8de6c095e607841153484a
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.exception.FdfsUnsupportStorePathException;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
@@ -18,6 +22,7 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @description: fdfs客户端上传封装工具类
@@ -114,15 +119,15 @@ public class CommonFileUtil {
     }
     @RequestMapping(value = "/imgUpload")
     @ResponseBody
-    public Map imgUpload(@RequestParam(value = "editormd-image-file", required = false) MultipartFile file) throws Exception{
-        Map<String,Object> map = new HashMap<String,Object>();
+    public Map imgUpload(@RequestParam(value = "editormd-image-file", required = false) MultipartFile file) throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
         //path是文件上传到FastDFS服务器上的路径
         String path = this.uploadFile(file);
-        String url = fdfsConfig.getResHost()+":"+fdfsConfig.getStoragePort()+path;
+        String url = fdfsConfig.getResHost() + ":" + fdfsConfig.getStoragePort() + path;
         System.out.println(url);
-        map.put("success",1);
-        map.put("url",url);
-        map.put("message","上传成功");
+        map.put("success", 1);
+        map.put("url", url);
+        map.put("message", "上传成功");
         return map;
     }
 

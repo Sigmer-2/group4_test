@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.zlk.group4.area.entity.Area;
 import com.zlk.group4.area.entity.Street;
 import com.zlk.group4.entity.User;
+import com.zlk.group4.fdfs.CommonFileUtil;
+import com.zlk.group4.fdfs.FdfsConfig;
 import com.zlk.group4.house.entity.House;
 import com.zlk.group4.house.entity.HouseDeploy;
 import com.zlk.group4.house.entity.HouseImg;
@@ -17,10 +19,8 @@ import net.sf.json.JSONObject;
 //import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -35,6 +35,27 @@ import java.util.concurrent.Callable;
 public class PersonController {
     @Autowired(required = false)
     private PersonService personService;
+
+    @Autowired
+    //对文件进行上传的工具类
+    private CommonFileUtil commonFileUtil;
+    @Autowired
+    private FdfsConfig fdfsConfig;
+    @RequestMapping(value = "/uploadTest")
+    @ResponseBody
+    public String uploadTest(@RequestParam(name = "file") MultipartFile file) throws Exception{
+        //path是文件上传到FastDFS服务器上的路径
+        String path = commonFileUtil.uploadFile(file);
+        /*
+         * url是最终访问文件资源的地址
+         * fdfsConfig.getResHost()获取的是服务器的ip
+         * fdfsConfig.getStoragePort()获取的是服务器的端口
+         */
+        String url = fdfsConfig.getResHost()+":"+fdfsConfig.getStoragePort()+path;
+        System.out.println(path);
+        System.out.println(url);
+        return url;
+    }
 
 
     @ResponseBody
@@ -120,6 +141,10 @@ public class PersonController {
     @ResponseBody
     @RequestMapping(value = "/wxLogin", method = RequestMethod.POST)
     public Map<String, Object> wxLogin(String code) throws Exception {
+//        JSONObject jsonObject1 = param.getJSONObject("personInfo");
+//        JSONObject fromObject1 = JSONObject.fromObject(jsonObject1);
+//        User user0 = (User) JSONObject.toBean(fromObject1,User.class);
+       // System.out.println(user0);
         //处理URL
         String url = String.format(StaticDataUtil.CODE_URL, StaticDataUtil.APPID, StaticDataUtil.SECRET, code);
         Map<String, Object> map = new HashMap<>();
@@ -130,6 +155,10 @@ public class PersonController {
             JSONObject json = JSONObject.fromObject(response.get("entity"));//
             String openId = json.getString("openid");
             String sessionKey = json.getString("session_key");
+            System.out.println(openId);
+            System.out.println(sessionKey);
+
+
             if(openId!=null){
                 User user = personService.findUserByOpenId(openId);
                 if(user!=null){
@@ -149,7 +178,8 @@ public class PersonController {
                     User userInsert = new User(sessionKey, openId);
 
                     flag = personService.insertUserInformation(userInsert);
-                    Integer userId = userInsert.getId();
+                    Integer userId = userInsert.getId();//获取userID
+                    System.out.println(userId);//打印userId
                     if(flag==1){
                         map.put("openId", openId);
                         map.put("sessionKey", sessionKey);
@@ -175,6 +205,20 @@ public class PersonController {
             map.put("statusCode", 0);
             //logger.debug("登录statusCode=0");
             return map;
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/updateUserById",method = RequestMethod.PUT)
+    public Integer update(@RequestBody User user){
+        try {
+            Integer flag = personService.updateUserById(user);
+            //logger.debug("updateUserMessage flag="+flag);
+            return flag;
+        } catch (Exception e) {
+            e.printStackTrace();
+            //logger.debug("updateUserMessage flag=-1");
+            return -1;
         }
     }
 }

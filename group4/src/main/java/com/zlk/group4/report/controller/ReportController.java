@@ -3,6 +3,7 @@ package com.zlk.group4.report.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.zlk.group4.report.entity.Report;
 import com.zlk.group4.report.service.ReportService;
+import com.zlk.group4.util.MyHouseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -73,8 +74,8 @@ public class ReportController {
         //未完成
         Map<String, Object> map = new HashMap<>();
         System.out.println("小程序调用");
-        JSONObject result = null;
-        StringBuilder sb = new StringBuilder();
+        JSONObject result = MyHouseUtils.getResult(request);
+        /*StringBuilder sb = new StringBuilder();
         try (BufferedReader reader = request.getReader();) {
             char[] buff = new char[1024];
             int len;
@@ -84,7 +85,7 @@ public class ReportController {
             result = JSONObject.parseObject(sb.toString());
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         String reportReason = result.getString("reportReason");
         System.out.println(reportReason);
         String reportDetails = result.getString("reportDetails");

@@ -47,13 +47,12 @@ public class PersonServiceImpl implements PersonService{
         Integer flag2=personMapper.saveHouseImg(houseImg);
         Integer flag3=personMapper.saveHouseLabel(houseLabel);
         Integer flag4=personMapper.saveHouseDeploy(houseDeploy);
+       // Integer id1=personMapper.getId();
         if(flag1==1&&flag2==1&&flag3==1&&flag4==1){
             return 1;
         }else {
             return 0;
         }
-
-
     }
 
     @Override
@@ -93,6 +92,11 @@ public class PersonServiceImpl implements PersonService{
     @Override
     public Integer insertUserInformation(User user) {
         return personMapper.insertUserInformation(user);
+    }
+
+    @Override
+    public Integer updateUserById(User user) {
+        return personMapper.updateUserById(user);
     }
 
 

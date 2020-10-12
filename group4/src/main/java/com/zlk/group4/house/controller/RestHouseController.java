@@ -1,12 +1,14 @@
 package com.zlk.group4.house.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.zlk.group4.fdfs.CommonFileUtil;
+import com.zlk.group4.fdfs.FdfsConfig;
 import com.zlk.group4.house.entity.HouseImg;
 import com.zlk.group4.house.entity.HouseRefImg;
 import com.zlk.group4.house.service.HouseImgService;
 import com.zlk.group4.house.service.HouseRefImgService;
 import com.zlk.group4.house.service.HouseRefUserService;
 import com.zlk.group4.house.service.HouseService;
-import com.zlk.group4.util.ImgUtil;
 import com.zlk.group4.util.MyHouseUtils;
 import com.zlk.group4.vo.HouseMsg;
 import com.zlk.group4.vo.ServerLayResponse;
@@ -44,6 +46,13 @@ public class RestHouseController {
 
     @Autowired
     private HouseService houseService;
+
+    @Autowired
+    //对文件进行上传的工具类
+    private CommonFileUtil commonFileUtil;
+
+    @Autowired
+    private FdfsConfig fdfsConfig;
 
     private HouseMsg houseMsg = null;
 
@@ -117,13 +126,20 @@ public class RestHouseController {
     @ResponseBody
     public Map<String,Object> addImg(MultipartFile file, HttpServletRequest request) throws IllegalStateException, IOException {
         Map<String, Object> map = new HashMap<>();
-        String url = "http://localhost:8080/img/";
-        String addImgs = ImgUtil.addImg(file, request);
+
+        //path是文件上传到FastDFS服务器上的路径
+        String path = commonFileUtil.uploadFile(file);
+        /*
+         * url是最终访问文件资源的地址
+         * fdfsConfig.getResHost()获取的是服务器的ip
+         * fdfsConfig.getStoragePort()获取的是服务器的端口
+         */
+        String url = fdfsConfig.getResHost()+":"+fdfsConfig.getStoragePort()+path;
         int houseId = Integer.parseInt(request.getParameter("houseId"));
-        if (addImgs!=null){
+        if (path!=null){
             HouseImg houseImg = new HouseImg();
             HouseRefImg houseRefImg = new HouseRefImg();
-            houseImg.setImgUrl(url+addImgs);
+            houseImg.setImgUrl(url);
             houseImg.setImgPage(0);
             imgService.insert(houseImg);
             houseRefImg.setHouseId(houseId);
@@ -140,11 +156,15 @@ public class RestHouseController {
     @PostMapping(value = "/msg",produces = "application/json;charset=UTF-8")
 //    @GetMapping("/msg")
     @ResponseBody
-    public Map<String,Object> getMap(Integer id){
+    public Map<String,Object> getMap(HttpServletRequest request){
+
+        JSONObject result = MyHouseUtils.getResult(request);
+        String id = result.getString("houseId");
+        System.out.println(id);
         Map<String, Object> map = new HashMap<>();
-        Map<String, Object> houseInfo = houseService.findHouseInfoById(2);
+        Map<String, Object> houseInfo = houseService.findHouseInfoById(Integer.parseInt(id));
 //        House house = (House)houseInfo.get("house");
-        Map<String, Object> map1 = houseRefUserService.listAllByHouseId(2);
+        Map<String, Object> map1 = houseRefUserService.listAllByHouseId(Integer.parseInt(id));
         HouseMsg houseMsg = (HouseMsg)map1.get("houseMsg");
         String area = houseMsg.getArea();
         String[] areas = area.split(",");
@@ -184,6 +204,20 @@ public class RestHouseController {
         map.put("deploys",deploys);
         map.put("tel",tel);
         map.put("listImg",listImg);
+        return map;
+    }
+
+    @PostMapping(value = "/collect",produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public Map<String,Object> collect(HttpServletRequest request){
+        //未完成
+        Map<String, Object> map = new HashMap<>();
+        System.out.println("小程序调用");
+        JSONObject result = MyHouseUtils.getResult(request);
+        String reportReason = result.getString("userId");
+        System.out.println(reportReason);
+        String reportDetails = result.getString("houseId");
+        System.out.println(reportDetails);
         return map;
     }
 }
