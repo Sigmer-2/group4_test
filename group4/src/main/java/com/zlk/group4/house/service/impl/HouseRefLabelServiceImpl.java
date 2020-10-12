@@ -77,26 +77,31 @@ public class HouseRefLabelServiceImpl implements HouseRefLabelService {
         HouseRefLabel houseRefLabel = houseRefLabelMapper.selectLabelByHouseId(id);
         HouseLabel houseLabel = houseLabelMapper.selectByPrimaryKey(houseRefLabel.getHouseLabelId());
             if (houseLabel.getShortRent() == 1){
-                sb.append("可短租，");
+                sb.append("可短租,");
             }if (houseLabel.getPayment() == 1){
-                sb.append("月付，");
+                sb.append("月付,");
             }if (houseLabel.getSouthward() == 1){
-                sb.append("南向，");
+                sb.append("南向,");
             }if (houseLabel.getAgencyfee() == 1){
-                sb.append("无中介费，");
+                sb.append("无中介费,");
             }if (houseLabel.getToilet() == 1){
-                sb.append("独卫，");
+                sb.append("独卫,");
             }if (houseLabel.getBalcony() == 1){
-                sb.append("独立阳台，");
+                sb.append("独立阳台,");
             }if (houseLabel.getElevator() == 1){
-                sb.append("电梯房，");
+                sb.append("电梯房,");
             }if (houseLabel.getBayWindow() == 1){
-                sb.append("带飘窗，");
+                sb.append("带飘窗,");
             }if (houseLabel.getDecoration() == 1){
-                sb.append("精装修，");
+                sb.append("精装修,");
             }
 
         return sb.toString();
+    }
+
+    @Override
+    public int findHouseLabelIdByHouseId(Integer id) {
+        return houseRefLabelMapper.findHouseLabelIdByHouseId(id);
     }
 
 }

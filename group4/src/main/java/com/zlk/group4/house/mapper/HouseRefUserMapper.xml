@@ -26,6 +26,21 @@
           <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
           <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
       </association>
+      <association property="user" javaType="com.zlk.group4.entity.User">
+          <id property="id" column="id" javaType="java.lang.Integer"/>
+          <result property="userRoleId" column="user_roleId" javaType="java.lang.Integer"/>
+          <result property="tel" column="tel" javaType="java.lang.String"/>
+          <result property="userImg" column="user_img" javaType="java.lang.String"/>
+          <result property="userName" column="user_name" javaType="java.lang.String"/>
+          <result property="userPlace" column="user_place" javaType="java.lang.String"/>
+          <result property="userSex" column="user_sex" javaType="java.lang.String"/>
+          <result property="userPassword" column="user_password" javaType="java.lang.String"/>
+          <result property="sessionKey" column="session_key" javaType="java.lang.String"/>
+          <result property="openId" column="open_id" javaType="java.lang.String"/>
+          <result property="type" column="type" javaType="java.lang.String"/>
+          <result property="businessName" column="business_name" javaType="java.lang.String"/>
+          <result property="houseNumber" column="house_number" javaType="java.lang.Integer"/>
+      </association>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -109,5 +124,11 @@
         select house_ref_user.*,user.*
         from house_ref_user,user
         where house_ref_user.house_id = #{id} and house_ref_user.user_id = user.id
+    </select>
+
+    <select id="selectHouseIdByUserId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select house_id
+        from house_ref_user
+        where user_id = #{id}
     </select>
 </mapper>

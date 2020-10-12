@@ -76,7 +76,7 @@
                     <a href="<%=basePath%>/repair" target = "page">报修管理</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="">问题与咨询</a>
+                    <a href="<%=basePath%>/question" target = "page">问题与咨询</a>
                 </li>
                 <li class="layui-nav-item">
                    <%-- <a href="javascript:;" target="page">角色管理</a>--%>

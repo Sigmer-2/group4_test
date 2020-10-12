@@ -1,7 +1,6 @@
 package com.zlk.group4.house.service;
 
 import com.zlk.group4.house.entity.Metro;
-import com.zlk.group4.house.entity.Region;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,7 +25,7 @@ public interface MetroService {
 
     int updateByPrimaryKey(Metro record);
 
-    int updateByString(String str);
+    int updateByString(String str,Integer id);
     /**
      * 根据地铁信息返回新增id
      * @Auther sunshuai

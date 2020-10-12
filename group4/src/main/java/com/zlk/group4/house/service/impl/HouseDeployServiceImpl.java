@@ -59,8 +59,9 @@ public class HouseDeployServiceImpl implements HouseDeployService {
     }
 
     @Override
-    public int updateByStr(String str) {
+    public int updateByStr(String str,Integer id) {
         HouseDeploy houseDeploy = getHouseDeploy(str);
+        houseDeploy.setId(id);
         return updateByPrimaryKey(houseDeploy);
     }
 
@@ -87,6 +88,7 @@ public class HouseDeployServiceImpl implements HouseDeployService {
             switch (s){
                 case "床" : houseDeploy.setBed(1);break;
                 case "WIFI" : houseDeploy.setWifi(1);break;
+                case "空调" : houseDeploy.setConditioner(1);break;
                 case "衣柜" : houseDeploy.setWardrobe(1);break;
                 case "书桌" : houseDeploy.setDesk(1);break;
                 case "椅子" : houseDeploy.setChair(1);break;

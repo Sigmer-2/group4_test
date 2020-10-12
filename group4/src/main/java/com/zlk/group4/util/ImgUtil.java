@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class ImgUtil {
     public static String addImg(MultipartFile file, HttpServletRequest request) throws IOException {
-    String path = "D:\\会\\group4\\group4\\src\\main\\resources\\static\\houseimg"; // 文件存储绝对路径
+    String path = "E:\\杂七杂八\\16\\group\\group4\\src\\main\\resources\\static\\houseimg"; // 文件存储绝对路径
         String pa = "static\\houseimg\\"; // 文件存储相对路径
         // 图片保存前缀
         String url = request.getSession().getServletContext().getRealPath("houseimg");
@@ -56,7 +56,7 @@ public class ImgUtil {
 //                    System.out.println("文件成功上传到指定目录下");
 
 //                    return pa + trueFileName;
-                    return path;
+                    return trueFileName;
                 }
 
             } else {

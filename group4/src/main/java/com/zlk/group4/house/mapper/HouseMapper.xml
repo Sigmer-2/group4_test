@@ -295,7 +295,195 @@
   <select id="findHouseCount" resultType="java.lang.Integer">
     select count(*) from house
   </select>
-
+  <delete id="adminDeleteHouseById">
+    delete from house where id=#{id}
+  </delete>
+  <delete id="deleteRefUserById">
+    delete from house_ref_user where house_id=#{id}
+  </delete>
+  <delete id="deleteRefLabelById">
+    delete from house_ref_label where house_id=#{id}
+  </delete>
+  <delete id="deleteRefDeployById">
+    delete from house_ref_deploy where house_id=#{id}
+  </delete>
+  <delete id="adminDeleteHouseByIds" parameterType="com.zlk.group4.house.entity.HouseIdParam">
+    delete from house
+    <where>
+      <if test="ids!=null">
+        <foreach collection="ids" item="id" open="id in (" close=")" separator=",">
+          #{id}
+        </foreach>
+      </if>
+    </where>
+  </delete>
+  <delete id="deleteRefUserByIds" parameterType="com.zlk.group4.house.entity.HouseIdParam">
+    delete from house_ref_user
+    <where>
+      <if test="ids!=null">
+        <foreach collection="ids" item="id" open="house_id in (" close=")" separator=",">
+          #{id}
+        </foreach>
+      </if>
+    </where>
+  </delete>
+  <delete id="deleteRefLabelByIds" parameterType="com.zlk.group4.house.entity.HouseIdParam">
+    delete from house_ref_label
+    <where>
+      <if test="ids!=null">
+        <foreach collection="ids" item="id" open="house_id in (" close=")" separator=",">
+          #{id}
+        </foreach>
+      </if>
+    </where>
+  </delete>
+  <delete id="deleteRefDeployByIds" parameterType="com.zlk.group4.house.entity.HouseIdParam">
+    delete from house_ref_deploy
+    <where>
+      <if test="ids!=null">
+        <foreach collection="ids" item="id" open="house_id in (" close=")" separator=",">
+          #{id}
+        </foreach>
+      </if>
+    </where>
+  </delete>
+  <update id="adminUpdateHouseById" parameterType="com.zlk.group4.house.entity.House">
+    update house
+    <set>
+      <if test="houseType != null">
+        house_type = #{houseType,jdbcType=VARCHAR},
+      </if>
+      <if test="regionId != null">
+        region_id = #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="metroId != null">
+        metro_id = #{metroId,jdbcType=INTEGER},
+      </if>
+      <if test="estate != null">
+        estate = #{estate,jdbcType=VARCHAR},
+      </if>
+      <if test="listingsType != null">
+        listings_type = #{listingsType,jdbcType=VARCHAR},
+      </if>
+      <if test="rentalMode != null ">
+        rental_mode = #{rentalMode,jdbcType=VARCHAR},
+      </if>
+      <if test="roomType != null">
+        room_type = #{roomType,jdbcType=VARCHAR},
+      </if>
+      <if test="rent != null">
+        rent = #{rent,jdbcType=DECIMAL},
+      </if>
+      <if test="houseIntroduction != null">
+        house_introduction = #{houseIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="checkinTime != null">
+        checkin_time = #{checkinTime,jdbcType=DATE},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="call != null ">
+        `call` = #{call,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="wxSelectHouse" resultMap="BaseResultMap">
+    select house.*,region.*,metro.*
+    from house,metro,region,house_ref_label,house_label
+    where house.region_id = region.id and house.metro_id = metro.id  and house_ref_label.house_id = house.id and house_ref_label.house_label_id = house_label.id
+    <if test="estate != null and estate != ''">
+      and house.estate =#{estate}
+    </if>
+    <if test="rent1 != null and rent2 != null">
+      and house.rent between #{rent1} and #{rent2}
+    </if>
+    <if test="area != null">
+      and region.distrct_name = #{area}
+    </if>
+    <if test="street != null">
+      and region.street = #{street}
+    </if>
+    <if test="line != null">
+      and metro.metro_line = #{line}
+    </if>
+    <if test="station != null">
+      and metro.station = #{station}
+    </if>
+    <if test="rentalModel != null">
+      and house.rental_mode = #{rentalModel}
+    </if>
+    <if test="houseType != null">
+      and house.house_type = #{houseType}
+    </if>
+    <if test="sex != null">
+      and house.sex = #{sex}
+    </if>
+    <if test="shortRent != null">
+      and house_label.short_rent = #{shortRent}
+    </if>
+    <if test="payment != null">
+      and house_label.payment = #{payment}
+    </if>
+    <if test="southward != null">
+      and house_label.southward = #{southward}
+    </if>
+    <if test="agencyfee != null">
+      and house_label.agencyfee = #{agencyfee}
+    </if>
+    <if test="toilet != null">
+      and house_label.toilet = #{toilet}
+    </if>
+    <if test="balcony != null">
+      and house_label.balcony = #{balcony}
+    </if>
+    <if test="elevator != null">
+      and house_label.elevator = #{elevator}
+    </if>
+    <if test="bayWindow != null">
+      and house_label.bay_window = #{bayWindow}
+    </if>
+    <if test="decoration != null">
+      and house_label.decoration = #{decoration}
+    </if>
+    <if test="yishi != null or ershi != null or sanshi != null or sishi != null or wushi != null">
+      and
+      <trim prefix="(" suffix=")" suffixOverrides=" or">
+        <if test="yishi !=null">
+          house.listings_type like #{yishi}"%" or
+        </if>
+        <if test="ershi !=null">
+          house.listings_type like #{ershi}"%" or
+        </if>
+        <if test="sanshi !=null">
+          house.listings_type like #{sanshi}"%" or
+        </if>
+        <if test="sishi !=null">
+          house.listings_type like #{sishi}"%" or
+        </if>
+        <if test="wushi !=null">
+          house.listings_type like #{wushi}"%" or
+        </if>
+      </trim>
+    </if>
+    <if test="sort != null">
+      ORDER BY house.rent ${sort}
+    </if>
+    limit #{startIndex},#{pageSize}
+  </select>
 <!--auto generated by MybatisCodeHelper on 2020-09-23-->
   <select id="selectAll" resultMap="BaseResultMap">
       SELECT

@@ -38,6 +38,8 @@ public interface HouseRefLabelService {
 
     String label(Integer id);
 
+    int findHouseLabelIdByHouseId(Integer id);
+
 }
 
 

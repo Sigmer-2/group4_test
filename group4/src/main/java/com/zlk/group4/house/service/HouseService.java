@@ -133,7 +133,25 @@ public interface HouseService {
      * @time: 2020/9/29 19:12
      */
     Integer adminUpdateHouseById(House house);
+    /**
+     * 根据房源id查询房源信息集合
+     * @Auther sunshuai
+     * @Date 2020/10/8 9:43
+     * @param houseId
+     * @return
+     */
+    Map<String,Object> findHouseInfoById(Integer houseId);
 
+    /**
+     *
+     * 小程序对房屋的查询
+     * @description: *
+     * @param map,page,limit
+     * @return:
+     * @author: zhc
+     * @time: 2020/10/10 14:20
+     */
+    List<House> wxSelectHouse(Map map,Integer page,Integer limit);
 }
 
 

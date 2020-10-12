@@ -28,7 +28,7 @@ public interface WxRepairsService {
  * @param repairUserid
  * @return com.zlk.group4.repair.entity.Repairs
  */
-    WxRepair findRepairsByUserid(Integer repairUserid);
+    List<WxRepair> findRepairsByUserid(Integer repairUserid);
     /**
      * 根据用户id查询用户所有的报修信息和小区位置
      * @Auther lihongying

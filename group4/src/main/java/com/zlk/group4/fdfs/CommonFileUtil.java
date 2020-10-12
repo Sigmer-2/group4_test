@@ -1,6 +1,9 @@
 package com.zlk.group4.fdfs;
 
+<<<<<<< HEAD
 import com.github.tobato.fastdfs.domain.MateData;
+=======
+>>>>>>> dc9776d1a69f00737e8de6c095e607841153484a
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.exception.FdfsUnsupportStorePathException;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
@@ -10,10 +13,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -21,13 +29,15 @@ import java.util.Set;
  * @create: 2019-11-19 10:32
  **/
 @Component
+@RequestMapping(value = "/file")
 public class CommonFileUtil {
 
     private final Logger logger = LoggerFactory.getLogger(CommonFileUtil.class);
 
     @Autowired
     private FastFileStorageClient storageClient;
-
+    @Autowired
+    private FdfsConfig fdfsConfig;
 
     /**
      *	MultipartFile类型的文件上传ַ
@@ -107,10 +117,18 @@ public class CommonFileUtil {
             logger.warn(e.getMessage());
         }
     }
-
-    public String upfileImage(InputStream is, long size, String fileExtName, Set<MateData> metaData) {
-        StorePath path = storageClient.uploadImageAndCrtThumbImage(is, size, fileExtName, metaData);
-        return getResAccessUrl(path);
+    @RequestMapping(value = "/imgUpload")
+    @ResponseBody
+    public Map imgUpload(@RequestParam(value = "editormd-image-file", required = false) MultipartFile file) throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        //path是文件上传到FastDFS服务器上的路径
+        String path = this.uploadFile(file);
+        String url = fdfsConfig.getResHost() + ":" + fdfsConfig.getStoragePort() + path;
+        System.out.println(url);
+        map.put("success", 1);
+        map.put("url", url);
+        map.put("message", "上传成功");
+        return map;
     }
 
 }

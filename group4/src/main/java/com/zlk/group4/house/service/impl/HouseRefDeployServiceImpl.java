@@ -75,41 +75,46 @@ public class HouseRefDeployServiceImpl implements HouseRefDeployService {
         HouseRefDeploy houseRefDeploy = houseRefDeployMapper.selectDeployByHouseId(id);
         HouseDeploy houseDeploy = deployMapper.selectByPrimaryKey(houseRefDeploy.getHouseDeployId());
         if (houseDeploy.getBed() == 1){
-            sb.append("床，");
+            sb.append("床,");
         }if (houseDeploy.getWifi() == 1){
-            sb.append("WIFI，");
+            sb.append("WIFI,");
         }if (houseDeploy.getConditioner() == 1){
-            sb.append("空调，");
+            sb.append("空调,");
         }if (houseDeploy.getWardrobe() == 1){
-            sb.append("衣柜，");
+            sb.append("衣柜,");
         }if (houseDeploy.getDesk() == 1){
-            sb.append("书桌，");
+            sb.append("书桌,");
         }if (houseDeploy.getChair() == 1){
-            sb.append("椅子，");
+            sb.append("椅子,");
         }if (houseDeploy.getSofa() == 1){
-            sb.append("沙发，");
+            sb.append("沙发,");
         }if (houseDeploy.getRefrigerator() == 1){
-            sb.append("冰箱，");
+            sb.append("冰箱,");
         }if (houseDeploy.getWashing() == 1){
-            sb.append("洗衣机，");
+            sb.append("洗衣机,");
         }if (houseDeploy.getTv() == 1){
-            sb.append("电视机，");
+            sb.append("电视机,");
         }if (houseDeploy.getHeater() == 1){
-            sb.append("热水器，");
+            sb.append("热水器,");
         }if (houseDeploy.getStove() == 1){
-            sb.append("燃气灶，");
+            sb.append("燃气灶,");
         }if (houseDeploy.getMicrowave() == 1){
-            sb.append("微波炉，");
+            sb.append("微波炉,");
         }if (houseDeploy.getLampblack() == 1){
-            sb.append("油烟机，");
+            sb.append("油烟机,");
         }if (houseDeploy.getDining() == 1){
-            sb.append("餐桌椅，");
+            sb.append("餐桌椅,");
         }if (houseDeploy.getLock() == 1){
-            sb.append("智能锁，");
+            sb.append("智能锁,");
         }if (houseDeploy.getLed() == 1){
-            sb.append("台灯，");
+            sb.append("台灯,");
         }
         return sb.toString();
+    }
+
+    @Override
+    public int findDeployIdbyHouseId(Integer id) {
+        return houseRefDeployMapper.findDeployIdbyHouseId(id);
     }
 
 }

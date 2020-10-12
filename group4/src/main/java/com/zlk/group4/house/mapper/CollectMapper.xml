@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zlk.group4.house.mapper.CollectMapper">
+  <resultMap id="BaseResultMap" type="com.zlk.group4.house.entity.Collect">
+    <!--@mbg.generated-->
+    <!--@Table `collect`-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="collect_userId" jdbcType="INTEGER" property="collectUserid" />
+    <result column="collect_houseId" jdbcType="INTEGER" property="collectHouseid" />
+    <result column="collect_time" jdbcType="TIMESTAMP" property="collectTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, collect_userId, collect_houseId, collect_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from `collect`
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from `collect`
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zlk.group4.house.entity.Collect" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `collect` (collect_userId, collect_houseId, collect_time
+      )
+    values (#{collectUserid,jdbcType=INTEGER}, #{collectHouseid,jdbcType=INTEGER}, #{collectTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zlk.group4.house.entity.Collect" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into `collect`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="collectUserid != null">
+        collect_userId,
+      </if>
+      <if test="collectHouseid != null">
+        collect_houseId,
+      </if>
+      <if test="collectTime != null">
+        collect_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="collectUserid != null">
+        #{collectUserid,jdbcType=INTEGER},
+      </if>
+      <if test="collectHouseid != null">
+        #{collectHouseid,jdbcType=INTEGER},
+      </if>
+      <if test="collectTime != null">
+        #{collectTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlk.group4.house.entity.Collect">
+    <!--@mbg.generated-->
+    update `collect`
+    <set>
+      <if test="collectUserid != null">
+        collect_userId = #{collectUserid,jdbcType=INTEGER},
+      </if>
+      <if test="collectHouseid != null">
+        collect_houseId = #{collectHouseid,jdbcType=INTEGER},
+      </if>
+      <if test="collectTime != null">
+        collect_time = #{collectTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlk.group4.house.entity.Collect">
+    <!--@mbg.generated-->
+    update `collect`
+    set collect_userId = #{collectUserid,jdbcType=INTEGER},
+      collect_houseId = #{collectHouseid,jdbcType=INTEGER},
+      collect_time = #{collectTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

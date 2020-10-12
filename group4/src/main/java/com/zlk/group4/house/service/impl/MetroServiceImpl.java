@@ -59,8 +59,10 @@ public class MetroServiceImpl implements MetroService {
     }
 
     @Override
-    public int updateByString(String str) {
-        return updateByPrimaryKey(getMetro(str));
+    public int updateByString(String str,Integer id) {
+        Metro metro = getMetro(str);
+        metro.setId(id);
+        return updateByPrimaryKey(metro);
     }
 
     @Override

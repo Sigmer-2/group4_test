@@ -44,6 +44,8 @@ public interface HouseRefDeployService {
      */
     String houseDeploy(Integer id);
 
+    int findDeployIdbyHouseId(Integer id);
+
 
 }
 
