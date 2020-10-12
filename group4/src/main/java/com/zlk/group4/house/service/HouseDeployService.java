@@ -26,13 +26,13 @@ public interface HouseDeployService {
     int updateByPrimaryKey(HouseDeploy record);
 
     /**
-     * 根据房源配置信息更新
+     * 根据房源配置信息、房源id更新
      * @Auther sunshuai
      * @Date 2020/9/23 21:37
      * @param str 配置信息中间用中文"，"分开
      * @return int 返回受影响行数
      */
-    int updateByStr(String str);
+    int updateByStr(String str,Integer id);
 
     /**
      * 根据房源配置信息新增并返回新增Id

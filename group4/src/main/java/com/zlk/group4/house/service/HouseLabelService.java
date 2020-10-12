@@ -32,7 +32,7 @@ public interface HouseLabelService {
      * @param str
      * @return int
      */
-    int updateByString(String str);
+    int updateByString(String str,Integer id);
 
     /**
      * 根据标签字符串新增HouseLabel内容

@@ -99,6 +99,11 @@ public class HouseRefLabelServiceImpl implements HouseRefLabelService {
         return sb.toString();
     }
 
+    @Override
+    public int findHouseLabelIdByHouseId(Integer id) {
+        return houseRefLabelMapper.findHouseLabelIdByHouseId(id);
+    }
+
 }
 
 

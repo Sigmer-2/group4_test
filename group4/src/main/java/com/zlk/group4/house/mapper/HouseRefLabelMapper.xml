@@ -98,4 +98,12 @@
       WHERE
               h.id = #{id}
   </select>
+  <select id="findHouseLabelIdByHouseId" parameterType="_integer" resultType="_integer">
+      SELECT
+              house_ref_label.house_label_id
+      FROM
+              house_ref_label
+      WHERE
+              house_ref_label.house_id = #{id}
+  </select>
 </mapper>

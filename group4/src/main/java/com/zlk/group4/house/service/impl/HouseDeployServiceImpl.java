@@ -59,8 +59,9 @@ public class HouseDeployServiceImpl implements HouseDeployService {
     }
 
     @Override
-    public int updateByStr(String str) {
+    public int updateByStr(String str,Integer id) {
         HouseDeploy houseDeploy = getHouseDeploy(str);
+        houseDeploy.setId(id);
         return updateByPrimaryKey(houseDeploy);
     }
 
