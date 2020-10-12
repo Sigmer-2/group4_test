@@ -125,4 +125,10 @@
         from house_ref_user,user
         where house_ref_user.house_id = #{id} and house_ref_user.user_id = user.id
     </select>
+
+    <select id="selectHouseIdByUserId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select house_id
+        from house_ref_user
+        where user_id = #{id}
+    </select>
 </mapper>

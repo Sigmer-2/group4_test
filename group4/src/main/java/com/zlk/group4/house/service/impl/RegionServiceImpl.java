@@ -58,8 +58,10 @@ public class RegionServiceImpl implements RegionService {
     }
 
     @Override
-    public int updateByString(String str) {
-        return updateByPrimaryKey(getRegion(str));
+    public int updateByString(String str,Integer id) {
+        Region region = getRegion(str);
+        region.setId(id);
+        return updateByPrimaryKey(region);
     }
 
     @Override

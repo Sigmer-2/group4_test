@@ -1,7 +1,5 @@
 package com.zlk.group4.house.service.impl;
 
-import com.zlk.group4.house.entity.HouseImg;
-import com.zlk.group4.house.mapper.HouseImgMapper;
 import com.zlk.group4.house.mapper.HouseRefImgMapper;
 import com.zlk.group4.house.service.HouseImgService;
 import org.springframework.beans.factory.annotation.Autowired;

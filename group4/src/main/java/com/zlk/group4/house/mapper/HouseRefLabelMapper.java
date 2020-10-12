@@ -72,4 +72,12 @@ public interface HouseRefLabelMapper {
      * @return java.util.List<com.zlk.group4.house.entity.HouseRefLabel>
      */
     HouseRefLabel selectLabelByHouseId(Integer id);
+    /**
+     * 查找houseLabelId
+     * @Auther sunshuai
+     * @Date 2020/10/12 10:28
+     * @param id
+     * @return int
+     */
+    int findHouseLabelIdByHouseId(Integer id);
 }

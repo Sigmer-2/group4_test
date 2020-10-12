@@ -71,4 +71,6 @@ public interface HouseRefDeployMapper {
      * @return com.zlk.group4.house.entity.HouseRefDeploy
      */
     HouseRefDeploy selectDeployByHouseId(Integer id);
+
+    int findDeployIdbyHouseId(Integer id);
 }

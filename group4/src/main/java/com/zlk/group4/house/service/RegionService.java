@@ -25,7 +25,7 @@ public interface RegionService {
 
     int updateByPrimaryKey(Region record);
 
-    int updateByString(String str);
+    int updateByString(String str,Integer id);
     /**
      *
      * 管理员更新房屋区域信息

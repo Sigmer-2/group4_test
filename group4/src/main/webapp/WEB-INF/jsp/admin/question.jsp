@@ -77,7 +77,7 @@
                 {field: 'id', width: 80, title: '维修ID', fixed: 'left'}
                 , {templet :'<div>{{createFormat(d.user.userName)}}</div>', width: 180 ,title: '提问用户昵称'}
                 , {field: 'questionTitle', width: 180, title: '问题标题'}
-                , {field: '', width: 180, title: '故障描述',toolbar: '#r1'}
+                , {field: '', width: 180, title: '问题描述',toolbar: '#r1'}
                 , {templet :'<div>{{createFormat(d.user.tel)}}</div>', width: 180 ,title: '提问用户联系方式'}
                 , {
                     field: 'questionStatus', title: '回复状态', width: 100,

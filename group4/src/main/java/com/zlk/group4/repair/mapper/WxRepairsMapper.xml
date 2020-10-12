@@ -59,17 +59,15 @@
   </insert>
   <select id="selectLocationByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
       SELECT
-    r.id,
-    r.repair_userid,
-	r.repair_houseid,
-	h.estate,
-	r.repair_describe,
-	r.repair_status
+    r.*,
+	h.estate
 FROM
 	`repair` AS r
 	INNER JOIN
 	house AS h
 	ON
-		r.repair_houseid =h.id
+	r.repair_houseid=h.id
+	WHERE
+		r.repair_userid=#{id}
   </select>
 </mapper>

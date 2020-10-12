@@ -112,6 +112,11 @@ public class HouseRefDeployServiceImpl implements HouseRefDeployService {
         return sb.toString();
     }
 
+    @Override
+    public int findDeployIdbyHouseId(Integer id) {
+        return houseRefDeployMapper.findDeployIdbyHouseId(id);
+    }
+
 }
 
 

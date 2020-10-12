@@ -58,8 +58,9 @@ public class HouseLabelServiceImpl implements HouseLabelService {
     }
 
     @Override
-    public int updateByString(String str) {
+    public int updateByString(String str,Integer id) {
         HouseLabel houseLabel = getHouseLabel(str);
+        houseLabel.setId(id);
         return updateByPrimaryKey(houseLabel);
     }
 

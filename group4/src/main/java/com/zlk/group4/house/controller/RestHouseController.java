@@ -1,6 +1,5 @@
 package com.zlk.group4.house.controller;
 
-import com.zlk.group4.house.entity.House;
 import com.zlk.group4.house.entity.HouseImg;
 import com.zlk.group4.house.entity.HouseRefImg;
 import com.zlk.group4.house.service.HouseImgService;
@@ -14,7 +13,6 @@ import com.zlk.group4.vo.ServerLayResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.math.BigDecimal;

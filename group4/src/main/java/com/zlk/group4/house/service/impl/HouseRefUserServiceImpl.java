@@ -158,10 +158,10 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
         String houseLabel = (String) map.get("houseLabel");
         String houseDeploy = (String) map.get("houseDeploy");
         int i = houseService.updateByPrimaryKey(house);
-        int i1 = regionService.updateByString(area);
-        int i2 = metroService.updateByString(metro);
-        int i3 = labelService.updateByString(houseLabel);
-        int i4 = deployService.updateByStr(houseDeploy);
+        int i1 = regionService.updateByString(area,house.getRegionId());
+        int i2 = metroService.updateByString(metro,house.getMetroId());
+        int i3 = labelService.updateByString(houseLabel,houseRefLabelService.findHouseLabelIdByHouseId(house.getId()));
+        int i4 = deployService.updateByStr(houseDeploy,houseRefDeployService.findDeployIdbyHouseId(house.getId()));
         return i+i1+i2+i3+i4;
     }
 
@@ -292,6 +292,9 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
     public HouseRefUser selectUserByHouseId(Integer id) {
         return houseRefUserMapper.selectUserByHouseId(id);
     }
+
+    @Override
+    public List selectHouseIdByUserId(Integer id) { return houseRefUserMapper.selectHouseIdByUserId(id); }
 
 }
 

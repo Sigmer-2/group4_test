@@ -74,4 +74,13 @@ public interface HouseRefUserMapper {
      * @time: 2020/9/27 14:12
      */
     HouseRefUser selectUserByHouseId(Integer id);
+
+    /**
+     * 根据userId查询houseId
+     * @Auther lihongying
+     * @Date 2020/10/8 17:09
+     * @param id
+     * @return List
+     */
+     List selectHouseIdByUserId(Integer id);
 }
