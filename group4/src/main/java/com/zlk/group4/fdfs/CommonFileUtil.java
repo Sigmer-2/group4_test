@@ -1,9 +1,6 @@
 package com.zlk.group4.fdfs;
 
-<<<<<<< HEAD
 import com.github.tobato.fastdfs.domain.MateData;
-=======
->>>>>>> dc9776d1a69f00737e8de6c095e607841153484a
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.exception.FdfsUnsupportStorePathException;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
