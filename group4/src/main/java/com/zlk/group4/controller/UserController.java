@@ -2,11 +2,12 @@ package com.zlk.group4.controller;
 
 import com.zlk.group4.entity.User;
 import com.zlk.group4.service.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import static com.zlk.group4.util.MD5Utils.md5Encrypt32Lower;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,15 +24,21 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Map<String, Object> login(@RequestBody User user) throws Exception {//登陆
-        System.out.println(user.toString());
+//        System.out.println(user.toString());
         Map<String, Object> map = new HashMap<>();
+//        user.setUserPassword(md5Encrypt32Lower(user.getUserPassword()));
+//        Integer flag = userService.selectUserLogin(user);
+//        System.out.println(flag);
+        // 从SecurityUtils里边创建一个 subject
+        Subject subject = SecurityUtils.getSubject();
+        // 在认证提交前准备 token（令牌）
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(), user.getUserPassword());
+        // 执行认证登陆
+        subject.login(token);
         user.setUserPassword(md5Encrypt32Lower(user.getUserPassword()));
-        Integer flag = userService.selectUserLogin(user);
-        System.out.println(flag);
         Integer roleid = userService.findUserRole(user);
-        if (flag == 1) {
+        if (subject.isAuthenticated()) {
             map.put("status", 1);
-            System.out.println(map.get("status"));
             if(roleid!=null){
                 if(roleid==2){
                     map.put("type",2);
@@ -42,12 +49,30 @@ public class UserController {
             else{
                 map.put("type",1);
             }
-            return map;
         } else {
+            token.clear();
             map.put("status", 0);
         }
-
         return map;
+//        if (flag == 1) {
+//            map.put("status", 1);
+//            System.out.println(map.get("status"));
+//            if(roleid!=null){
+//                if(roleid==2){
+//                    map.put("type",2);
+//                }else{
+//                    map.put("type",1);
+//                }
+//            }
+//            else{
+//                map.put("type",1);
+//            }
+//            return map;
+//        } else {
+//            map.put("status", 0);
+//        }
+//
+//        return map;
     }
 
 
@@ -72,6 +97,21 @@ public class UserController {
             map.put("status", 0);
         }
         return map;
+    }
+    //退出登录
+    /*@RequestMapping("/logout")
+    public String shiroLogout(){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "redirect:/login";
+    }*/
+
+    @RequestMapping("/loginUser")
+    @ResponseBody
+    public User sysUserTest(){
+        String principal = (String) SecurityUtils.getSubject().getPrincipal();
+        User sysUser = userService.selectUserByName1(principal);
+        return sysUser;
     }
 
 }

@@ -45,8 +45,7 @@ public class PageController {
     public String question(){
         return "admin/question";
     }
-
     /**普通用户招租表*/
     @RequestMapping(value = "/home")
-    public String home()throws Exception{ return "/ordinary/home"; }
+    public String home()throws Exception{ return "ordinary/home"; }
 }

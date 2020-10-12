@@ -504,7 +504,7 @@
                         }
                     },align:'center'}
 
-                ,{title: '房屋图片', width: 100,align:'center',templet:$("#titleTpl4")}
+                ,{title: '房屋图片', width: 140,align:'center',templet:$("#titleTpl4")}
                 ,{title: '房间配置', width: 100,align:'center',templet:$("#titleTpl6")}
                 ,{title: '房屋标签', width: 100,align:'center',templet:$("#titleTpl5")}
                 ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}

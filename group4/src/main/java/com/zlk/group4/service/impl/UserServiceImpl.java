@@ -25,6 +25,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User selectUserByName1(String username) {
+        return userMapper.selectUserByName1(username);
+    }
+
+    @Override
     public Integer saveUser(User user) {
         return userMapper.saveUser(user);
     }

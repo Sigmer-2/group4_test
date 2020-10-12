@@ -42,6 +42,15 @@ public interface UserMapper {
     Integer selectUserByName(String username);
     /**
      *
+     *查询数据库中是否有此用户名 返回实体类
+     * @description: * @param null
+     * @return:
+     * @author: zhc
+     * @time: 2020/8/17 14:57
+     */
+    User selectUserByName1(String username);
+    /**
+     *
      *注册用户（保存）
      * @description: * @param null
      * @return:
