@@ -36,7 +36,7 @@
         select user_img from user where id = #{id}
     </select>
 
-    <insert id="saveHouse" parameterType="com.zlk.group4.house.entity.House">
+    <insert id="saveHouse" parameterType="com.zlk.group4.house.entity.House" useGeneratedKeys="true" keyProperty="id">
         insert into house
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="houseType!=null and houseType!=''">
@@ -399,6 +399,25 @@
             </if>
         </trim>
     </insert>
+
+    <update id="updateUserById">
+        update user set
+        <trim suffixOverrides=",">
+            <if test="userName!=null and userName!=''">
+                user_name=#{userName},
+            </if>
+            <if test="userImg!=null and userImg!=''">
+                user_img=#{userImg},
+            </if>
+            <if test="userSex!=null and userSex!=''">
+                user_sex=#{userSex},
+            </if>
+            <if test="userPlace!=null and userPlace!=''">
+                user_place=#{userPlace},
+            </if>
+        </trim>
+        where id=#{id}
+    </update>
 
 
 </mapper>

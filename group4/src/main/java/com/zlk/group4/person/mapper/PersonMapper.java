@@ -125,6 +125,14 @@ public interface PersonMapper {
       * @return:java.lang.Integer
       */
      Integer insertUserInformation(User user);
+     /**
+      * @describetion:根据用户id修改用户信息
+      * @author:sunjiahe
+      * @date:2020/10/12 17:08
+      * @param:[user]
+      * @return:java.lang.Integer
+      */
+     Integer updateUserById(User user);
 
 
 

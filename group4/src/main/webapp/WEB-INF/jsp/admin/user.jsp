@@ -183,10 +183,10 @@
         var form = layui.form;
 
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: "<%=request.getContextPath()%>/findRoleIdAndName",
             success: function (msg) {
-                // console.log(msg);
+                 console.log(msg);
                 $.each(msg, function (index, value) {
                     //console.log(value);
                     $("#select1").append(new Option(value.roleName,value.roleId));
@@ -196,7 +196,7 @@
         });
 
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: "<%=request.getContextPath()%>/findRoleIdAndName",
             success: function (msg) {
                 // console.log(msg);
@@ -217,7 +217,7 @@
             cols: [[
                 //{checkbox: true, fixed: true}
                 {field: 'userId', title: '用户id', width: 100, sort: true}
-                , {field: 'userRoleId', title: '用户类型', width: 110,templet:$("#roleName")}
+                , {field: 'userRoleId', title: '用户类型', width: 110,templet:$("#roleName")}//,templet:$("#roleName")
                 , {field: 'userTel', title: '联系方式', width: 177}
                 , {field: 'userImg', title: '用户头像', width: 177}
                 , {field: 'userName', title: '用户昵称', width: 100}
@@ -298,7 +298,7 @@
                             "userName":data.field.userName,
                             "roleName":data.field.roleName
                         };*/
-                        console.log(data.field);
+                        console.log(data.field);//
                         // ajax方式添加用户
                         $.ajax({
                             url: '<%=request.getContextPath()%>/saveUser',
@@ -370,9 +370,11 @@
             if (event === 'updateUser') {
                 // 每次显示更新用户的表单前自动为表单填写该行的数据
                 var userId=data.userId;
+                //var userRoleId=data.roleId
                 form.val('update-user-form', {
-                    "userId": data.userId,
+                    "userId": userId,
                     "userRoleId": data.userRoleId,
+                    //"userRoleId":data.roleId,
                     "userTel": data.userTel,
                     "userImg": data.userImg,
                     "userName": data.userName,
@@ -396,6 +398,7 @@
                     var course={
                         "userId":userId,
                         "userRoleId":data.field.userRoleId,
+                        //"userRoleId":data.field.roleId,
                         "userTel":data.field.userTel,
                         "userImg":data.field.userImg,
                         "userName":data.field.userName,
@@ -405,7 +408,7 @@
                         "sessionKey":data.field.sessionKey,
                         "openId":data.field.openId
                     };
-                    console.log(course);
+                    console.log(course);//打印更新的用户信息
                     // ajax方式更新用户
                     $.ajax({
                         url: '<%=request.getContextPath()%>/',
