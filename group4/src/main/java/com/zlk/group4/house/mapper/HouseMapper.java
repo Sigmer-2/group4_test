@@ -156,6 +156,36 @@ public interface HouseMapper {
     Integer adminDeleteHouseByIds(HouseIdParam param);
     /**
      *
+     * 查询该用户的浏览足迹
+     * @description: *
+     * @param map
+     * @return:
+     * @author: zhc
+     * @time: 2020/10/13 14:26
+     */
+    List<Integer> findFoot(Map map);
+    /**
+     *
+     * 查询该用户的收藏
+     * @description: *
+     * @param map
+     * @return:
+     * @author: zhc
+     * @time: 2020/10/13 14:26
+     */
+    List<Integer> findCollect(Map map);
+    /**
+     *
+     * 小程序查询收藏或足迹功能返回的房屋列表
+     * @description: *
+     * @param map
+     * @return:
+     * @author: zhc
+     * @time: 2020/10/13 14:47
+     */
+    List<House> wxSelectFoot(Map map);
+    /**
+     *
      * 管理员删除多条房屋信息与用户之间的关联
      * @description: *
      * @param param

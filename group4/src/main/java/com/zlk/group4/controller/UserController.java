@@ -1,5 +1,6 @@
 package com.zlk.group4.controller;
 
+import com.zlk.group4.entity.Street;
 import com.zlk.group4.entity.User;
 import com.zlk.group4.service.UserService;
 import org.apache.shiro.SecurityUtils;
@@ -9,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import static com.zlk.group4.util.MD5Utils.md5Encrypt32Lower;
+
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -112,6 +116,27 @@ public class UserController {
         String principal = (String) SecurityUtils.getSubject().getPrincipal();
         User sysUser = userService.selectUserByName1(principal);
         return sysUser;
+    }
+    /**
+     *
+     * 插入用户浏览足迹
+     * @description: * @param null
+     * @return:
+     * @author: zhc
+     * @time: 2020/10/13 11:23
+     */
+    @RequestMapping(value = "/insertFoot", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> insertFoot(Integer userId,Integer houseId) throws Exception {
+        Date dateNow = new Date();
+        HashMap<String, Object> map1 = new HashMap<>();
+        map1.put("userId",userId);
+        map1.put("houseId",houseId);
+        map1.put("dateNow",dateNow);
+        Integer flag = userService.insertFoot(map1);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("data", flag);
+        return map;
     }
 
 }

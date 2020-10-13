@@ -6,6 +6,9 @@ import com.zlk.group4.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.Map;
+
 /**
  * @author: zhc
  * @time: 2020/9/22 11:06
@@ -37,5 +40,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public Integer findUserRole(User user) {
         return userMapper.findUserRole(user);
+    }
+
+    @Override
+    public Integer insertFoot(Map map) {
+        return userMapper.insertFoot(map);
     }
 }
