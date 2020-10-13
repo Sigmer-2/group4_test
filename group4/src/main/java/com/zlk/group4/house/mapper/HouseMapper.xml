@@ -295,6 +295,30 @@
   <select id="findHouseCount" resultType="java.lang.Integer">
     select count(*) from house
   </select>
+  <select id="findFoot" resultType="java.lang.Integer">
+    select distinct read_houseId
+    from read1
+    where read_userId = #{userid}
+    group by read_houseId asc
+  </select>
+  <select id="wxSelectFoot" resultMap="BaseResultMap">
+    select house.*,region.*,metro.*
+    from house,metro,region,house_ref_label,house_label
+    where house.region_id = region.id and house.metro_id = metro.id  and house_ref_label.house_id = house.id and house_ref_label.house_label_id = house_label.id
+    <if test="ids!=null">
+    and
+      <foreach collection="ids" item="id" open="house.id in (" close=")" separator=",">
+        #{id}
+      </foreach>
+    </if>
+    limit #{startIndex},#{pageSize}
+  </select>
+  <select id="findCollect" resultType="java.lang.Integer">
+    select distinct collect_houseId
+    from collect
+    where collect_userId = #{userid}
+    group by collect_houseId asc
+  </select>
   <delete id="adminDeleteHouseById">
     delete from house where id=#{id}
   </delete>

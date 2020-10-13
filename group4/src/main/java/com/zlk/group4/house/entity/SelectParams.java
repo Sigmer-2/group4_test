@@ -43,6 +43,10 @@ public class SelectParams {
     private List<Integer> label;
     /**排序数据*/
     private Integer sort;
+    /**用户id*/
+    private Integer userid;
+    /**用于区分收藏功能和足迹功能*/
+    private Integer zuji;
 
     @Override
     public String toString() {
@@ -61,6 +65,8 @@ public class SelectParams {
                 ", listingType=" + listingType +
                 ", label=" + label +
                 ", sort=" + sort +
+                ", userid=" + userid +
+                ", zuji=" + zuji +
                 '}';
     }
 }

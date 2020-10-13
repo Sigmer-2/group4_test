@@ -152,6 +152,16 @@ public interface HouseService {
      * @time: 2020/10/10 14:20
      */
     List<House> wxSelectHouse(Map map,Integer page,Integer limit);
+    /**
+     *
+     * 小程序足迹和收藏功能
+     * @description: *
+     * @param map,page,limit
+     * @return:
+     * @author: zhc
+     * @time: 2020/10/10 14:20
+     */
+    List<House> wxSelectFoot(Map map,Integer page,Integer limit);
 }
 
 

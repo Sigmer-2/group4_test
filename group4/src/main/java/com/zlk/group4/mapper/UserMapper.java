@@ -3,6 +3,9 @@ package com.zlk.group4.mapper;
 import com.zlk.group4.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Date;
+import java.util.Map;
+
 /**
  * 对用户相关的操作
  *
@@ -58,4 +61,13 @@ public interface UserMapper {
      * @time: 2020/8/17 11:37
      */
     Integer saveUser(User user);
+    /**
+     *
+     * 插入用户浏览足迹
+     * @description: * @param null
+     * @return:
+     * @author: zhc
+     * @time: 2020/10/13 11:31
+     */
+    Integer insertFoot(Map map);
 }

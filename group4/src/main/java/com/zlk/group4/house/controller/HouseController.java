@@ -79,6 +79,37 @@ public class HouseController {
     }
     /**
      *
+     * 查询用户收藏和浏览足迹的方法
+     * @description: * @param null
+     * @return:
+     * @author: zhc
+     * @time: 2020/10/13 13:34
+     */
+    @RequestMapping(value = "/wxSelectFoot", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> wxSelectFoot(@RequestBody SelectParams selectParams) throws Exception {
+        System.out.println(selectParams.toString());
+        Map<String, Object> paraMap = new HashMap<String, Object>();
+        Integer page = selectParams.getPage();
+        Integer limit = selectParams.getLimit();
+        paraMap.put("userid",selectParams.getUserid());
+        paraMap.put("zuji",selectParams.getZuji());
+        List<House> houseList = houseService.wxSelectFoot(paraMap, page, limit);
+        for (House house : houseList) {
+            Integer i = house.getHouseRefLabel().getId();
+            house.setHouseRefLabel(houseRefLabelService.selectLabelByHouseId(house.getId()));
+            house.getHouseRefLabel().setId(i);
+            house.setHouseRefImgs(houseRefImgService.selectImgByHouseId(house.getId()));
+        }
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("code", 0);
+        map.put("msg", "");
+        map.put("data", houseList);
+        //map.put("count", count);
+        return map;
+    }
+    /**
+     *
      * 微信根据条件查询房屋信息
      * @description: *
      * @param selectParams

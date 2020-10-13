@@ -2,6 +2,9 @@ package com.zlk.group4.service;
 
 import com.zlk.group4.entity.User;
 
+import java.util.Date;
+import java.util.Map;
+
 /**
  * 用户相关操作方法的接口
  *
@@ -57,4 +60,13 @@ public interface UserService {
      * @time: 2020/9/22 15:31
      */
     Integer findUserRole(User user);
+    /**
+     *
+     * 插入用户浏览足迹
+     * @description: * @param null
+     * @return:
+     * @author: zhc
+     * @time: 2020/10/13 11:29
+     */
+    Integer insertFoot(Map map);
 }

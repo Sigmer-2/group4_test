@@ -21,4 +21,8 @@
         insert into user(user_name,user_password)
         values (#{userName},#{userPassword})
     </insert>
+    <insert id="insertFoot" parameterType="java.util.HashMap">
+        insert into read1(read_userId,read_houseId,read_time)
+        values (#{userId},#{houseId},#{dateNow})
+    </insert>
 </mapper>

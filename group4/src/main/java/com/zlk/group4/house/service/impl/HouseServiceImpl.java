@@ -112,6 +112,26 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
+    public List<House> wxSelectFoot(Map map, Integer page, Integer limit) {
+        Integer startIndex = (page-1)*limit;
+        map.put("startIndex",startIndex);
+        map.put("pageSize",limit);
+        HouseIdParam houseIdParam = new HouseIdParam();
+        if(map.get("zuji").equals(1))
+        {
+            houseIdParam.setIds(houseMapper.findFoot(map));
+            map.put("ids",houseIdParam.getIds());
+            return houseMapper.wxSelectFoot(map);
+        }
+        else{
+            houseIdParam.setIds(houseMapper.findCollect(map));
+            map.put("ids",houseIdParam.getIds());
+            return houseMapper.wxSelectFoot(map);
+        }
+
+    }
+
+    @Override
     public Integer findHouseCount() {
         return houseMapper.findHouseCount();
     }
