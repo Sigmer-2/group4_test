@@ -131,4 +131,13 @@
         from house_ref_user
         where user_id = #{id}
     </select>
+    <select id="findIdByUserIdAndHouseId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT
+                house_ref_user.id
+        FROM
+                house_ref_user
+        WHERE
+                house_ref_user.user_id = #{userId} AND
+                house_ref_user.house_id = #{houseId}
+    </select>
 </mapper>

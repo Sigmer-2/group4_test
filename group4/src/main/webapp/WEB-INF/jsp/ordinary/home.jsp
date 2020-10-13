@@ -10,7 +10,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="<%=basePath%>/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../layui/css/layui.css">
     <style type="text/css">
         .uploader-list {
             margin-left: -15px;
@@ -435,7 +435,7 @@
     </div>
 
 </div>
-<script src="<%=basePath%>layui/layui.js"></script>
+<script src="../../../layui/layui.js"></script>
 <script>
     layui.use(['jquery', 'table', 'layer', 'form','element', 'util','laydate','upload'], function(){
         var $ = layui.$;

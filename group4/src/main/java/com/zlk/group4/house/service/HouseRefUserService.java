@@ -47,7 +47,7 @@ public interface HouseRefUserService {
      * @param id houseMsgId
      * @return int 受影响行数
      */
-    int deleteHouseMsg(Integer id);
+    int deleteHouseMsg(Integer uid,Integer id);
 
     /**
      * 根据HouseMsg修改房源信息
@@ -65,7 +65,7 @@ public interface HouseRefUserService {
      * @param houseMsg
      * @return int 新增houseId
      */
-    int insertHouseMsg(HouseMsg houseMsg);
+    int insertHouseMsg(HouseMsg houseMsg,Integer userId);
 
     /**
      * 根据houseId查询所有信息

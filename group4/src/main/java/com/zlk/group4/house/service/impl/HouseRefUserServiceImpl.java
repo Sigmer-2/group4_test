@@ -133,11 +133,13 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
-    public int deleteHouseMsg(Integer id) {
+    public int deleteHouseMsg(Integer uid,Integer id) {
         //缺少houserefuser表字段删除
         House house = houseService.selectByPrimaryKey(id);
         HouseRefDeploy houseRefDeploy = houseRefDeployService.selectDeployByHouseId(id);
         HouseRefLabel houseRefLabel = houseRefLabelService.selectLabelByHouseId(id);
+        int hruid = houseRefUserMapper.findIdByUserIdAndHouseId(uid, id);
+        int i7 = deleteByPrimaryKey(hruid);
         int i = houseService.deleteByPrimaryKey(id);
         int i1 = regionService.deleteByPrimaryKey(house.getRegionId());
         int i2 = metroService.deleteByPrimaryKey(house.getMetroId());
@@ -145,7 +147,7 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
         int i4 = deployService.deleteByPrimaryKey(houseRefDeploy.getHouseDeployId());
         int i5 = houseRefLabelService.deleteByPrimaryKey(houseRefLabel.getId());
         int i6 = labelService.deleteByPrimaryKey(houseRefLabel.getHouseLabelId());
-        return i+i1+i2+i3+i4+i5+i6;
+        return i+i1+i2+i3+i4+i5+i6+i7;
     }
 
     @Override
@@ -167,9 +169,9 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = {Exception.class})
-    public int insertHouseMsg(HouseMsg houseMsg) {
+    public int insertHouseMsg(HouseMsg houseMsg,Integer userId) {
         //缺少houserefuser字段添加缺少userid，后期加上
-        HouseRefUser User = new HouseRefUser();//insert houserefuser
+        HouseRefUser houseRefUser = new HouseRefUser();//insert houserefuser
         HouseRefDeploy deploy = new HouseRefDeploy();
         HouseRefLabel label = new HouseRefLabel();
         House house = getHouseObject(houseMsg);
@@ -187,6 +189,9 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
         label.setHouseLabelId(labelId);
         label.setHouseId(houseId);
         houseRefLabelService.insert(label);//insert housereflabel
+        houseRefUser.setUserId(userId);
+        houseRefUser.setHouseId(house.getId());
+        houseRefUserMapper.insertSelective(houseRefUser);
         if (houseId !=null){
             return houseId;
         }

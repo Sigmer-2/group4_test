@@ -178,9 +178,9 @@
 }
 
 /* login */
-/*.login-body {*/
-/*    background: url("../../img/login.jpg") repeat fixed;*/
-/*}*/
+.login-body {
+    background: url("../image/bg.png") repeat fixed;
+}
 
 .login-box {
     position: fixed;
@@ -303,7 +303,7 @@ input[type='checkbox'] {
     font-weight: 600;
 }
 
-/* dblclick ss.css */
+/* dblclick css */
 .dblclick-tab tr td {
     height: 30px;
     line-height: 30px;
@@ -500,7 +500,7 @@ html .skin-2 .layui-nav-itemed .layui-nav-more {
     overflow-y: auto;
 }
 
-/* layui ss.css cover */
+/* layui css cover */
 html body .layui-nav .layui-nav-bar {
     opacity: 0 !important;
     overflow: hidden !important;

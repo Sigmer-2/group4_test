@@ -2,6 +2,7 @@ package com.zlk.group4.house.mapper;
 
 import com.zlk.group4.house.entity.HouseRefUser;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -83,4 +84,6 @@ public interface HouseRefUserMapper {
      * @return List
      */
      List selectHouseIdByUserId(Integer id);
+
+     int findIdByUserIdAndHouseId(@Param("userId")Integer uid, @Param("houseId")Integer hid);
 }

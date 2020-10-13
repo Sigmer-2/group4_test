@@ -1,15 +1,18 @@
 package com.zlk.group4.house.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zlk.group4.entity.User;
 import com.zlk.group4.fdfs.CommonFileUtil;
 import com.zlk.group4.fdfs.FdfsConfig;
 import com.zlk.group4.house.entity.Collect;
 import com.zlk.group4.house.entity.HouseImg;
 import com.zlk.group4.house.entity.HouseRefImg;
 import com.zlk.group4.house.service.*;
+import com.zlk.group4.service.UserService;
 import com.zlk.group4.util.MyHouseUtils;
 import com.zlk.group4.vo.HouseMsg;
 import com.zlk.group4.vo.ServerLayResponse;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,6 +49,9 @@ public class RestHouseController {
     private CollectService collectService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     //对文件进行上传的工具类
     private CommonFileUtil commonFileUtil;
 
@@ -58,9 +64,10 @@ public class RestHouseController {
     @GetMapping("/list")
     @ResponseBody
     public ServerLayResponse getList(){
+        String principal = (String) SecurityUtils.getSubject().getPrincipal();
+        User user = userService.selectUserByName1(principal);
         serverLayResponse = new ServerLayResponse();
-        Integer useId = 1;
-        List<HouseMsg> list = houseRefUserService.listAllByUserId(useId);
+        List<HouseMsg> list = houseRefUserService.listAllByUserId(user.getId());
         serverLayResponse.setCode(0);
         serverLayResponse.setMsg("");
         serverLayResponse.setCount(list.size());
@@ -73,7 +80,9 @@ public class RestHouseController {
     @ResponseBody
     public Map<String,Object> add(HouseMsg houseMsg){
         Map<String,Object> map = new HashMap<>();
-        int i = houseRefUserService.insertHouseMsg(houseMsg);
+        String principal = (String) SecurityUtils.getSubject().getPrincipal();
+        User user = userService.selectUserByName1(principal);
+        int i = houseRefUserService.insertHouseMsg(houseMsg,user.getId());
         if (i == 0){
             map.put("status",500);
         }else {
@@ -101,12 +110,14 @@ public class RestHouseController {
     @ResponseBody
     public Map<String,Object> delete(@RequestParam("ids") List<Integer> ids){
         Map<String,Object> map = new HashMap<>();
+        String principal = (String) SecurityUtils.getSubject().getPrincipal();
+        User user = userService.selectUserByName1(principal);
         if (ids.size()==0){
             map.put("status",500);
         }
         for (Integer id : ids) {
           //
-            int i = houseRefUserService.deleteHouseMsg(id);
+            int i = houseRefUserService.deleteHouseMsg(user.getId(),id);
             if (i==7){
                 map.put("status",1);
             }else {
