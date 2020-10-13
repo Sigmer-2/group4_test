@@ -5,6 +5,7 @@ import com.zlk.group4.house.entity.HouseRefUser;
 import com.zlk.group4.house.service.HouseRefUserService;
 import com.zlk.group4.repair.entity.WxRepair;
 import com.zlk.group4.repair.service.WxRepairsService;
+import com.zlk.group4.util.MyHouseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,17 +35,40 @@ public class WxRepairController {
 
     @Autowired
     private HouseRefUserService houseRefUserService;
-    
+    /**
+     * 根据userId查询所以维修信息
+     * @Auther lihongying
+     * @Date 2020/10/8 16:55
+     * @param request
+    * @param response
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
     @ResponseBody
-    @RequestMapping(value = "/findRepairAll",method = RequestMethod.GET)
-    public Map<String,Object> findRepairAll(Integer repairUserid) throws Exception{
+    @RequestMapping(value = "/findRepairAll",method = RequestMethod.POST)
+    public Map<String,Object> findRepairAll(HttpServletRequest request, HttpServletResponse response) throws Exception{
         Map<String, Object> map = new HashMap<>();
-        Integer userId = 3;
+        JSONObject result = MyHouseUtils.getResult(request);
+        String userId = result.getString("userId");
+        System.out.println(userId);
+        if (!"".equals(userId)){
+            List list = wxRepairsService.selectLocationByUserId(Integer.parseInt(userId));
+            map.put("code", 0);
+            map.put("list", list);
+        }
+//        Integer userId = 3;
 //        List<WxRepair> list = wxRepairsService.findRepairsByUserid(userId);
-        List<WxRepair> list = wxRepairsService.selectLocationByUserId(userId);
-        map.put("list", list);
+//        List<WxRepair> list = wxRepairsService.selectLocationByUserId(userId);
+//        map.put("list", list);
         return map;
     }
+    /**
+     * 添加报修信息
+     * @Auther lihongying
+     * @Date 2020/10/8 16:55
+     * @param request
+     * @param response
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
     @ResponseBody
     @RequestMapping(value = "/insertRepair",method = RequestMethod.POST)
     public Map<String,Object> insertRepair(HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -80,10 +104,27 @@ public class WxRepairController {
         }
         return map;
     }
+    /**
+     * 根据userId查询该用户所以房源id
+     * @Auther lihongying
+     * @Date 2020/10/8 16:55
+     * @param request
+     * @param response
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
     @ResponseBody
-    @RequestMapping(value = "/findHouseId",method = RequestMethod.GET)
+    @RequestMapping(value = "/findHouseId",method = RequestMethod.POST)
     public Map<String,Object> findHouseId(HttpServletRequest request, HttpServletResponse response) throws Exception{
         Map<String, Object> map = new HashMap<>();
+        JSONObject result = MyHouseUtils.getResult(request);
+        String userId = result.getString("userId");
+        System.out.println(userId);
+        if (!"".equals(userId)){
+            List list = houseRefUserService.selectHouseIdByUserId(Integer.parseInt(userId));
+            map.put("code", 0);
+            map.put("list", list);
+        }
+
         // java端:通过参数HttpServletRequest request解析出json格式的参数
         // json包用的阿里的 com.alibaba.fastjson.JSONObject;
         /*JSONObject result = null;
@@ -98,10 +139,7 @@ public class WxRepairController {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-        Integer userId = 3;
-        List list = houseRefUserService.selectHouseIdByUserId(userId);
-        map.put("code", 0);
-        map.put("list", list);
+//        Integer userId = 3;
         return map;
     }
 }
