@@ -11,6 +11,8 @@
     <title>登录页</title>
     <link rel="stylesheet" href="<%=basePath%>/layui/css/layui.css">
     <link rel="stylesheet" href="<%=basePath%>/layui/css/style.css">
+    <link rel="stylesheet" href="<%=basePath%>/css/jq22.css">
+    <link rel="stylesheet" href="<%=basePath%>/css/iconfont.css">
     <style>
         .code {
             width: 100%;
@@ -34,43 +36,97 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        .loginbtn{
+            margin-left: 17px;
+            margin-top: 20px;
+        }
+        .savebtn{
+            width: 150px;
+            border-radius: 5px;
+            background-color:#8ABF3B ;
+        }
+        .resbtn{
+            width: 150px;
+            border-radius: 5px;
+            background-color:#3BC9A2;
+        }
+        .iconfont{
+            /*color: #8ECE8A;*/
+            color: #8ABF3B;
+        }
+        .title{
+            text-align:center;
+            font-size: 12px;
+        }
     </style>
 
 </head>
 <body>
-
-<div class="login-main">
-    <header class="layui-elip">登录</header>
-    <form class="layui-form">
-        <div class="layui-input-inline">
-            <input type="text" name="username" id="username" required lay-verify="required" placeholder="用户名" autocomplete="off"
-                   class="layui-input">
-        </div>
-        <div class="layui-input-inline">
-            <input type="password" name="password" id="password" required lay-verify="required" placeholder="密码" autocomplete="off"
-                   class="layui-input">
-        </div>
-        <div class="layui-input-inline">
-            <div class="layui-row">
-                <div class="layui-col-xs7">
-                    <input type="text" name="vercode" id="vercode" required lay-verify="required" placeholder="图形验证码" class="layui-input">
-                </div>
-                <div class="layui-col-xs5">
-                    <div style="margin-left: 15px">
-                        <canvas id="canvas" width="100" height="36"></canvas>
+<div id="login">
+    <div class="wrapper">
+        <div class="login">
+            <form action="#" method="post" class="layui-form container offset1 loginform">
+                <div id="owl-login">
+                    <div class="hand"></div>
+                    <div class="hand hand-r"></div>
+                    <div class="arms">
+                        <div class="arm"></div>
+                        <div class="arm arm-r"></div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="layui-input-inline login-btn">
-            <button lay-submit lay-filter="login" class="layui-btn">登录</button>
-        </div>
-        <hr/>
+                <div class="pad">
+                    <input type="hidden" name="_csrf" value="9IAtUxV2CatyxHiK2LxzOsT6wtBE6h8BpzOmk="/>
+                    <div class="control-group">
+                        <div class="controls">
+                            <label for="userName" class="control-label"><i class="iconfont icon-user" aria-hidden="true"></i></label>
+                            <input type="text" name="username" id="username" required lay-verify="required" placeholder="用户名" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <label for="password" class="control-label"><i class="iconfont icon-mima" aria-hidden="true"></i></label>
+                            <input type="password" name="password" id="password" required lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
 
-        <p><a href="register" class="fl">立即注册</a></p>
-<%--        <a href="forget" class="fr">忘记密码？</a>--%>
-    </form>
+                    <div class="control-group">
+                        <div class="layui-row">
+                            <div class="layui-col-xs8">
+                                <label for="password" class="control-label"><i class="iconfont icon-yanzhengma" aria-hidden="true"></i></label>
+                                <input type="text" name="vercode" id="vercode" required lay-verify="required" placeholder="图形验证码" class="layui-input">
+                            </div>
+                            <div class="layui-col-xs4">
+                                <div style="margin-left: 15px">
+                                    <canvas id="canvas" width="100" height="36"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" control-group login-btn  loginbtn">
+                        <div class="layui-row">
+                        <div class="layui-col-xs6">
+                        <button lay-submit lay-filter="login" class="layui-btn savebtn">登录</button>
+                        </div>
+                        <div class="layui-col-xs6">
+                            <button  class="layui-btn resbtn"><a href="register" ><font color="#FFFFFF"> 注册</font></a></button>
+                        </div>
+                        </div>
+                    </div>
+<%--                    <p><a href="register" class="fl">立即注册</a></p>--%>
+                    <p></p>
+                    <p class="title">会找房后台管理系统</p>
+                    <%--        <a href="forget" class="fr">忘记密码？</a>--%>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
 </div>
+
+
+
 
 <script src="<%=basePath%>/js/jquery-3.4.1.min.js"></script>
 <script src="<%=basePath%>/layui/layui.js"></script>
@@ -78,6 +134,14 @@
     var show_num=[];
     $(function()
     {
+        $(function() {
+            $('#login #password').focus(function() {
+                $('#owl-login').addClass('password');
+            }).blur(function() {
+                $('#owl-login').removeClass('password');
+            });
+
+        });
         draw(show_num);
         $("#canvas").on('click',function()
         {
@@ -123,9 +187,9 @@
                 success:function (data) {
                     if (data.status == 1){
                         if(data.type == 2){
-                                window.location.href = "main";
+                            window.location.href = "main";
                         }else{
-                                window.location.href = "home";
+                            window.location.href = "home";
                         }
                     }else{
                         layer.msg('登录名或密码错误');

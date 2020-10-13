@@ -629,6 +629,10 @@
                             layer.close(layer.index);
                             layer.msg('更新成功');
                             table.reload('demo');
+                            parent.layer.msg("操作成功!", {time: 1000}, function () {
+                                //重新加载父页面
+                                parent.location.reload();
+                            });
                         } else {
                             layer.msg('更新失败');
                         }

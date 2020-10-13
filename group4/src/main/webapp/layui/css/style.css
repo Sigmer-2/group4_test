@@ -178,9 +178,9 @@
 }
 
 /* login */
-.login-body {
-    background: url("../image/bg.png") repeat fixed;
-}
+/*.login-body {*/
+/*    background: url("../../img/login.jpg") repeat fixed;*/
+/*}*/
 
 .login-box {
     position: fixed;
