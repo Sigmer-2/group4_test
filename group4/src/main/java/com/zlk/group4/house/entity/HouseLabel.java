@@ -66,6 +66,86 @@ public class HouseLabel {
      */
     private Integer decoration;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getShortRent() {
+        return shortRent;
+    }
+
+    public void setShortRent(Integer shortRent) {
+        this.shortRent = shortRent;
+    }
+
+    public Integer getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Integer payment) {
+        this.payment = payment;
+    }
+
+    public Integer getSouthward() {
+        return southward;
+    }
+
+    public void setSouthward(Integer southward) {
+        this.southward = southward;
+    }
+
+    public Integer getAgencyfee() {
+        return agencyfee;
+    }
+
+    public void setAgencyfee(Integer agencyfee) {
+        this.agencyfee = agencyfee;
+    }
+
+    public Integer getToilet() {
+        return toilet;
+    }
+
+    public void setToilet(Integer toilet) {
+        this.toilet = toilet;
+    }
+
+    public Integer getBalcony() {
+        return balcony;
+    }
+
+    public void setBalcony(Integer balcony) {
+        this.balcony = balcony;
+    }
+
+    public Integer getElevator() {
+        return elevator;
+    }
+
+    public void setElevator(Integer elevator) {
+        this.elevator = elevator;
+    }
+
+    public Integer getBayWindow() {
+        return bayWindow;
+    }
+
+    public void setBayWindow(Integer bayWindow) {
+        this.bayWindow = bayWindow;
+    }
+
+    public Integer getDecoration() {
+        return decoration;
+    }
+
+    public void setDecoration(Integer decoration) {
+        this.decoration = decoration;
+    }
+
     @Override
     public String toString() {
         return "HouseLabel{" +

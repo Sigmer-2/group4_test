@@ -31,6 +31,30 @@ public class HouseImg {
      */
     private Integer imgPage;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public Integer getImgPage() {
+        return imgPage;
+    }
+
+    public void setImgPage(Integer imgPage) {
+        this.imgPage = imgPage;
+    }
+
     @Override
     public String toString() {
         return "HouseImg{" +

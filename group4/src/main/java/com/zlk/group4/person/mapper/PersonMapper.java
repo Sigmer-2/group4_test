@@ -3,10 +3,7 @@ package com.zlk.group4.person.mapper;
 import com.zlk.group4.area.entity.Area;
 import com.zlk.group4.area.entity.Street;
 import com.zlk.group4.entity.User;
-import com.zlk.group4.house.entity.House;
-import com.zlk.group4.house.entity.HouseDeploy;
-import com.zlk.group4.house.entity.HouseImg;
-import com.zlk.group4.house.entity.HouseLabel;
+import com.zlk.group4.house.entity.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -133,6 +130,12 @@ public interface PersonMapper {
       * @return:java.lang.Integer
       */
      Integer updateUserById(User user);
+
+     Integer insertHouseRefImg(HouseRefImg houseRefImg);
+
+     Integer insertHouseRefLabel(HouseRefLabel houseRefLabel);
+
+     Integer insertHouseRefDeploy(HouseRefDeploy houseRefDeploy);
 
 
 

@@ -6,10 +6,7 @@ import com.zlk.group4.area.entity.Street;
 import com.zlk.group4.entity.User;
 import com.zlk.group4.fdfs.CommonFileUtil;
 import com.zlk.group4.fdfs.FdfsConfig;
-import com.zlk.group4.house.entity.House;
-import com.zlk.group4.house.entity.HouseDeploy;
-import com.zlk.group4.house.entity.HouseImg;
-import com.zlk.group4.house.entity.HouseLabel;
+import com.zlk.group4.house.entity.*;
 import com.zlk.group4.person.service.PersonService;
 import com.zlk.group4.person.util.HttpClientUtil;
 import com.zlk.group4.person.util.StaticDataUtil;
@@ -101,8 +98,45 @@ public class PersonController {
         JSONObject fromObject4 = JSONObject.fromObject(jsonObject4);
         HouseDeploy houseDeploy = (HouseDeploy) JSONObject.toBean(fromObject4,HouseDeploy.class);
         System.out.println(houseDeploy);
+
+
         Integer flag = personService.insertAll(house,houseImg,houseLabel,houseDeploy);
-        return flag;
+
+        Integer houseId = house.getId();
+
+        Integer houseImgId = houseImg.getId();
+
+        Integer labelId = houseLabel.getId();
+
+        Integer deployId = houseDeploy.getId();
+     //  Integer flag2 = personService.insertAll2(houseId,imgId,labelId,deployId);
+        HouseRefImg houseRefImg = new HouseRefImg();
+        houseRefImg.setHouseId(houseId);
+        houseRefImg.setHouseImgId(houseImgId);
+        HouseRefLabel houseRefLabel = new HouseRefLabel();
+        houseRefLabel.setHouseId(houseId);
+        houseRefLabel.setHouseLabelId(labelId);
+        HouseRefDeploy houseRefDeploy = new HouseRefDeploy();
+        houseRefDeploy.setHouseId(houseId);
+        houseRefDeploy.setHouseDeployId(deployId);
+
+     Integer flag2 =  personService.insertHouseRefImg(houseRefImg);
+     Integer flag3 = personService.insertHouseRefLabel(houseRefLabel);
+     Integer flag4 =  personService.insertHouseRefDeploy(houseRefDeploy);
+
+
+        System.out.println(houseId);
+        System.out.println(houseImgId);
+        System.out.println(labelId);
+        System.out.println(deployId);
+        //System.out.println(imgId);
+        ///
+        if(flag==1&&flag2==1&&flag3==1&&flag4==1){
+            return 1;
+        }else{
+            return 0;
+        }
+
 
     }
 

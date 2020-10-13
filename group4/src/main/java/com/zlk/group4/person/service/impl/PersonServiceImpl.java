@@ -3,10 +3,7 @@ package com.zlk.group4.person.service.impl;
 import com.zlk.group4.area.entity.Area;
 import com.zlk.group4.area.entity.Street;
 import com.zlk.group4.entity.User;
-import com.zlk.group4.house.entity.House;
-import com.zlk.group4.house.entity.HouseDeploy;
-import com.zlk.group4.house.entity.HouseImg;
-import com.zlk.group4.house.entity.HouseLabel;
+import com.zlk.group4.house.entity.*;
 import com.zlk.group4.person.mapper.PersonMapper;
 import com.zlk.group4.person.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +52,19 @@ public class PersonServiceImpl implements PersonService{
         }
     }
 
+//    @Override
+//    @Transactional
+//    public Integer insertAll2(Integer houseId,Integer imgId,Integer labelId,Integer deployId){
+//        Integer flag1 = personMapper.insertHouseRefImg(houseId, imgId);
+//        Integer flag2 = personMapper.insertHouseRefLabel(houseId, labelId);
+//        Integer flag3 = personMapper.insertHouseRefDeploy(houseId, deployId);
+//        if(flag1==1&&flag2==1&&flag3==1){
+//            return 1;
+//        }else{
+//            return 0;
+//        }
+//    }
+
     @Override
     public List<Area> findChangChunAreaAll(Integer page,Integer limit) {
         Map<String,Object> paraMap = new HashMap<String, Object>();
@@ -97,6 +107,26 @@ public class PersonServiceImpl implements PersonService{
     @Override
     public Integer updateUserById(User user) {
         return personMapper.updateUserById(user);
+    }
+
+    @Override
+    public Integer saveHouseImg(HouseImg houseImg) {
+        return personMapper.saveHouseImg(houseImg);
+    }
+
+    @Override
+    public Integer insertHouseRefImg(HouseRefImg houseRefImg) {
+        return personMapper.insertHouseRefImg(houseRefImg);
+    }
+
+    @Override
+    public Integer insertHouseRefLabel(HouseRefLabel houseRefLabel) {
+        return personMapper.insertHouseRefLabel(houseRefLabel);
+    }
+
+    @Override
+    public Integer insertHouseRefDeploy(HouseRefDeploy houseRefDeploy) {
+        return personMapper.insertHouseRefDeploy(houseRefDeploy);
     }
 
 

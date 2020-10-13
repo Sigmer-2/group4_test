@@ -3,10 +3,7 @@ package com.zlk.group4.person.service;
 import com.zlk.group4.area.entity.Area;
 import com.zlk.group4.area.entity.Street;
 import com.zlk.group4.entity.User;
-import com.zlk.group4.house.entity.House;
-import com.zlk.group4.house.entity.HouseDeploy;
-import com.zlk.group4.house.entity.HouseImg;
-import com.zlk.group4.house.entity.HouseLabel;
+import com.zlk.group4.house.entity.*;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -105,6 +102,15 @@ public interface PersonService {
     Integer updateUserById(User user);
 
 
+    Integer saveHouseImg(HouseImg houseImg);
+
+    Integer insertHouseRefImg(HouseRefImg houseRefImg);
+
+    Integer insertHouseRefLabel(HouseRefLabel houseRefLabel);
+
+    Integer insertHouseRefDeploy(HouseRefDeploy houseRefDeploy);
+
+//    Integer insertAll2(Integer houseId,Integer imgId,Integer labelId,Integer deployId);
 
 
 }

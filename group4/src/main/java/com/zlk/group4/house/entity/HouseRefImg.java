@@ -38,4 +38,46 @@ public class HouseRefImg {
      * 注入房屋照片表
      * */
     private HouseImg houseImg;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getHouseId() {
+        return houseId;
+    }
+
+    public void setHouseId(Integer houseId) {
+        this.houseId = houseId;
+    }
+
+    public Integer getHouseImgId() {
+        return houseImgId;
+    }
+
+    public void setHouseImgId(Integer houseImgId) {
+        this.houseImgId = houseImgId;
+    }
+
+    public HouseImg getHouseImg() {
+        return houseImg;
+    }
+
+    public void setHouseImg(HouseImg houseImg) {
+        this.houseImg = houseImg;
+    }
+
+    @Override
+    public String toString() {
+        return "HouseRefImg{" +
+                "id=" + id +
+                ", houseId=" + houseId +
+                ", houseImgId=" + houseImgId +
+                ", houseImg=" + houseImg +
+                '}';
+    }
 }

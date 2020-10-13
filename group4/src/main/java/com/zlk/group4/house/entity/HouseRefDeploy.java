@@ -58,4 +58,14 @@ public class HouseRefDeploy {
     public void setHouseDeployId(Integer houseDeployId) {
         this.houseDeployId = houseDeployId;
     }
+
+    @Override
+    public String toString() {
+        return "HouseRefDeploy{" +
+                "id=" + id +
+                ", houseId=" + houseId +
+                ", houseDeployId=" + houseDeployId +
+                ", houseDeploy=" + houseDeploy +
+                '}';
+    }
 }

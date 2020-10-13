@@ -123,7 +123,7 @@
         values(#{houseType},#{regionId},#{listingsType},#{rentalMode},#{roomType},#{rent},#{houseIntroduction},#{checkinTime},#{sex},#{call},#{tell})
     </insert>-->
 
-    <insert id="saveHouseImg" parameterType="com.zlk.group4.house.entity.HouseImg">
+    <insert id="saveHouseImg" parameterType="com.zlk.group4.house.entity.HouseImg" useGeneratedKeys="true" keyProperty="id">
         insert into house_img
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!=null and id!=''">
@@ -154,7 +154,7 @@
         values(#{id},#{imgUrl},#{imgPage})
     </insert>-->
 
-    <insert id="saveHouseLabel" parameterType="com.zlk.group4.house.entity.HouseLabel">
+    <insert id="saveHouseLabel" parameterType="com.zlk.group4.house.entity.HouseLabel" useGeneratedKeys="true" keyProperty="id">
         insert into house_label
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!=null and id!=''">
@@ -227,7 +227,7 @@
         values(#{id},#{shortRent},#{payment},#{southward},#{agencyfee},#{toilet},#{balcony},#{elevator},#{bayWindow},#{decoration})
     </insert>-->
 
-    <insert id="saveHouseDeploy" parameterType="com.zlk.group4.house.entity.HouseDeploy">
+    <insert id="saveHouseDeploy" parameterType="com.zlk.group4.house.entity.HouseDeploy" useGeneratedKeys="true" keyProperty="id">
         insert into house_deploy
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!=null and id!=''">
@@ -418,6 +418,73 @@
         </trim>
         where id=#{id}
     </update>
+
+    <insert id="insertHouseRefImg" parameterType="com.zlk.group4.house.entity.HouseRefImg">
+        insert into house_ref_img
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="houseId!=null">
+                house_id,
+            </if>
+            <if test="houseImgId!=null">
+               house_img_id,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="houseId!=null">
+                #{houseId},
+            </if>
+            <if test="houseImgId!=null">
+                #{houseImgId},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertHouseRefLabel" parameterType="com.zlk.group4.house.entity.HouseRefLabel">
+        insert into house_ref_label
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="houseId!=null">
+                house_id,
+            </if>
+            <if test="houseLabelId!=null">
+                house_label_id,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="houseId!=null">
+                #{houseId},
+            </if>
+            <if test="houseLabelId!=null">
+                #{houseLabelId},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertHouseRefDeploy" parameterType="com.zlk.group4.house.entity.HouseRefDeploy">
+        insert into house_ref_deploy
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="houseId!=null">
+                house_id,
+            </if>
+            <if test="houseDeployId!=null">
+                house_deploy_id,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="houseId!=null">
+                #{houseId},
+            </if>
+            <if test="houseDeployId!=null">
+                #{houseDeployId},
+            </if>
+        </trim>
+    </insert>
 
 
 </mapper>

@@ -34,4 +34,46 @@ public class HouseRefLabel {
      * 注入房源标签表
      * */
     private HouseLabel houseLabel;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getHouseId() {
+        return houseId;
+    }
+
+    public void setHouseId(Integer houseId) {
+        this.houseId = houseId;
+    }
+
+    public Integer getHouseLabelId() {
+        return houseLabelId;
+    }
+
+    public void setHouseLabelId(Integer houseLabelId) {
+        this.houseLabelId = houseLabelId;
+    }
+
+    public HouseLabel getHouseLabel() {
+        return houseLabel;
+    }
+
+    public void setHouseLabel(HouseLabel houseLabel) {
+        this.houseLabel = houseLabel;
+    }
+
+    @Override
+    public String toString() {
+        return "HouseRefLabel{" +
+                "id=" + id +
+                ", houseId=" + houseId +
+                ", houseLabelId=" + houseLabelId +
+                ", houseLabel=" + houseLabel +
+                '}';
+    }
 }
