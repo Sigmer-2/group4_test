@@ -24,4 +24,8 @@ public interface CollectService{
 
     int updateByPrimaryKey(Collect record);
 
+    Collect findAllByCollectUseridAndCollectHouseid(Integer uid,Integer hid);
+
+    int deleteByCollectUseridAndCollectHouseid(Integer uid,Integer hid);
+
 }

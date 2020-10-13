@@ -59,4 +59,12 @@ public interface ReportMapper {
      * @return: java.util.List<com.zlk.group4.report.entity.Report>
      */
     List<Report> selectReportByHouse(String data);
+    /**
+     * 增加举报房源记录
+     * @Auther sunshuai
+     * @Date 2020/10/13 14:29
+     * @param report
+     * @return int
+     */
+    int insertReport(Report report);
 }

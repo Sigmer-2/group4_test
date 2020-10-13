@@ -50,4 +50,9 @@ public class ReportServiceImpl implements ReportService {
         return reportMapper.selectReportByHouse(data);
     }
 
+    @Override
+    public int insertReport(Report report) {
+        return reportMapper.insertReport(report);
+    }
+
 }

@@ -109,7 +109,7 @@
                         <button lay-submit lay-filter="login" class="layui-btn savebtn">登录</button>
                         </div>
                         <div class="layui-col-xs6">
-                            <button  class="layui-btn resbtn"><a href="register" ><font color="#FFFFFF"> 注册</font></a></button>
+                            <button  class="layui-btn resbtn" onclick="javascrtpt:window.location.href='<%=basePath%>register'"><a><font color="#FFFFFF"> 注册</font></a></button>
                         </div>
                         </div>
                     </div>
