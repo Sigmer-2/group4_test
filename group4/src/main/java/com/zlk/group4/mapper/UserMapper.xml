@@ -14,6 +14,9 @@
     <select id="selectUserByName" resultType="java.lang.Integer">
         select count(user_name) from user where user_name = #{userName}
     </select>
+    <select id="selectUserByName1" resultType="com.zlk.group4.entity.User">
+        select * from user where user_name = #{userName}
+    </select>
     <insert id="saveUser" parameterType="com.zlk.group4.entity.User">
         insert into user(user_name,user_password)
         values (#{userName},#{userPassword})

@@ -90,25 +90,26 @@
             var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
 
             if (layEvent === 'update') { //更改
-                $.ajax({
-                        type: "put",
-                        url: "<%=basePath%>/repair/updateRepair/" + data.id,
-                        contentType: "application/json",
-                        dataType: "json",
-                        success: function (res) {
-                            if (res.status == 1) {
-                                layer.msg("修理成功");
-                                setTimeout(function () {
-                                    window.location.reload();
-                                }, 1000);
+                if(data.repairStatus!=1) {
+                    $.ajax({
+                            type: "put",
+                            url: "<%=basePath%>/repair/updateRepair/" + data.id,
+                            contentType: "application/json",
+                            dataType: "json",
+                            success: function (res) {
+                                if (res.status == 1) {
+                                    layer.msg("修理成功");
+                                    setTimeout(function () {
+                                        window.location.reload();
+                                    }, 1000);
 
-                            } else {
-                                layer.msg('修理失败');
+                                } else {
+                                    layer.msg('修理失败');
+                                }
                             }
                         }
-                    }
-                )
-
+                    )
+                }
             }
             if(layEvent==='detail'){
                 alert(data.repairDescribe);

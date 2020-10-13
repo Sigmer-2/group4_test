@@ -1,4 +1,6 @@
 package com.zlk.group4.house.mapper;
+import org.apache.ibatis.annotations.Param;
+import java.util.List;
 
 import com.zlk.group4.house.entity.Collect;
 import org.apache.ibatis.annotations.Mapper;
@@ -54,4 +56,12 @@ public interface CollectMapper {
      * @return update count
      */
     int updateByPrimaryKey(Collect record);
+
+    Collect findAllByCollectUseridAndCollectHouseid(@Param("collectUserid")Integer collectUserid,@Param("collectHouseid")Integer collectHouseid);
+
+    int deleteByCollectUseridAndCollectHouseid(@Param("collectUserid")Integer collectUserid,@Param("collectHouseid")Integer collectHouseid);
+
+
+
+
 }

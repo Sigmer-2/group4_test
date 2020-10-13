@@ -1,3 +1,7 @@
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -6,7 +10,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="../../../layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="<%=basePath%>/layui/css/layui.css" media="all">
     <style type="text/css">
         .uploader-list {
             margin-left: -15px;
@@ -61,6 +65,29 @@
     <div class="layui-header">
         <div class="layui-logo">会找房</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <%--<ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+            <li class="layui-nav-item"><a href="">商品管理</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它系统</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">邮件管理</a></dd>
+                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                </dl>
+            </li>
+        </ul>--%>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    <span id="username"></span>
+                </a>
+            </li>
+            <li class="layui-nav-item"><a href="<%=request.getContextPath()%>/user/logout">退出登录</a></li>
+        </ul>
     </div>
 
     <div class="layui-side layui-bg-black">
@@ -408,7 +435,7 @@
     </div>
 
 </div>
-<script src="../../../layui/layui.js"></script>
+<script src="<%=basePath%>layui/layui.js"></script>
 <script>
     layui.use(['jquery', 'table', 'layer', 'form','element', 'util','laydate','upload'], function(){
         var $ = layui.$;
@@ -419,6 +446,15 @@
         var util = layui.util;
         upload = layui.upload;
         var laydate = layui.laydate;
+        $.ajax({
+            type: "POST",
+            url: "<%=request.getContextPath()%>/user/loginUser",
+            async: false,
+            success: function(msg){
+                //console.log(msg);
+                $("#username").html("用户："+msg.userName+"  欢迎登录！");
+            }
+        });
         //日期
         laydate.render({
             elem: '#checkinTime'
@@ -485,6 +521,9 @@
                             layer.close(layer.index);
                             layer.msg('添加成功');
                             table.reload('demo');
+                            /*layer.msg('更新成功', {icon:1,time:1000},function(){
+                                setTimeout('window.location.reload()',1000);
+                            });*/
                         } else {
                             layer.msg('添加失败');
                         }
@@ -597,6 +636,10 @@
                             layer.close(layer.index);
                             layer.msg('更新成功');
                             table.reload('demo');
+                            parent.layer.msg("操作成功!", {time: 1000}, function () {
+                                //重新加载父页面
+                                parent.location.reload();
+                            });
                         } else {
                             layer.msg('更新失败');
                         }

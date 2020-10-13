@@ -5,6 +5,9 @@ import javax.annotation.Resource;
 import com.zlk.group4.house.entity.Collect;
 import com.zlk.group4.house.mapper.CollectMapper;
 import com.zlk.group4.house.service.CollectService;
+
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * Description: 
@@ -47,6 +50,16 @@ public class CollectServiceImpl implements CollectService{
     @Override
     public int updateByPrimaryKey(Collect record) {
         return collectMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public Collect findAllByCollectUseridAndCollectHouseid(Integer uid, Integer hid) {
+        return collectMapper.findAllByCollectUseridAndCollectHouseid(uid, hid);
+    }
+
+    @Override
+    public int deleteByCollectUseridAndCollectHouseid(Integer uid, Integer hid) {
+        return collectMapper.deleteByCollectUseridAndCollectHouseid(uid, hid);
     }
 
 }

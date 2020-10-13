@@ -75,21 +75,26 @@ public class ReportController {
         Map<String, Object> map = new HashMap<>();
         System.out.println("小程序调用");
         JSONObject result = MyHouseUtils.getResult(request);
-        /*StringBuilder sb = new StringBuilder();
-        try (BufferedReader reader = request.getReader();) {
-            char[] buff = new char[1024];
-            int len;
-            while ((len = reader.read(buff)) != -1) {
-                sb.append(buff, 0, len);
+        String userId = result.getString("userId");
+        String houseId = result.getString("houseId");
+        if ("".equals(userId)&&"".equals(houseId)){
+            map.put("msg","请登录");
+        }else {
+            String reportReason = result.getString("reportReason");
+            String reportDetails = result.getString("reportDetails");
+            Report report = new Report();
+            report.setReportUserId(Integer.parseInt(userId));
+            report.setReportHouseId(Integer.parseInt(houseId));
+            report.setReportReason(reportReason);
+            report.setReportDetails(reportDetails);
+            report.setReportStatus(0);
+            int i = reportService.insertReport(report);
+            if (i>0){
+                map.put("code",0);
+            }else {
+                map.put("code",500);
             }
-            result = JSONObject.parseObject(sb.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-        String reportReason = result.getString("reportReason");
-        System.out.println(reportReason);
-        String reportDetails = result.getString("reportDetails");
-        System.out.println(reportDetails);
+        }
         return map;
     }
 }

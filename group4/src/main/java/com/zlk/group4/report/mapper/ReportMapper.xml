@@ -34,5 +34,42 @@
     <select id="selectReportByHouse"  resultMap="reportEntity">
         SELECT report.*,house.call,house.tel,user.user_name,user.tel FROM report,house,user WHERE report.report_userid = user.id AND report.report_houseid = house.id and house.call = #{data}
     </select>
+    <insert id="insertReport" keyColumn="id" keyProperty="id" parameterType="com.zlk.group4.report.entity.Report" useGeneratedKeys="true">
+        insert into report
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="reportUserId != null">
+                report_userid,
+            </if>
+            <if test="reportHouseId != null">
+                report_houseid,
+            </if>
+            <if test="reportReason != null">
+                report_reason,
+            </if>
+            <if test="reportDetails != null">
+                report_details,
+            </if>
+            <if test="reportStatus != null">
+                report_status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="reportUserId != null">
+                #{reportUserId},
+            </if>
+            <if test="reportHouseId != null">
+                #{reportHouseId},
+            </if>
+            <if test="reportReason != null">
+                #{reportReason},
+            </if>
+            <if test="reportDetails != null">
+                #{reportDetails},
+            </if>
+            <if test="reportStatus != null">
+                #{reportStatus},
+            </if>
+        </trim>
+    </insert>
 
 </mapper>
