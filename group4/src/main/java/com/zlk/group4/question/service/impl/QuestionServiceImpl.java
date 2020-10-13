@@ -49,4 +49,9 @@ public class QuestionServiceImpl implements QuestionService {
     public List<Question> findQuestionByTitle(String data) {
         return questionMapper.findQuestionByTitle(data);
     }
+
+    @Override
+    public Integer saveQuestion(Question question) {
+        return questionMapper.saveQuestion(question);
+    }
 }

@@ -1,5 +1,6 @@
 package com.zlk.group4.question.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zlk.group4.question.entity.Question;
 import com.zlk.group4.question.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +67,36 @@ public class QuestionController {
             map.put("msg","");
             map.put("data",questionList);
         }
+        return map;
+    }
+    @RequestMapping(value = "/saveQuestion",method = RequestMethod.PUT)
+    @ResponseBody
+    public Map<String,Object> saveQuestion(HttpServletRequest request, HttpServletResponse response)throws Exception{
+        Map<String, Object> map = new HashMap<>();
+        JSONObject result = null;
+        StringBuilder sb = new StringBuilder();
+        try (BufferedReader reader = request.getReader();) {
+            char[] buff = new char[1024];
+            int len;
+            while ((len = reader.read(buff)) != -1) {
+                sb.append(buff, 0, len);
+            }
+            result = JSONObject.parseObject(sb.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String questionTitle = result.getString("questionTitle");
+        String questionDescribe = result.getString("questionDescribe");
+        String phone = result.getString("phone");
+        Integer userId = result.getInteger("userId");
+        System.out.println(questionTitle+","+questionDescribe+","+phone+","+userId);
+        Question question = new Question();
+        question.setQuestionUserId(userId);
+        question.setQuestionTitle(questionTitle);
+        question.setQuestionDescribe(questionDescribe);
+        question.setQuestionPhone(phone);
+        Integer flag = questionService.saveQuestion(question);
+        map.put("status",flag);
         return map;
     }
 }

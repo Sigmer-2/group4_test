@@ -53,4 +53,5 @@ public interface QuestionService {
      * @return: java.util.List<com.zlk.group4.question.entity.Question>
      */
     List<Question> findQuestionByTitle(String data);
+    Integer saveQuestion(Question question);
 }
