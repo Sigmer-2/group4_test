@@ -13,11 +13,27 @@
     <title>注册页</title>
     <link rel="stylesheet" href="<%=basePath%>/layui/css/layui.css">
     <link rel="stylesheet" href="<%=basePath%>/layui/css/style.css">
+    <style>
+        body{
+            background-image: url("/img/login.jpg");
+            background-repeat:no-repeat ;
+            background-size:100% 100%;
+            background-attachment: fixed;
+            opacity:0.7;
+        }
+        .res{
+            color: #F05E5D;
+            text-shadow:#000 1px 1px 1px;
+        }
+        .resbtn{
+            background-color: #8ABF3B;
+        }
+    </style>
 </head>
 <body>
 
 <div class="login-main">
-    <header class="layui-elip" style="width: 82%">注册</header>
+    <header class="layui-elip res" style="width: 82%">注 &nbsp; &nbsp; &nbsp;册</header>
 
     <!-- 表单选项 -->
     <form class="layui-form">
@@ -67,7 +83,7 @@
             </div>
         </div>
         <div class="layui-input-inline login-btn" style="width: 85%">
-            <button lay-submit lay-filter="sub" class="layui-btn">注册</button>
+            <button lay-submit lay-filter="sub" class="layui-btn resbtn">注册</button>
         </div>
         <hr style="width: 85%"/>
         <p style="width: 85%"><a href="login" class="fl">已有账号？立即登录</a></p>

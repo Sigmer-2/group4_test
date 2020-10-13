@@ -3,12 +3,10 @@ package com.zlk.group4.house.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.zlk.group4.fdfs.CommonFileUtil;
 import com.zlk.group4.fdfs.FdfsConfig;
+import com.zlk.group4.house.entity.Collect;
 import com.zlk.group4.house.entity.HouseImg;
 import com.zlk.group4.house.entity.HouseRefImg;
-import com.zlk.group4.house.service.HouseImgService;
-import com.zlk.group4.house.service.HouseRefImgService;
-import com.zlk.group4.house.service.HouseRefUserService;
-import com.zlk.group4.house.service.HouseService;
+import com.zlk.group4.house.service.*;
 import com.zlk.group4.util.MyHouseUtils;
 import com.zlk.group4.vo.HouseMsg;
 import com.zlk.group4.vo.ServerLayResponse;
@@ -18,14 +16,11 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
- * Description:
+ * Description:跟房屋有关的请求
  * User: sunshuai
  * Date: 2020-09-24
  * Time: 14:01
@@ -48,13 +43,14 @@ public class RestHouseController {
     private HouseService houseService;
 
     @Autowired
+    private CollectService collectService;
+
+    @Autowired
     //对文件进行上传的工具类
     private CommonFileUtil commonFileUtil;
 
     @Autowired
     private FdfsConfig fdfsConfig;
-
-    private HouseMsg houseMsg = null;
 
     private ServerLayResponse serverLayResponse = null;
 
@@ -62,7 +58,6 @@ public class RestHouseController {
     @GetMapping("/list")
     @ResponseBody
     public ServerLayResponse getList(){
-//    System.out.println("进入");
         serverLayResponse = new ServerLayResponse();
         Integer useId = 1;
         List<HouseMsg> list = houseRefUserService.listAllByUserId(useId);
@@ -154,14 +149,16 @@ public class RestHouseController {
 
 
     @PostMapping(value = "/msg",produces = "application/json;charset=UTF-8")
-//    @GetMapping("/msg")
     @ResponseBody
     public Map<String,Object> getMap(HttpServletRequest request){
-
+        Map<String, Object> map = new HashMap<>();
         JSONObject result = MyHouseUtils.getResult(request);
         String id = result.getString("houseId");
-        System.out.println(id);
-        Map<String, Object> map = new HashMap<>();
+        String userId = result.getString("userId");
+        System.out.println(userId+""+id+"=============================");
+        if ("".equals(userId)||"".equals(id)){
+            map.put("msg","请登录");
+        }else{
         Map<String, Object> houseInfo = houseService.findHouseInfoById(Integer.parseInt(id));
 //        House house = (House)houseInfo.get("house");
         Map<String, Object> map1 = houseRefUserService.listAllByHouseId(Integer.parseInt(id));
@@ -204,20 +201,59 @@ public class RestHouseController {
         map.put("deploys",deploys);
         map.put("tel",tel);
         map.put("listImg",listImg);
+        Collect collect = collectService.findAllByCollectUseridAndCollectHouseid(Integer.parseInt(userId), Integer.parseInt(id));
+            if (collect!=null){
+                map.put("collect","已收藏");
+            }else {
+                map.put("collect","收藏");
+            }
+        }
         return map;
     }
 
     @PostMapping(value = "/collect",produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Map<String,Object> collect(HttpServletRequest request){
-        //未完成
         Map<String, Object> map = new HashMap<>();
-        System.out.println("小程序调用");
         JSONObject result = MyHouseUtils.getResult(request);
-        String reportReason = result.getString("userId");
-        System.out.println(reportReason);
-        String reportDetails = result.getString("houseId");
-        System.out.println(reportDetails);
+        String userId = result.getString("userId");
+        String houseId = result.getString("houseId");
+        if ("".equals(userId)&&"".equals(houseId)){
+            map.put("msg","请登录");
+        }else {
+            Collect collect = new Collect();
+            collect.setCollectUserid(Integer.parseInt(userId));
+            collect.setCollectHouseid(Integer.parseInt(houseId));
+            collect.setCollectTime(new Date());
+            int insert = collectService.insertSelective(collect);
+            if (insert>0){
+                map.put("code",0);
+            }else {
+                map.put("code",500);
+            }
+        }
+        return map;
+    }
+
+
+    @PostMapping(value = "/deleteCollect",produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public Map<String,Object> deleteCollect(HttpServletRequest request){
+        Map<String, Object> map = new HashMap<>();
+        JSONObject result = MyHouseUtils.getResult(request);
+        String userId = result.getString("userId");
+        String houseId = result.getString("houseId");
+        if ("".equals(userId)&&"".equals(houseId)){
+            map.put("msg","请登录");
+        }else {
+            int i= collectService.deleteByCollectUseridAndCollectHouseid(Integer.parseInt(userId), Integer.parseInt(houseId));
+            if (i>0){
+                map.put("code",0);
+            }else {
+                map.put("code",500);
+            }
+        }
+
         return map;
     }
 }

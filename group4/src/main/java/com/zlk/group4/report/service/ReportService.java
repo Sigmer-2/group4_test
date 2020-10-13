@@ -53,4 +53,12 @@ public interface ReportService {
      * @return: java.util.List<com.zlk.group4.report.entity.Report>
      */
     List<Report> selectReportByHouse(String data);
+    /**
+     * 新增房屋举报详情返回受影响行数
+     * @Auther sunshuai
+     * @Date 2020/10/13 14:32
+     * @param report
+     * @return int
+     */
+    int insertReport(Report report);
 }

@@ -252,7 +252,7 @@ public class HouseRefUserServiceImpl implements HouseRefUserService {
         house.setSex(HouseSexEnum.getHouseSex(houseMsg.getSex()).getCode());
         house.setCall(houseMsg.getCall());
         house.setTel(houseMsg.getTel());
-        house.setCode(1);
+        house.setCode(0);
         house.setCreateTime(new Date());
         house.setUpdateTime(new Date());
         return house;
