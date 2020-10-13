@@ -20,13 +20,50 @@
     <select id="findQuestionCount" resultType="java.lang.Integer">
         select count(*) from question
     </select>
-    <update id="updateQuestionById" parameterType="java.lang.Integer" >
+    <update id="updateQuestionById" parameterType="java.lang.Integer">
         update question set question_status = 1 where id = #{id}
      </update>
-    <select id="findQuestionByUser"  resultMap="questionMapper">
+    <select id="findQuestionByUser" resultMap="questionMapper">
          select question.*,user.user_name,user.tel from user,question where question.question_userid = user.id and user.user_name = #{data}
     </select>
     <select id="findQuestionByTitle" resultMap="questionMapper">
          select question.*,user.user_name,user.tel from user,question where question.question_userid = user.id and question.question_title = #{data}
     </select>
+    <insert id="saveQuestion" parameterType="com.zlk.group4.question.entity.Question">
+        insert into question
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="questionUserId != null and questionUserId != '' ">
+                question_userid,
+            </if>
+            <if test="questionTitle != null and questionTitle != '' ">
+                question_title,
+            </if>
+            <if test="questionDescribe != null and questionDescribe != '' ">
+                question_describe,
+            </if>
+            <if test="questionPhone != null and questionPhone != '' ">
+                question_phone,
+            </if>
+            <if test="questionStatus != null and questionStatus != '' ">
+                question_status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="questionUserId != null and questionTitle != '' ">
+                #{questionUserId},
+            </if>
+            <if test="questionTitle != null and questionTitle != '' ">
+                #{questionTitle},
+            </if>
+            <if test="questionDescribe != null and questionDescribe != '' ">
+                #{questionDescribe},
+            </if>
+            <if test="questionPhone != null and questionPhone != '' ">
+                #{questionPhone},
+            </if>
+            <if test="questionStatus != null and questionStatus != '' ">
+                #{questionStatus},
+            </if>
+        </trim>
+    </insert>
 </mapper>
