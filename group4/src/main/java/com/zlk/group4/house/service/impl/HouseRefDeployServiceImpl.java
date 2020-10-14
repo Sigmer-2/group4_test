@@ -72,7 +72,7 @@ public class HouseRefDeployServiceImpl implements HouseRefDeployService {
     @Override
     public String houseDeploy(Integer id) {
         StringBuffer sb = new StringBuffer();
-        HouseRefDeploy houseRefDeploy = houseRefDeployMapper.selectDeployByHouseId(id);
+        HouseRefDeploy houseRefDeploy = selectDeployByHouseId(id);
         HouseDeploy houseDeploy = deployMapper.selectByPrimaryKey(houseRefDeploy.getHouseDeployId());
         if (houseDeploy.getBed() == 1){
             sb.append("床,");

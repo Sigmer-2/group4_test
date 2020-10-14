@@ -15,53 +15,64 @@ import org.apache.ibatis.annotations.Mapper;import java.util.List;import java.ut
 @Mapper
 public interface HouseMapper {
     /**
-     * delete by primary key
-     *
-     * @param id primaryKey
-     * @return deleteCount
+     * 根据主键删除
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:24
+     * @param id
+     * @return int
      */
     int deleteByPrimaryKey(Integer id);
 
     /**
-     * insert record to table
-     *
-     * @param record the record
-     * @return insert count
+     * 插入全部字段
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:24
+     * @param record
+     * @return int
      */
     int insert(House record);
 
     /**
-     * insert record to table selective
-     *
-     * @param record the record
-     * @return insert count
+     * 插入全部不为null的字段
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:25
+     * @param record
+     * @return int
      */
     int insertSelective(House record);
 
     /**
-     * select by primary key
-     *
-     * @param id primary key
-     * @return object by primary key
+     * 根据主键查询
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:25
+     * @param id
+     * @return com.zlk.group4.house.entity.House
      */
     House selectByPrimaryKey(Integer id);
 
     /**
-     * update record selective
-     *
-     * @param record the updated record
-     * @return update count
+     * 根据主键更新全部不为null的字段
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:25
+     * @param record
+     * @return int
      */
     int updateByPrimaryKeySelective(House record);
 
     /**
-     * update record
-     *
-     * @param record the updated record
-     * @return update count
+     * 根据主键更新实体全部字段，null值会被更新
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:26
+     * @param record
+     * @return int
      */
     int updateByPrimaryKey(House record);
-
+    /**
+     * 查询所有
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:26
+     * @return java.util.List<com.zlk.group4.house.entity.House>
+     */
     List<House> selectAll();
     /**
      * 根据id查询房源信息包含地铁、标签、配置

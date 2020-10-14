@@ -1,11 +1,7 @@
 package com.zlk.group4.vo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -68,8 +64,6 @@ public class HouseMsg {
     /**
      *可入住时间
      */
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
-//    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private String checkinTime;
     /**
      *租客性别

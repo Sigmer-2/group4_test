@@ -69,15 +69,22 @@ public interface CollectMapper {
      */
     int updateByPrimaryKey(Collect record);
     /**
-     *
+     *根据userId和houseId查询Collect
      * @Auther sunshuai
      * @Date 2020/10/13 16:29
- * @param collectUserid
- * @param collectHouseid
+     * @param collectUserid
+     * @param collectHouseid
      * @return com.zlk.group4.house.entity.Collect
      */
     Collect findAllByCollectUseridAndCollectHouseid(@Param("collectUserid")Integer collectUserid,@Param("collectHouseid")Integer collectHouseid);
-
+    /**
+     * 根据userId和houseId删除Collect
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:00 
+     * @param collectUserid
+     * @param collectHouseid
+     * @return int
+     */
     int deleteByCollectUseridAndCollectHouseid(@Param("collectUserid")Integer collectUserid,@Param("collectHouseid")Integer collectHouseid);
 
 

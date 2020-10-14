@@ -14,50 +14,56 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface RegionMapper {
     /**
-     * delete by primary key
-     *
-     * @param id primaryKey
-     * @return deleteCount
+     * 根据主键删除
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:01
+     * @param id
+     * @return int
      */
     int deleteByPrimaryKey(Integer id);
 
     /**
-     * insert record to table
-     *
-     * @param record the record
-     * @return insert count
+     * 插入全部字段
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:02
+     * @param record
+     * @return int
      */
     int insert(Region record);
 
     /**
-     * insert record to table selective
-     *
-     * @param record the record
-     * @return insert count
+     * 插入全部不为null的字段
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:02
+     * @param record
+     * @return int
      */
     int insertSelective(Region record);
 
     /**
-     * select by primary key
-     *
-     * @param id primary key
-     * @return object by primary key
+     * 根据主键查询
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:02
+     * @param id
+     * @return com.zlk.group4.house.entity.Region
      */
     Region selectByPrimaryKey(Integer id);
 
     /**
-     * update record selective
-     *
-     * @param record the updated record
-     * @return update count
+     * 根据主键更新属性不为null的值
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:05
+     * @param record
+     * @return int
      */
     int updateByPrimaryKeySelective(Region record);
 
     /**
-     * update record
-     *
-     * @param record the updated record
-     * @return update count
+     * 根据主键更新全部字段，null值会被更新
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:06
+     * @param record
+     * @return int
      */
     int updateByPrimaryKey(Region record);
     /**

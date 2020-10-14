@@ -68,9 +68,16 @@ public class ReportController {
         return map;
     }
 
+    /**
+     * 保存举报信息
+     * @Auther sunshuai
+     * @Date 2020/10/14 10:07
+     * @param request
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
     @PostMapping(value = "/saveReport",produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public Map<String,Object> saveReport(HttpServletRequest request, HttpServletResponse response){
+    public Map<String,Object> saveReport(HttpServletRequest request){
         //未完成
         Map<String, Object> map = new HashMap<>();
         System.out.println("小程序调用");
