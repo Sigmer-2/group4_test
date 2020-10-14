@@ -55,10 +55,6 @@ public class WxRepairController {
             map.put("code", 0);
             map.put("list", list);
         }
-//        Integer userId = 3;
-//        List<WxRepair> list = wxRepairsService.findRepairsByUserid(userId);
-//        List<WxRepair> list = wxRepairsService.selectLocationByUserId(userId);
-//        map.put("list", list);
         return map;
     }
     /**
@@ -73,34 +69,25 @@ public class WxRepairController {
     @RequestMapping(value = "/insertRepair",method = RequestMethod.POST)
     public Map<String,Object> insertRepair(HttpServletRequest request, HttpServletResponse response) throws Exception{
         Map<String, Object> map = new HashMap<>();
-        // java端:通过参数HttpServletRequest request解析出json格式的参数
-        // json包用的阿里的 com.alibaba.fastjson.JSONObject;
-        JSONObject result = null;
-        StringBuilder sb = new StringBuilder();
-        try (BufferedReader reader = request.getReader();) {
-            char[] buff = new char[1024];
-            int len;
-            while ((len = reader.read(buff)) != -1) {
-                sb.append(buff, 0, len);
+        JSONObject result = MyHouseUtils.getResult(request);
+        String userId = result.getString("userId");
+        System.out.println(userId);
+        if (!"".equals(userId)){
+            WxRepair wxRepair = new WxRepair();
+//            Integer userId = 3;
+            wxRepair.setRepairUserid(Integer.parseInt(userId));
+            String houseId = result.getString("houseId");
+            if (!"".equals(houseId)){
+                wxRepair.setRepairHouseid(Integer.parseInt(houseId));
             }
-            result = JSONObject.parseObject(sb.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        WxRepair wxRepair = new WxRepair();
-        Integer userId = 3;
-        wxRepair.setRepairUserid(userId);
-        String houseId = result.getString("houseId");
-        if (!"".equals(houseId)){
-            wxRepair.setRepairHouseid(Integer.parseInt(houseId));
-        }
-        wxRepair.setRepairDescribe(result.getString("describe"));
-        wxRepair.setRepairStatus(0);
-        int i = wxRepairsService.insertRepairs(wxRepair);
-        if (i==1){
-            map.put("status",0);
-        }else {
-            map.put("status", 1);
+            wxRepair.setRepairDescribe(result.getString("describe"));
+            wxRepair.setRepairStatus(0);
+            int i = wxRepairsService.insertRepairs(wxRepair);
+            if (i==1){
+                map.put("status",0);
+            }else {
+                map.put("status", 1);
+            }
         }
         return map;
     }
