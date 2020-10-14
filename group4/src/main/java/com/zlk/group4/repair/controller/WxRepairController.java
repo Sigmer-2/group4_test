@@ -124,22 +124,6 @@ public class WxRepairController {
             map.put("code", 0);
             map.put("list", list);
         }
-
-        // java端:通过参数HttpServletRequest request解析出json格式的参数
-        // json包用的阿里的 com.alibaba.fastjson.JSONObject;
-        /*JSONObject result = null;
-        StringBuilder sb = new StringBuilder();
-        try (BufferedReader reader = request.getReader();) {
-            char[] buff = new char[1024];
-            int len;
-            while ((len = reader.read(buff)) != -1) {
-                sb.append(buff, 0, len);
-            }
-            result = JSONObject.parseObject(sb.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-//        Integer userId = 3;
         return map;
     }
 }

@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Mapper
 public interface WxRepairsMapper {
-    /**
+    /**增加报修信息
      * insert record to table selective
      * @param record the record
      * @return insert count
