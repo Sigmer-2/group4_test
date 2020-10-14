@@ -39,9 +39,29 @@ public class PersonServiceImpl implements PersonService{
 
     @Override
     @Transactional
-    public Integer insertAll(House house,HouseImg houseImg,HouseLabel houseLabel,HouseDeploy houseDeploy){
+    public Integer insertAll(House house,imgParams imgParams,HouseLabel houseLabel,HouseDeploy houseDeploy){
         Integer flag1=personMapper.saveHouse(house);
-        Integer flag2=personMapper.saveHouseImg(houseImg);
+        Integer flag2 = 0;
+        Integer a =0;
+        Integer b =0;
+        Integer houseid = house.getId();
+        List<String> imgurl= imgParams.getImgUrl();
+        for (int i = 0; i <imgurl.size(); i++) {
+            String ll = imgurl.get(i);
+            HouseImg houseImg= new HouseImg();
+            houseImg.setImgUrl(ll);
+            Integer j =personMapper.saveHouseImg(houseImg);
+            HouseRefImg houseRefImg =new HouseRefImg();
+            houseRefImg.setHouseImgId(houseImg.getId());
+            houseRefImg.setHouseId(houseid);
+            Integer h = personMapper.insertHouseRefImg(houseRefImg);
+            a+=j;
+            b+=h;
+            if(a==(i+1)&&b==(i+1)&&(i+1)==imgParams.getImgUrl().size())
+            {
+                flag2=1;
+            }
+        }
         Integer flag3=personMapper.saveHouseLabel(houseLabel);
         Integer flag4=personMapper.saveHouseDeploy(houseDeploy);
        // Integer id1=personMapper.getId();
@@ -51,19 +71,6 @@ public class PersonServiceImpl implements PersonService{
             return 0;
         }
     }
-
-//    @Override
-//    @Transactional
-//    public Integer insertAll2(Integer houseId,Integer imgId,Integer labelId,Integer deployId){
-//        Integer flag1 = personMapper.insertHouseRefImg(houseId, imgId);
-//        Integer flag2 = personMapper.insertHouseRefLabel(houseId, labelId);
-//        Integer flag3 = personMapper.insertHouseRefDeploy(houseId, deployId);
-//        if(flag1==1&&flag2==1&&flag3==1){
-//            return 1;
-//        }else{
-//            return 0;
-//        }
-//    }
 
     @Override
     public List<Area> findChangChunAreaAll(Integer page,Integer limit) {

@@ -130,7 +130,13 @@ public interface PersonMapper {
       * @return:java.lang.Integer
       */
      Integer updateUserById(User user);
-
+     /**
+      * @describetion:在插入房屋id和房屋照片id
+      * @author:sunjiahe
+      * @date:2020/10/14 9:03
+      * @param:[houseRefImg]
+      * @return:java.lang.Integer
+      */
      Integer insertHouseRefImg(HouseRefImg houseRefImg);
 
      Integer insertHouseRefLabel(HouseRefLabel houseRefLabel);

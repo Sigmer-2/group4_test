@@ -123,7 +123,7 @@
         values(#{houseType},#{regionId},#{listingsType},#{rentalMode},#{roomType},#{rent},#{houseIntroduction},#{checkinTime},#{sex},#{call},#{tell})
     </insert>-->
 
-    <insert id="saveHouseImg" parameterType="com.zlk.group4.house.entity.HouseImg" useGeneratedKeys="true" keyProperty="id">
+    <insert id="saveHouseImg" parameterType="com.zlk.group4.house.entity.HouseImg"  useGeneratedKeys="true" keyProperty="id">
         insert into house_img
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id!=null and id!=''">
@@ -131,9 +131,6 @@
             </if>
             <if test="imgUrl!=null and imgUrl!=''">
                 img_url,
-            </if>
-            <if test="imgPage!=null and imgPage!=''">
-                img_page,
             </if>
         </trim>
         values
@@ -143,9 +140,6 @@
             </if>
             <if test="imgUrl!=null and imgUrl!=''">
                 #{imgUrl},
-            </if>
-            <if test="imgPage!=null and imgPage!=''">
-                #{imgPage},
             </if>
         </trim>
     </insert>
@@ -443,7 +437,6 @@
     <insert id="insertHouseRefLabel" parameterType="com.zlk.group4.house.entity.HouseRefLabel">
         insert into house_ref_label
         <trim prefix="(" suffix=")" suffixOverrides=",">
-
             <if test="houseId!=null">
                 house_id,
             </if>
@@ -453,7 +446,6 @@
         </trim>
         values
         <trim prefix="(" suffix=")" suffixOverrides=",">
-
             <if test="houseId!=null">
                 #{houseId},
             </if>
@@ -466,7 +458,6 @@
     <insert id="insertHouseRefDeploy" parameterType="com.zlk.group4.house.entity.HouseRefDeploy">
         insert into house_ref_deploy
         <trim prefix="(" suffix=")" suffixOverrides=",">
-
             <if test="houseId!=null">
                 house_id,
             </if>
@@ -476,7 +467,6 @@
         </trim>
         values
         <trim prefix="(" suffix=")" suffixOverrides=",">
-
             <if test="houseId!=null">
                 #{houseId},
             </if>

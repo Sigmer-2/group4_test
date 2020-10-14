@@ -12,8 +12,10 @@ import com.zlk.group4.person.util.HttpClientUtil;
 import com.zlk.group4.person.util.StaticDataUtil;
 
 //import net.sf.json.JSONArray;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 //import com.alibaba.fastjson.JSONObject;
+import net.sf.json.JsonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -87,8 +89,23 @@ public class PersonController {
         House house = (House) JSONObject.toBean(fromObject1,House.class);
         System.out.println(house);
         JSONObject jsonObject2 = param.getJSONObject("houseImg");
-        JSONObject fromObject2 = JSONObject.fromObject(jsonObject2);
-        HouseImg houseImg = (HouseImg) JSONObject.toBean(fromObject2,HouseImg.class);
+        System.out.println(jsonObject2.get("0"));
+        String url0 =String.valueOf(jsonObject2.get("0"));
+        String url1 = String.valueOf(jsonObject2.get("1"));
+        String url2 = String.valueOf(jsonObject2.get("2"));
+        imgParams houseImg = new imgParams();
+        List<String> url = new ArrayList<String>();
+        if(url0!=null&&!url0.equals("null")) {
+            url.add(url0);
+        }
+        if(url1!=null&&!url1.equals("null")) {
+            url.add(url1);
+        }
+        if(url2!=null&&!url2.equals("null")) {
+            url.add(url2);
+        }
+        houseImg.setImgUrl(url);
+        //houseImg.setImgUrl();
         System.out.println(houseImg);
         JSONObject jsonObject3 = param.getJSONObject("houseLabel");
         JSONObject fromObject3 = JSONObject.fromObject(jsonObject3);
@@ -104,15 +121,14 @@ public class PersonController {
 
         Integer houseId = house.getId();
 
-        Integer houseImgId = houseImg.getId();
 
         Integer labelId = houseLabel.getId();
 
         Integer deployId = houseDeploy.getId();
      //  Integer flag2 = personService.insertAll2(houseId,imgId,labelId,deployId);
-        HouseRefImg houseRefImg = new HouseRefImg();
-        houseRefImg.setHouseId(houseId);
-        houseRefImg.setHouseImgId(houseImgId);
+//        HouseRefImg houseRefImg = new HouseRefImg();
+//        houseRefImg.setHouseId(houseId);
+//        houseRefImg.setHouseImgId(houseImgId);
         HouseRefLabel houseRefLabel = new HouseRefLabel();
         houseRefLabel.setHouseId(houseId);
         houseRefLabel.setHouseLabelId(labelId);
@@ -120,18 +136,18 @@ public class PersonController {
         houseRefDeploy.setHouseId(houseId);
         houseRefDeploy.setHouseDeployId(deployId);
 
-     Integer flag2 =  personService.insertHouseRefImg(houseRefImg);
+//     Integer flag2 =  personService.insertHouseRefImg(houseRefImg);
      Integer flag3 = personService.insertHouseRefLabel(houseRefLabel);
      Integer flag4 =  personService.insertHouseRefDeploy(houseRefDeploy);
 
 
         System.out.println(houseId);
-        System.out.println(houseImgId);
+       // System.out.println(houseImgId);
         System.out.println(labelId);
         System.out.println(deployId);
         //System.out.println(imgId);
         ///
-        if(flag==1&&flag2==1&&flag3==1&&flag4==1){
+        if(flag==1&&flag3==1&&flag4==1){
             return 1;
         }else{
             return 0;

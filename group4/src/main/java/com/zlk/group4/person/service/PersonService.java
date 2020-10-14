@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 public interface PersonService {
@@ -35,7 +36,7 @@ public interface PersonService {
      * @param:[house, houseImg, houseLabel, houseDeploy]
      * @return:java.lang.Integer
      */
-    Integer insertAll(House house,HouseImg houseImg,HouseLabel houseLabel,HouseDeploy houseDeploy);
+    Integer insertAll(House house, imgParams imgParams, HouseLabel houseLabel, HouseDeploy houseDeploy);
     /**
      * @describetion:查找长春所有区域的编号和名字
      * @author:sunjiahe
