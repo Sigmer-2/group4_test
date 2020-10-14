@@ -1,10 +1,8 @@
 package com.zlk.group4.house.mapper;
 
-import com.zlk.group4.house.entity.HouseLabel;
 import com.zlk.group4.house.entity.HouseRefLabel;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,50 +15,56 @@ import java.util.List;
 @Mapper
 public interface HouseRefLabelMapper {
     /**
-     * delete by primary key
-     *
-     * @param id primaryKey
-     * @return deleteCount
+     * 根据主键删除
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:18
+     * @param id
+     * @return int
      */
     int deleteByPrimaryKey(Integer id);
 
     /**
-     * insert record to table
-     *
-     * @param record the record
-     * @return insert count
+     * 插入全部字段
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:18
+     * @param record
+     * @return int
      */
     int insert(HouseRefLabel record);
 
     /**
-     * insert record to table selective
-     *
-     * @param record the record
-     * @return insert count
+     * 插入全部不为null的字段
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:19
+     * @param record
+     * @return int
      */
     int insertSelective(HouseRefLabel record);
 
     /**
-     * select by primary key
-     *
-     * @param id primary key
-     * @return object by primary key
+     * 根据主键查询
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:19
+     * @param id
+     * @return com.zlk.group4.house.entity.HouseRefLabel
      */
     HouseRefLabel selectByPrimaryKey(Integer id);
 
     /**
-     * update record selective
-     *
-     * @param record the updated record
-     * @return update count
+     * 根据主键更新全部不为null的值
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:19
+     * @param record
+     * @return int
      */
     int updateByPrimaryKeySelective(HouseRefLabel record);
 
     /**
-     * update record
-     *
-     * @param record the updated record
-     * @return update count
+     * 根据主键更新实体全部字段，null值会被更新
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:20
+     * @param record
+     * @return int
      */
     int updateByPrimaryKey(HouseRefLabel record);
 

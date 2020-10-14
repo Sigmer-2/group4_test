@@ -89,6 +89,13 @@ public class MyHouseUtils {
         return map;
     }
 
+    /**
+     * 通过request获取JSONObject
+     * @Auther sunshuai
+     * @Date 2020/10/14 10:08
+     * @param request
+     * @return com.alibaba.fastjson.JSONObject
+     */
     public static JSONObject getResult(HttpServletRequest request){
         JSONObject result = null;
         StringBuilder sb = new StringBuilder();

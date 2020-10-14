@@ -30,6 +30,14 @@ public class MerchantUserController {
     @Autowired
     private MerchantUserService merchantUserService;
     @ResponseBody
+    /**
+     * 添加商户信息
+     * @Auther lihongying
+     * @Date 2020/10/8 16:55
+     * @param request
+     * @param response
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
     @RequestMapping(value = "/insertMerchantUser",method = RequestMethod.POST)
     private Map<String,Object> addMerchantUser(HttpServletRequest request, HttpServletResponse response){
         Map<String, Object> map = new HashMap<>();

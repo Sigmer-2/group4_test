@@ -91,8 +91,23 @@
   </update>
   <select id="selectDeployByHouseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
       SELECT
-              hrd.house_id,hrd.house_deploy_id,
-              hd.*
+      hrd.*,
+      h.house_type,
+      h.region_id,
+      h.metro_id,
+      h.estate,
+      h.listings_type,
+      h.rental_mode,
+      h.room_type,
+      h.rent,
+      h.house_introduction,
+      h.checkin_time,
+      h.sex,
+      h.`call`,
+      h.tel,
+      h.`code`,
+      h.create_time,
+      h.update_time
       FROM
               house AS h
       INNER JOIN

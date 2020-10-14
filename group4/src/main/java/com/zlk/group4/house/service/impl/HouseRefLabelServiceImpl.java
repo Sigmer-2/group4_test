@@ -73,7 +73,7 @@ public class HouseRefLabelServiceImpl implements HouseRefLabelService {
 
     @Override
     public String label(Integer id) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         HouseRefLabel houseRefLabel = houseRefLabelMapper.selectLabelByHouseId(id);
         HouseLabel houseLabel = houseLabelMapper.selectByPrimaryKey(houseRefLabel.getHouseLabelId());
             if (houseLabel.getShortRent() == 1){

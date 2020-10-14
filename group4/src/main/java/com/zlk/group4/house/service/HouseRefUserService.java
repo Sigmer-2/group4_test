@@ -1,6 +1,5 @@
 package com.zlk.group4.house.service;
 
-import com.zlk.group4.house.entity.House;
 import com.zlk.group4.house.entity.HouseRefUser;
 import com.zlk.group4.vo.HouseMsg;
 
@@ -18,16 +17,57 @@ import java.util.Map;
 public interface HouseRefUserService {
 
 
+    /**
+     * 根据主键删除
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:49
+     * @param id
+     * @return int
+     */
     int deleteByPrimaryKey(Integer id);
-
+    /**
+     * 插入全部字段
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:50
+     * @param record
+     * @return int
+     */
     int insert(HouseRefUser record);
 
+    /**
+     * 插入全部不为null的值
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:50
+     * @param record
+     * @return int
+     */
     int insertSelective(HouseRefUser record);
 
+    /**
+     * 根据主键查询
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:50
+     * @param id
+     * @return com.zlk.group4.house.entity.HouseRefUser
+     */
     HouseRefUser selectByPrimaryKey(Integer id);
 
+    /**
+     * 根据主键更新属性不为null的值
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:50
+     * @param record
+     * @return int
+     */
     int updateByPrimaryKeySelective(HouseRefUser record);
 
+    /**
+     * 根据主键更新实体全部字段，null值会被更新
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:51
+     * @param record
+     * @return int
+     */
     int updateByPrimaryKey(HouseRefUser record);
     /**
      * 根据用户id查询用户所有的出租房源信息
@@ -38,6 +78,13 @@ public interface HouseRefUserService {
      */
     List<HouseMsg>  listAllByUserId(Integer id);
 
+    /**
+     * 根据userId查询
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:51
+     * @param id
+     * @return java.util.List<com.zlk.group4.house.entity.HouseRefUser>
+     */
     List<HouseRefUser> selectHouseByUserId(Integer id);
 
     /**
@@ -47,7 +94,7 @@ public interface HouseRefUserService {
      * @param id houseMsgId
      * @return int 受影响行数
      */
-    int deleteHouseMsg(Integer id);
+    int deleteHouseMsg(Integer uid,Integer id);
 
     /**
      * 根据HouseMsg修改房源信息
@@ -65,7 +112,7 @@ public interface HouseRefUserService {
      * @param houseMsg
      * @return int 新增houseId
      */
-    int insertHouseMsg(HouseMsg houseMsg);
+    int insertHouseMsg(HouseMsg houseMsg,Integer userId);
 
     /**
      * 根据houseId查询所有信息
@@ -94,9 +141,7 @@ public interface HouseRefUserService {
      * @param id
      * @return List
      */
-
-
-    List selectHouseIdByUserId(Integer id);
+    List<Integer> selectHouseIdByUserId(Integer id);
 
 
 }

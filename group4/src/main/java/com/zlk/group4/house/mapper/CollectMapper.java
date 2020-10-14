@@ -16,49 +16,75 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CollectMapper {
     /**
-     * delete by primary key
-     * @param id primaryKey
-     * @return deleteCount
+     * 根据主键删除
+     * @Auther sunshuai
+     * @Date 2020/10/13 16:19
+     * @param id
+     * @return int
      */
     int deleteByPrimaryKey(Integer id);
 
     /**
-     * insert record to table
-     * @param record the record
-     * @return insert count
+     * 插入全部字段
+     * @Auther sunshuai
+     * @Date 2020/10/13 16:20
+     * @param record
+     * @return int
      */
     int insert(Collect record);
 
     /**
-     * insert record to table selective
-     * @param record the record
-     * @return insert count
+     * 插入全部不为null的字段
+     * @Auther sunshuai
+     * @Date 2020/10/13 16:22 
+     * @param record
+     * @return int
      */
     int insertSelective(Collect record);
 
     /**
-     * select by primary key
-     * @param id primary key
-     * @return object by primary key
+     * 根据主键查询
+     * @Auther sunshuai
+     * @Date 2020/10/13 16:22
+     * @param id
+     * @return com.zlk.group4.house.entity.Collect
      */
     Collect selectByPrimaryKey(Integer id);
 
     /**
-     * update record selective
-     * @param record the updated record
-     * @return update count
+     * 根据主键更新属性不为null的值
+     * @Auther sunshuai
+     * @Date 2020/10/13 16:27
+     * @param record
+     * @return int
      */
     int updateByPrimaryKeySelective(Collect record);
 
     /**
-     * update record
-     * @param record the updated record
-     * @return update count
+     * 根据主键更新实体全部字段，null值会被更新
+     * @Auther sunshuai
+     * @Date 2020/10/13 16:27
+     * @param record
+     * @return int
      */
     int updateByPrimaryKey(Collect record);
-
+    /**
+     *根据userId和houseId查询Collect
+     * @Auther sunshuai
+     * @Date 2020/10/13 16:29
+     * @param collectUserid
+     * @param collectHouseid
+     * @return com.zlk.group4.house.entity.Collect
+     */
     Collect findAllByCollectUseridAndCollectHouseid(@Param("collectUserid")Integer collectUserid,@Param("collectHouseid")Integer collectHouseid);
-
+    /**
+     * 根据userId和houseId删除Collect
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:00 
+     * @param collectUserid
+     * @param collectHouseid
+     * @return int
+     */
     int deleteByCollectUseridAndCollectHouseid(@Param("collectUserid")Integer collectUserid,@Param("collectHouseid")Integer collectHouseid);
 
 

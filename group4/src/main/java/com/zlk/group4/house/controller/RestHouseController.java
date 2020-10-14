@@ -1,15 +1,18 @@
 package com.zlk.group4.house.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zlk.group4.entity.User;
 import com.zlk.group4.fdfs.CommonFileUtil;
 import com.zlk.group4.fdfs.FdfsConfig;
 import com.zlk.group4.house.entity.Collect;
 import com.zlk.group4.house.entity.HouseImg;
 import com.zlk.group4.house.entity.HouseRefImg;
 import com.zlk.group4.house.service.*;
+import com.zlk.group4.service.UserService;
 import com.zlk.group4.util.MyHouseUtils;
 import com.zlk.group4.vo.HouseMsg;
 import com.zlk.group4.vo.ServerLayResponse;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,6 +49,9 @@ public class RestHouseController {
     private CollectService collectService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     //对文件进行上传的工具类
     private CommonFileUtil commonFileUtil;
 
@@ -55,12 +61,19 @@ public class RestHouseController {
     private ServerLayResponse serverLayResponse = null;
 
 
+    /**
+     * layui表格数据展示
+     * @Auther sunshuai
+     * @Date 2020/10/14 10:10 
+     * @return com.zlk.group4.vo.ServerLayResponse
+     */
     @GetMapping("/list")
     @ResponseBody
     public ServerLayResponse getList(){
+        String principal = (String) SecurityUtils.getSubject().getPrincipal();
+        User user = userService.selectUserByName1(principal);
         serverLayResponse = new ServerLayResponse();
-        Integer useId = 1;
-        List<HouseMsg> list = houseRefUserService.listAllByUserId(useId);
+        List<HouseMsg> list = houseRefUserService.listAllByUserId(user.getId());
         serverLayResponse.setCode(0);
         serverLayResponse.setMsg("");
         serverLayResponse.setCount(list.size());
@@ -69,11 +82,20 @@ public class RestHouseController {
     }
 
 
+    /**
+     * 表格增加
+     * @Auther sunshuai
+     * @Date 2020/10/14 10:10 
+     * @param houseMsg
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
     @PostMapping("/add")
     @ResponseBody
     public Map<String,Object> add(HouseMsg houseMsg){
         Map<String,Object> map = new HashMap<>();
-        int i = houseRefUserService.insertHouseMsg(houseMsg);
+        String principal = (String) SecurityUtils.getSubject().getPrincipal();
+        User user = userService.selectUserByName1(principal);
+        int i = houseRefUserService.insertHouseMsg(houseMsg,user.getId());
         if (i == 0){
             map.put("status",500);
         }else {
@@ -83,6 +105,13 @@ public class RestHouseController {
     }
 
 
+    /**
+     * 表格修改
+     * @Auther sunshuai
+     * @Date 2020/10/14 10:11 
+     * @param houseMsg
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
     @PostMapping("/edit")
     @ResponseBody
     public Map<String,Object> edit(HouseMsg houseMsg){
@@ -97,16 +126,25 @@ public class RestHouseController {
     }
 
 
+    /**
+     * 表格删除
+     * @Auther sunshuai
+     * @Date 2020/10/14 10:11 
+     * @param ids
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
     @PostMapping("/delete")
     @ResponseBody
     public Map<String,Object> delete(@RequestParam("ids") List<Integer> ids){
         Map<String,Object> map = new HashMap<>();
+        String principal = (String) SecurityUtils.getSubject().getPrincipal();
+        User user = userService.selectUserByName1(principal);
         if (ids.size()==0){
             map.put("status",500);
         }
         for (Integer id : ids) {
           //
-            int i = houseRefUserService.deleteHouseMsg(id);
+            int i = houseRefUserService.deleteHouseMsg(user.getId(),id);
             if (i==7){
                 map.put("status",1);
             }else {
@@ -117,6 +155,14 @@ public class RestHouseController {
     }
 
 
+    /**
+     * 表格图片上传
+     * @Auther sunshuai
+     * @Date 2020/10/14 10:11 
+     * @param file
+     * @param request
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
     @PostMapping("/upload")
     @ResponseBody
     public Map<String,Object> addImg(MultipartFile file, HttpServletRequest request) throws IllegalStateException, IOException {
@@ -148,6 +194,13 @@ public class RestHouseController {
     }
 
 
+    /**
+     * 小程序房屋详情
+     * @Auther sunshuai
+     * @Date 2020/10/14 10:11 
+     * @param request
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
     @PostMapping(value = "/msg",produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Map<String,Object> getMap(HttpServletRequest request){
@@ -155,12 +208,20 @@ public class RestHouseController {
         JSONObject result = MyHouseUtils.getResult(request);
         String id = result.getString("houseId");
         String userId = result.getString("userId");
-        System.out.println(userId+""+id+"=============================");
-        if ("".equals(userId)||"".equals(id)){
+        if ("".equals(userId)&&"".equals(id)){
             map.put("msg","请登录");
         }else{
+            if ("".equals(userId)){
+                map.put("collect","收藏");
+            }else {
+                Collect collect = collectService.findAllByCollectUseridAndCollectHouseid(Integer.parseInt(userId), Integer.parseInt(id));
+                if (collect!=null){
+                    map.put("collect","已收藏");
+                }else {
+                    map.put("collect","收藏");
+                }
+            }
         Map<String, Object> houseInfo = houseService.findHouseInfoById(Integer.parseInt(id));
-//        House house = (House)houseInfo.get("house");
         Map<String, Object> map1 = houseRefUserService.listAllByHouseId(Integer.parseInt(id));
         HouseMsg houseMsg = (HouseMsg)map1.get("houseMsg");
         String area = houseMsg.getArea();
@@ -201,16 +262,17 @@ public class RestHouseController {
         map.put("deploys",deploys);
         map.put("tel",tel);
         map.put("listImg",listImg);
-        Collect collect = collectService.findAllByCollectUseridAndCollectHouseid(Integer.parseInt(userId), Integer.parseInt(id));
-            if (collect!=null){
-                map.put("collect","已收藏");
-            }else {
-                map.put("collect","收藏");
-            }
         }
         return map;
     }
 
+    /**
+     * 小程序收藏
+     * @Auther sunshuai
+     * @Date 2020/10/14 10:12
+     * @param request
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
     @PostMapping(value = "/collect",produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Map<String,Object> collect(HttpServletRequest request){
@@ -218,7 +280,7 @@ public class RestHouseController {
         JSONObject result = MyHouseUtils.getResult(request);
         String userId = result.getString("userId");
         String houseId = result.getString("houseId");
-        if ("".equals(userId)&&"".equals(houseId)){
+        if ("".equals(userId)||"".equals(houseId)){
             map.put("msg","请登录");
         }else {
             Collect collect = new Collect();
@@ -236,6 +298,13 @@ public class RestHouseController {
     }
 
 
+    /**
+     * 小程序取消收藏
+     * @Auther sunshuai
+     * @Date 2020/10/14 10:12
+     * @param request
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
     @PostMapping(value = "/deleteCollect",produces = "application/json;charset=UTF-8")
     @ResponseBody
     public Map<String,Object> deleteCollect(HttpServletRequest request){

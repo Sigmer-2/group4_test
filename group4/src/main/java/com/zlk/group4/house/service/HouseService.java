@@ -17,21 +17,75 @@ import com.zlk.group4.vo.HouseMsg;
 
 public interface HouseService {
 
-
+    /**
+     * 根据主键删除
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:46
+     * @param id
+     * @return int
+     */
     int deleteByPrimaryKey(Integer id);
 
+    /**
+     * 出入全部字段
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:46
+     * @param record
+     * @return int
+     */
     int insert(House record);
 
+    /**
+     * 更新全部不为null的值
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:46
+     * @param record
+     * @return int
+     */
     int insertSelective(House record);
 
+    /**
+     * 根据主键查询
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:47
+     * @param id
+     * @return com.zlk.group4.house.entity.House
+     */
     House selectByPrimaryKey(Integer id);
 
+    /**
+     * 根据主键更新属性不为null的值
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:47
+     * @param record
+     * @return int
+     */
     int updateByPrimaryKeySelective(House record);
 
+    /**
+     * 根据主键更新实体全部字段，null值会被更新
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:47
+     * @param record
+     * @return int
+     */
     int updateByPrimaryKey(House record);
 
+    /**
+     * 查询所有
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:47
+     * @return java.util.List<com.zlk.group4.house.entity.House>
+     */
     List<House> selectAll();
 
+    /**
+     * 根据id查询所有
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:48
+     * @param id
+     * @return com.zlk.group4.house.entity.House
+     */
     House selectAllById(Integer id);
     /**
      * 管理员查询房屋信息
@@ -43,15 +97,15 @@ public interface HouseService {
      * @time: 2020/9/27 13:07
      */
     List<House> adminManageHouse(Map map,Integer page,Integer limit);
-/**
- *
- * 管理员查询房屋总数
- * @description: *
- * @param
- * @return: num
- * @author: zhc
- * @time: 2020/9/27 13:08
- */
+    /**
+     *
+     * 管理员查询房屋总数
+     * @description: *
+     * @param
+     * @return: num
+     * @author: zhc
+     * @time: 2020/9/27 13:08
+     */
     Integer findHouseCount();
     /**
      * 模糊查询

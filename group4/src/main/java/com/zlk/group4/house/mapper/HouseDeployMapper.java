@@ -14,50 +14,56 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface HouseDeployMapper {
     /**
-     * delete by primary key
-     *
-     * @param id primaryKey
-     * @return deleteCount
+     * 根据主键删除
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:30
+     * @param id
+     * @return int
      */
     int deleteByPrimaryKey(Integer id);
 
     /**
-     * insert record to table
-     *
-     * @param record the record
-     * @return insert count
+     * 插入全部字段
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:30
+     * @param record
+     * @return int
      */
     int insert(HouseDeploy record);
 
     /**
-     * insert record to table selective
-     *
-     * @param record the record
-     * @return insert count
+     * 插入全部不为null的值
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:30
+     * @param record
+     * @return int
      */
     int insertSelective(HouseDeploy record);
 
     /**
-     * select by primary key
-     *
-     * @param id primary key
-     * @return object by primary key
+     * 根据主键查询
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:31
+     * @param id
+     * @return com.zlk.group4.house.entity.HouseDeploy
      */
     HouseDeploy selectByPrimaryKey(Integer id);
 
     /**
-     * update record selective
-     *根据主键更新属性不为null的值
-     * @param record the updated record
-     * @return update count
+     * 根据主键更新属性不为null的值
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:31
+     * @param record
+     * @return int
      */
     int updateByPrimaryKeySelective(HouseDeploy record);
 
     /**
-     * update record
-     *根据主键更新实体全部字段，null值会被更新
-     * @param record the updated record
-     * @return update count
+     * 根据主键更新实体全部字段，null值会被更新
+     * @Auther sunshuai
+     * @Date 2020/10/14 9:32
+     * @param record
+     * @return int
      */
     int updateByPrimaryKey(HouseDeploy record);
 }
