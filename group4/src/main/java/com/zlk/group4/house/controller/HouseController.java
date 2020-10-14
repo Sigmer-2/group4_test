@@ -94,19 +94,28 @@ public class HouseController {
         Integer limit = selectParams.getLimit();
         paraMap.put("userid",selectParams.getUserid());
         paraMap.put("zuji",selectParams.getZuji());
-        List<House> houseList = houseService.wxSelectFoot(paraMap, page, limit);
-        for (House house : houseList) {
-            Integer i = house.getHouseRefLabel().getId();
-            house.setHouseRefLabel(houseRefLabelService.selectLabelByHouseId(house.getId()));
-            house.getHouseRefLabel().setId(i);
-            house.setHouseRefImgs(houseRefImgService.selectImgByHouseId(house.getId()));
+        if(selectParams.getUserid()!=-1)
+        {
+            List<House> houseList = houseService.wxSelectFoot(paraMap, page, limit);
+            for (House house : houseList) {
+                Integer i = house.getHouseRefLabel().getId();
+                house.setHouseRefLabel(houseRefLabelService.selectLabelByHouseId(house.getId()));
+                house.getHouseRefLabel().setId(i);
+                house.setHouseRefImgs(houseRefImgService.selectImgByHouseId(house.getId()));
+            }
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("code", 0);
+            map.put("msg", "");
+            map.put("data", houseList);
+            return map;
         }
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("code", 0);
-        map.put("msg", "");
-        map.put("data", houseList);
+        else {
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("data", null);
+            return map;
+        }
         //map.put("count", count);
-        return map;
+
     }
     /**
      *
